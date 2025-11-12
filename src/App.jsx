@@ -1,7 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Navbar from './Component/Navbar';
-import HomePage from './Component/HomePage';
+import HomePage from './Component/Homepage';
 import Productdetail from './Component/Productdetail';
 import Checkout from './Component/Checkout';
 import SuccessCheckout from './Component/SuccessCheckout';
