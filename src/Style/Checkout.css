@@ -1,0 +1,1000 @@
+@import url('https://fonts.googleapis.com/css2?family=Creolia:wght@700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap');
+
+.checkout-bg {
+  background-color: #ffffff;
+  min-height: 100vh;
+}
+
+.max-width-700 {
+  max-width: 700px;
+}
+
+.max-width-500 {
+  max-width: 500px;
+}
+
+/* Header with Logo and Cart */
+.checkout-header {
+  padding: 0 10px;
+}
+
+.logo-img {
+  height: 40px;
+  width: auto;
+  display: block;
+}
+
+.black-logo {
+  filter: brightness(0) invert(0);
+}
+
+.cart-badge {
+  font-size: 1.5rem;
+  color: #333;
+}
+
+/* Form Sections */
+.form-section {
+  background: #fff;
+  border-radius: 12px;
+}
+
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.section-title {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-weight: 600;
+  color: #0A0E11;
+  font-size: 24px;
+  margin: 0;
+}
+
+.section-subtitle {
+  font-weight: 500;
+  color: #475055;
+  font-size: 16px;
+  margin-bottom: 8px;
+  display: block;
+}
+
+.login-prompt {
+  margin: 0;
+  font-size: 0.9rem;
+  color: #666;
+}
+
+.login-link {
+  color: #007bff;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.login-link:hover {
+  text-decoration: underline;
+}
+
+/* Optional Text */
+.optional-text {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  color: #666;
+}
+
+/* Input Container for Margins */
+.input-container {
+  margin-left: 15px;
+  margin-right: 15px;
+}
+
+/* Form Controls */
+.custom-input {
+  padding: 12px 16px;
+  border: 1px solid #C9C4BE;
+  border-radius: 8px;
+  font-size: 16px;
+  transition: all 0.2s;
+  background: #fff;
+  width: 100%;
+  color: #475055;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+}
+
+.custom-input::placeholder {
+  color: #475055;
+  font-size: 16px;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-weight: 400;
+}
+
+.custom-input:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 0 2px rgba(0,123,255,0.1);
+  outline: none;
+}
+
+.form-check {
+  margin-top: 12px;
+}
+
+.custom-checkbox {
+  width: 18px;
+  height: 18px;
+  margin-right: 8px;
+  border: 2px solid #C9C4BE;
+  border-radius: 4px;
+}
+
+.custom-checkbox:checked {
+  background-color: #007bff;
+  border-color: #007bff;
+}
+
+.black-checkbox:checked {
+  background-color: #000000;
+  border-color: #000000;
+}
+
+.form-check-label {
+  font-size: 16px;
+  color: #000000;
+  cursor: pointer;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-weight: 500;
+}
+
+/* Country Select */
+.country-select-wrapper {
+  position: relative;
+}
+
+.country-select {
+  appearance: none;
+  padding-right: 40px;
+}
+
+.select-arrow {
+  position: absolute;
+  right: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #666;
+  font-size: 0.8rem;
+  pointer-events: none;
+}
+
+/* Order Summary */
+.order-summary-bg {
+  background-color: #FBF8F4;
+  color: #000000;
+  min-height: 100vh;
+}
+
+.order-summary-title {
+  font-weight: 700;
+  font-size: 2rem;
+  color: #000000;
+}
+
+.order-item {
+  padding: 15px;
+  background: transparent;
+  box-shadow: none;
+}
+
+.order-items .item-name,
+.order-items .item-size,
+.order-items .price-amount {
+  color: #000000;
+}
+
+.order-items .item-size {
+  opacity: 0.8;
+}
+
+/* Checkout Items */
+.checkout-title {
+  font-weight: 700;
+  color: #333;
+  font-size: 2rem;
+}
+
+.checkout-item, .order-item {
+  padding: 15px;
+  background: transparent;
+  border-radius: 12px;
+  box-shadow: none;
+}
+
+.item-image-wrapper {
+  width: 80px;
+  height: 80px;
+  background-color: #ffffff;
+  border: 1px solid #e0e0e0;
+  border-radius: 12px;
+  position: relative;
+  flex-shrink: 0;
+}
+
+.item-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 12px;
+  background: #f8f9fa;
+}
+
+.item-badge {
+  position: absolute;
+  top: -8px;
+  left: -8px;
+  background: #475055;
+  color: #ffffff;
+  border-radius: 50%;
+  width: 28px;
+  height: 28px;
+  text-align: center;
+  line-height: 28px;
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+/* Updated Font Styles for Order Summary */
+.item-name {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-weight: 500;
+  font-size: 16px;
+  color: #000000;
+  margin-bottom: 4px;
+}
+
+.item-size {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-weight: 500;
+  font-size: 16px;
+  color: #000000;
+  opacity: 0.7;
+}
+
+.price-amount {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-weight: 500;
+  font-size: 16px;
+  color: #000000;
+}
+
+.price-label,
+.price-value,
+.free-shipping {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-weight: 500;
+  font-size: 16px;
+}
+
+.total-label,
+.total-value {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-weight: 700;
+  font-size: 24px;
+  color: #000000;
+}
+
+/* Border Line */
+.border-line {
+  height: 1px;
+  background: #e0e0e0;
+  width: 100%;
+}
+
+/* Discount Section */
+.discount-input {
+  padding: 12px 16px;
+  border: 1px solid #C9C4BE;
+  border-radius: 25px;
+  font-size: 16px;
+  outline: none;
+  transition: border-color 0.2s;
+  background: #ffffff;
+  color: #475055;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  min-width: 0;
+}
+
+.discount-input::placeholder {
+  color: #475055;
+  font-size: 16px;
+}
+
+.discount-input:focus {
+  border-color: #000000;
+}
+
+.apply-btn {
+  padding: 12px 24px;
+  background: #000000;
+  color: #ffffff;
+  border: none;
+  border-radius: 25px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  white-space: nowrap;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 16px;
+  flex-shrink: 0;
+}
+
+.apply-btn:hover {
+  background: #333333;
+}
+
+/* Pricing Summary */
+.pricing-summary {
+  padding: 20px;
+  border-radius: 12px;
+}
+
+.price-row {
+  font-size: 1rem;
+}
+
+.price-label {
+  color: #000000;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-weight: 500;
+  font-size: 16px;
+}
+
+.price-value {
+  color: #000000;
+  font-weight: 500;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 16px;
+}
+
+.free-shipping {
+  color: #000000;
+  font-weight: 600;
+}
+
+.total-row {
+  font-size: 1.2rem;
+  font-weight: 700;
+}
+
+.total-label {
+  color: #000000;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-weight: 700;
+  font-size: 24px;
+}
+
+.total-value {
+  color: #000000;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-weight: 700;
+  font-size: 24px;
+}
+
+/* Shipping Methods Styles - UPDATED */
+.shipping-methods {
+  margin-left: 15px;
+  margin-right: 15px;
+  border: 1px solid #C9C4BE;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.shipping-method {
+  padding: 16px;
+  cursor: pointer;
+  background: #fff;
+  position: relative;
+  border: none;
+  transition: all 0.2s ease;
+}
+
+.shipping-method:not(:last-child) {
+  border-bottom: 1px solid #C9C4BE;
+}
+
+/* UPDATED: Clean black border for selected shipping method */
+.shipping-method.selected {
+  border: 2px solid #000000;
+  margin: -1px;
+  z-index: 1;
+}
+
+/* Ensure proper borders for first and last items when selected */
+.shipping-method.first-shipping-method.selected {
+  border-radius: 8px 8px 0 0;
+}
+
+.shipping-method.last-shipping-method.selected {
+  border-radius: 0 0 8px 8px;
+}
+
+/* When middle item is selected, maintain straight borders */
+.shipping-method:not(.first-shipping-method):not(.last-shipping-method).selected {
+  border-radius: 0;
+}
+
+.shipping-method-content {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.method-radio {
+  display: flex;
+  align-items: flex-start;
+  padding-top: 2px;
+}
+
+.method-radio-input {
+  width: 18px;
+  height: 18px;
+  margin: 0;
+  cursor: pointer;
+  accent-color: #000000;
+}
+
+.method-details {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.method-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 4px;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.method-name {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-weight: 500;
+  font-size: 16px;
+  color: #000000;
+  margin: 0;
+  cursor: pointer;
+  line-height: 1.2;
+}
+
+.method-price {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-weight: 500;
+  font-size: 16px;
+  color: #000000;
+  line-height: 1.2;
+}
+
+.method-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.method-delivery {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  color: #000000;
+  line-height: 1.3;
+}
+
+.method-description {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-weight: 400;
+  font-size: 12px;
+  color: #666;
+  line-height: 1.3;
+}
+
+/* Payment Section Styles */
+.payment-security {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  color: #666;
+  margin-bottom: 16px;
+}
+
+.payment-methods {
+  margin-left: 15px;
+  margin-right: 15px;
+  border: 1px solid #C9C4BE;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.payment-method {
+  background: #fff;
+  position: relative;
+}
+
+.payment-method:not(:last-child) {
+  border-bottom: 1px solid #C9C4BE;
+}
+
+.payment-option {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  background: #fff;
+  position: relative;
+  border: none;
+}
+
+/* PURE BLACK BORDERS ON ALL 4 SIDES FOR SELECTED PAYMENT OPTIONS */
+.payment-option.selected {
+  border: 2px solid #000000 !important;
+  margin: -1px;
+  z-index: 1;
+  position: relative;
+}
+
+.first-payment-method .payment-option.selected {
+  border: 2px solid #000000 !important;
+  border-bottom: 2px solid #000000 !important;
+}
+
+.last-payment-method .payment-option.selected {
+  border: 2px solid #000000 !important;
+  border-top: 2px solid #000000 !important;
+}
+
+.payment-radio {
+  display: flex;
+  align-items: center;
+}
+
+.payment-label {
+  flex: 1;
+}
+
+.payment-method-name {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-weight: 500;
+  font-size: 16px;
+  color: #000000;
+  margin: 0;
+  cursor: pointer;
+  line-height: 1.2;
+}
+
+/* Card Details */
+.card-details {
+  padding: 20px;
+  background: #fff;
+  border-top: 1px solid #C9C4BE;
+}
+
+/* Card Options Styles */
+.card-options {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.card-option-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 0;
+}
+
+.card-option-checkbox {
+  display: flex;
+  align-items: center;
+}
+
+.card-option-input {
+  width: 18px;
+  height: 18px;
+  margin: 0;
+  accent-color: #000000;
+  cursor: pointer;
+}
+
+.card-option-label {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-weight: 500;
+  font-size: 16px;
+  color: #000000;
+  cursor: pointer;
+  margin: 0;
+  line-height: 1.2;
+}
+
+/* VISA Section */
+.visa-section {
+  padding: 8px 0;
+}
+
+.visa-label {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-weight: 600;
+  font-size: 16px;
+  color: #000000;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* Selected Statements */
+.selected-statements {
+  padding: 8px 0;
+}
+
+.statements-label {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-weight: 600;
+  font-size: 16px;
+  color: #000000;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* Card Details spacing */
+.card-details {
+  padding: 20px;
+  background: #fff;
+  border-top: 1px solid #C9C4BE;
+}
+
+.card-details .border-line {
+  height: 1px;
+  background: #C9C4BE;
+  width: 100%;
+  margin: 12px 0;
+}
+
+/* Billing Address Section */
+.billing-description {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  color: #666;
+  margin-bottom: 16px;
+}
+
+.billing-options {
+  margin-left: 15px;
+  margin-right: 15px;
+  border: 1px solid #C9C4BE;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.billing-option {
+  background: #fff;
+  position: relative;
+}
+
+.billing-option:not(:last-child) {
+  border-bottom: 1px solid #C9C4BE;
+}
+
+.billing-radio-option {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  background: #fff;
+  position: relative;
+  border: none;
+}
+
+/* REMOVED HOVER STYLES and UPDATED SELECTED STYLES */
+.billing-radio-option.selected {
+  border: 2px solid #000000;
+}
+
+.first-billing-option .billing-radio-option.selected {
+  border-top: 2px solid #000000;
+  border-left: 2px solid #000000;
+  border-right: 2px solid #000000;
+  border-bottom: 1px solid #C9C4BE;
+}
+
+.last-billing-option .billing-radio-option.selected {
+  border-bottom: 2px solid #000000;
+  border-left: 2px solid #000000;
+  border-right: 2px solid #000000;
+  border-top: 1px solid #C9C4BE;
+}
+
+.billing-radio {
+  display: flex;
+  align-items: center;
+}
+
+.billing-label {
+  flex: 1;
+}
+
+.billing-option-name {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-weight: 500;
+  font-size: 16px;
+  color: #000000;
+  margin: 0;
+  cursor: pointer;
+  line-height: 1.20;
+}
+
+/* Continue Button Section */
+.continue-section {
+  padding: 20px;
+  text-align: center;
+}
+
+.continue-btn {
+  width: 100%;
+  padding: 16px 24px;
+  background: #000000;
+  color: #ffffff;
+  border: none;
+  border-radius: 25px;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-weight: 600;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.continue-btn:hover {
+  background: #333333;
+}
+
+/* Footer Links */
+.footer-links {
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+  margin-top: 24px;
+  padding: 20px 0;
+  flex-wrap: wrap;
+}
+
+.footer-link-item {
+  display: inline-block;
+}
+
+.footer-link {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  color: #666;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.footer-link:hover {
+  color: #000000;
+  text-decoration: underline;
+}
+
+/* Responsive Design */
+@media (max-width: 992px) {
+  .order-summary-bg {
+    min-height: auto;
+  }
+}
+
+@media (max-width: 768px) {
+  .checkout-form, .order-summary {
+    padding: 0 15px;
+  }
+  
+  .form-section {
+    padding: 15px;
+  }
+  
+  .section-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+  
+  .section-title {
+    font-size: 20px;
+  }
+  
+  .item-image-wrapper {
+    width: 60px;
+    height: 60px;
+  }
+  
+  .item-badge {
+    width: 24px;
+    height: 24px;
+    line-height: 24px;
+    font-size: 0.8rem;
+  }
+  
+  .discount-input {
+    padding: 10px 14px;
+    font-size: 14px;
+  }
+  
+  .apply-btn {
+    padding: 10px 20px;
+    font-size: 14px;
+  }
+  
+  .input-container {
+    margin-left: 10px;
+    margin-right: 10px;
+  }
+  
+  .shipping-methods,
+  .payment-methods,
+  .billing-options {
+    margin-left: 10px;
+    margin-right: 10px;
+  }
+  
+  .shipping-method-content {
+    gap: 10px;
+  }
+  
+  .method-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+  }
+  
+  .method-price {
+    align-self: flex-start;
+  }
+  
+  .method-name,
+  .method-price {
+    font-size: 14px;
+  }
+  
+  .method-delivery {
+    font-size: 13px;
+  }
+  
+  .method-description {
+    font-size: 11px;
+  }
+  
+  .payment-option {
+    padding: 12px;
+    gap: 10px;
+  }
+  
+  .card-details,
+  .paypal-details {
+    padding: 16px;
+  }
+  
+  .billing-radio-option {
+    padding: 12px;
+    gap: 10px;
+  }
+  
+  .footer-links {
+    flex-direction: column;
+    gap: 12px;
+    text-align: center;
+  }
+  
+  .continue-btn {
+    padding: 14px 20px;
+    font-size: 14px;
+  }
+  
+  .total-label,
+  .total-value {
+    font-size: 20px;
+  }
+  
+  .logo-img {
+    height: 32px;
+  }
+  
+  .cart-badge {
+    font-size: 1.3rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .checkout-form, .order-summary {
+    padding: 0 10px;
+  }
+  
+  .form-section {
+    padding: 12px;
+  }
+  
+  .section-title {
+    font-size: 18px;
+  }
+  
+  .custom-input {
+    padding: 10px 12px;
+    font-size: 14px;
+  }
+  
+  .custom-input::placeholder {
+    font-size: 14px;
+  }
+  
+  .item-name,
+  .item-size,
+  .price-amount,
+  .price-label,
+  .price-value {
+    font-size: 14px;
+  }
+  
+  .total-label,
+  .total-value {
+    font-size: 18px;
+  }
+  
+  .method-name,
+  .method-price,
+  .payment-method-name,
+  .billing-option-name {
+    font-size: 14px;
+  }
+  
+  .shipping-method,
+  .payment-option,
+  .billing-radio-option {
+    padding: 12px;
+  }
+  
+  .card-details {
+    padding: 12px;
+  }
+  
+  .continue-section {
+    padding: 15px;
+  }
+}
+
+/* Utility classes for better spacing */
+.py-4 {
+  padding-top: 1.5rem !important;
+  padding-bottom: 1.5rem !important;
+}
+
+.py-lg-5 {
+  padding-top: 3rem !important;
+  padding-bottom: 3rem !important;
+}
+
+@media (max-width: 768px) {
+  .py-4 {
+    padding-top: 1rem !important;
+    padding-bottom: 1rem !important;
+  }
+  
+  .py-lg-5 {
+    padding-top: 2rem !important;
+    padding-bottom: 2rem !important;
+  }
+}
