@@ -1,6 +1,6 @@
 // CartSidebar.js
 import React, { useState } from "react";
-import "../Style/CartSidebar.css";
+import "../Style/Cartsidebar.css";
 import cartempty from "../assets/cartempty.png";
 import productdetailimg1 from '../assets/productdetailimg1.png';
 import productdetailimg2 from '../assets/productdetailimg2.png';
