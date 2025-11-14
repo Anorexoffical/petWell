@@ -3,7 +3,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "../Style/Checkout.css";
 import SampleImage from "../assets/productdetailimg3.png";
 import logo from "../assets/logo.png";
-
+import Navbar from "./Navbar";
 const CheckoutPage = () => {
   const [discountCode, setDiscountCode] = useState("");
   const [selectedShipping, setSelectedShipping] = useState("Standard Shipping");
@@ -108,7 +108,13 @@ const CheckoutPage = () => {
     alert("Order placed successfully!");
   };
 
+
+
+   
+
   return (
+    <>
+    <Navbar></Navbar>
     <div className="container-fluid checkout-bg">
       <div className="row min-vh-100">
         {/* Left Column - Checkout Form */}
@@ -642,6 +648,8 @@ const CheckoutPage = () => {
         </div>
       </div>
     </div>
+
+    </>
   );
 };
 
