@@ -8,116 +8,119 @@
   --text-dark: #19242B;
 }
 
-.navbar-container {
+.petwell-navbar-container {
   font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
   position: fixed;
   top: 0;
+  left: 0;
   width: 100%;
   z-index: 1000;
-  transition: all 0.3s ease;
   background-color: #FFFFFF;
 }
 
-.navbar-container.scrolled {
-  background: rgba(255, 255, 255, 0.95);
-  backdrop-filter: blur(10px);
-  box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
-}
-
-.navbar-container.scrolled .main-navbar {
-  padding: 0.5rem 0;
-}
-
-.navbar-container.scrolled .brand-logo {
-  opacity: 0;
-  visibility: hidden;
-  height: 0;
-}
-
 /* Free Shipping Banner */
-.free-shipping-banner {
+.petwell-free-shipping-banner {
   background: linear-gradient(to top, var(--primary-dark) 0%, var(--dark-bg) 100%);
-  padding: 8px 0;
+  padding: 10px 0;
   text-align: center;
-  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.navbar-container.scrolled .free-shipping-banner {
-  height: 0;
-  padding: 0;
-  overflow: hidden;
-}
-
-.free-shipping-text {
+.petwell-free-shipping-text {
   color: #F8F2EA;
-  font-size: 14px;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 16px;
   font-weight: 500;
+  font-style: normal;
   letter-spacing: 0.5px;
+  margin: 0;
 }
 
 /* Main Navbar */
-.main-navbar {
+.petwell-main-navbar {
   background-color: #f5f5f5;
-  padding: 1rem 0;
+  padding: 1.25rem 0;
   box-shadow: none;
   border: none;
-  transition: padding 0.3s ease;
+}
+
+.petwell-container-fluid {
+  width: 100%;
+  padding-right: 20px;
+  padding-left: 20px;
+  margin-right: auto;
+  margin-left: auto;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
 }
 
 /* Brand Logo */
-.brand-logo {
+.petwell-brand-logo {
   display: flex;
   align-items: center;
-  height: 40px;
+  height: 48px;
   filter: brightness(0);
-  transition: all 0.3s ease;
 }
 
-.logo-img {
+.petwell-logo-img {
   height: 100%;
   width: auto;
   object-fit: contain;
 }
 
-/* Centered pill nav */
-.nav-pill {
+/* Centered pill nav - Hidden on mobile */
+.petwell-nav-pill {
   background: var(--light-bg);
   border-radius: 32px;
-  padding: 0.5rem 2rem;
+  padding: 0.75rem 2.5rem;
   box-shadow: none;
   border: 1px solid rgba(0, 0, 0, 0.1);
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
 }
 
-.nav-pill .nav-link {
+.petwell-nav-pill .petwell-nav-link {
   color: var(--text-dark) !important;
-  font-weight: 500;
-  margin: 0 1.2rem;
+  font-family: 'Plus Jakarta Sans', sans-serif;
   font-size: 16px;
+  font-weight: 600;
+  font-style: normal;
+  margin: 0 1.5rem;
   transition: color 0.3s ease;
   border: none;
   background: transparent;
   text-decoration: none;
+  display: flex;
+  align-items: center;
+  padding: 0.5rem 0;
 }
 
-.nav-pill .nav-link:hover {
+.petwell-nav-pill .petwell-nav-link:hover {
   color: var(--dark-bg) !important;
   opacity: 0.8;
 }
 
-.nav-dropdown {
+.petwell-nav-dropdown {
   position: relative;
   display: inline-block;
 }
 
 /* Right Side */
-.navbar-right-items {
+.petwell-navbar-right-items {
   display: flex;
   align-items: center;
-  gap: 1rem;
+  gap: 1.5rem;
+  margin-left: auto;
 }
 
-/* Mobile Search Icon - Now part of navbar-right-items */
-.mobile-search-icon-btn {
+/* Mobile Search Icon - Fixed to be always visible on mobile */
+.petwell-mobile-search-icon-btn {
   display: none;
   background: none;
   border: none;
@@ -125,73 +128,80 @@
   padding: 0.5rem;
   color: var(--text-dark);
   transition: all 0.3s ease;
-  width: 40px;
-  height: 40px;
+  width: 44px;
+  height: 44px;
   align-items: center;
   justify-content: center;
   border-radius: 50%;
 }
 
-.mobile-search-icon-btn:hover {
+.petwell-mobile-search-icon-btn:hover {
   background-color: rgba(0, 0, 0, 0.05);
   transform: scale(1.1);
 }
 
-.mobile-search-icon-btn.active {
+.petwell-mobile-search-icon-btn.active {
   color: var(--primary-dark);
 }
 
-/* Login + Button */
-.login-link {
+/* Login Link - Hidden on mobile */
+.petwell-login-link {
   color: var(--text-dark) !important;
-  font-weight: 500;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  font-style: normal;
   text-decoration: none;
   transition: color 0.3s ease;
+  padding: 0.5rem 1rem;
 }
 
-.login-link:hover {
+.petwell-login-link:hover {
   color: var(--primary-dark) !important;
 }
 
-.get-started-btn {
+/* Get Started Button - Hidden on mobile */
+.petwell-get-started-btn {
   background-color: var(--accent-purple);
   color: var(--dark-bg);
   border: none;
-  padding: 0.6rem 2.5rem;
-  border-radius: 25px;
+  padding: 0;
+  border-radius: 28px;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 16px;
   font-weight: 600;
-  font-size: 15px;
+  font-style: normal;
   transition: all 0.3s ease;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  min-width: 180px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+  width: 225px;
+  height: 60px;
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 0.8rem;
-  font-family: 'Plus Jakarta Sans', sans-serif;
+  gap: 1rem;
   position: relative;
 }
 
-.btn-dot {
-  font-size: 18px;
+.petwell-btn-dot {
+  font-size: 22px;
   line-height: 1;
   position: absolute;
-  left: 1.5rem;
+  left: 1rem;
 }
 
-.get-started-btn .btn-text {
-  margin-left: 0.5rem;
+.petwell-get-started-btn .petwell-btn-text {
+  margin-left: 4rem;
 }
 
-.get-started-btn:hover {
+.petwell-get-started-btn:hover {
   background-color: #B39BEF;
   transform: translateY(-2px);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
   color: var(--dark-bg);
 }
 
 /* Account and Cart Icons */
-.icon-btn {
+.petwell-icon-btn {
   cursor: pointer;
   padding: 0.5rem;
   transition: all 0.2s ease;
@@ -199,51 +209,52 @@
   align-items: center;
   justify-content: center;
   border-radius: 50%;
-  width: 40px;
-  height: 40px;
+  width: 44px;
+  height: 44px;
+  color: var(--text-dark);
 }
 
-.icon-btn:hover {
+.petwell-icon-btn:hover {
   transform: scale(1.1);
   background-color: rgba(0, 0, 0, 0.05);
 }
 
 /* Mobile Menu Toggle - Three Dashes */
-.mobile-menu-toggle {
+.petwell-mobile-menu-toggle {
   display: none;
   background: none;
   border: none;
   color: var(--text-dark);
   cursor: pointer;
   padding: 0.5rem;
-  width: 40px;
-  height: 40px;
+  width: 44px;
+  height: 44px;
   align-items: center;
   justify-content: center;
   border-radius: 50%;
 }
 
-.mobile-menu-toggle:hover {
+.petwell-mobile-menu-toggle:hover {
   background-color: rgba(0, 0, 0, 0.05);
 }
 
-.three-dashes {
+.petwell-three-dashes {
   display: flex;
   flex-direction: column;
-  gap: 4px;
-  width: 20px;
+  gap: 5px;
+  width: 24px;
 }
 
-.dash {
-  width: 20px;
-  height: 2px;
+.petwell-dash {
+  width: 24px;
+  height: 3px;
   background-color: var(--text-dark);
-  border-radius: 1px;
+  border-radius: 2px;
   transition: all 0.3s ease;
 }
 
 /* Mobile Search Container */
-.mobile-search-container {
+.petwell-mobile-search-container {
   display: none;
   position: absolute;
   left: 0;
@@ -251,329 +262,451 @@
   top: 0;
   bottom: 0;
   background: #FFFFFF;
-  z-index: 10;
-  padding: 0 15px;
+  z-index: 1010;
+  padding: 0 20px;
   align-items: center;
 }
 
-.mobile-search-container.active {
+.petwell-mobile-search-container.active {
   display: flex;
 }
 
-.mobile-search-bar-expanded {
+.petwell-mobile-search-bar-expanded {
   display: flex;
   align-items: center;
   width: 100%;
   background: white;
-  border-radius: 25px;
-  padding: 8px 15px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 28px;
+  padding: 10px 18px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.15);
   border: 1px solid #e0e0e0;
 }
 
-.mobile-search-input-expanded {
+.petwell-mobile-search-input-expanded {
   flex: 1;
   border: none;
   outline: none;
   background: transparent;
-  font-size: 16px;
+  font-size: 17px;
   font-family: 'Plus Jakarta Sans', sans-serif;
-  padding: 5px 0;
+  padding: 6px 0;
 }
 
-.mobile-search-close {
+.petwell-mobile-search-close {
   background: none;
   border: none;
   cursor: pointer;
-  padding: 5px;
-  margin-left: 10px;
+  padding: 6px;
+  margin-left: 12px;
   color: var(--text-dark);
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-/* Mobile Menu */
-.mobile-menu {
+/* Mobile Menu - Contains all navigation items - Increased z-index */
+.petwell-mobile-menu {
   position: fixed;
   top: 0;
   left: -100%;
   width: 100%;
   height: 100%;
   background-color: #FFFFFF;
-  z-index: 1000;
-  padding: 20px;
+  z-index: 1100; /* Increased z-index */
+  padding: 24px;
   overflow-y: auto;
   transition: left 0.3s ease;
 }
 
-.mobile-menu.active {
+.petwell-mobile-menu.active {
   left: 0;
 }
 
-.mobile-menu-header {
+.petwell-mobile-menu-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 30px;
-  padding-bottom: 20px;
+  margin-bottom: 32px;
+  padding-bottom: 24px;
   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 }
 
-.mobile-menu-close {
+.petwell-mobile-menu-close {
   background: none;
   border: none;
-  font-size: 24px;
   color: var(--text-dark);
   cursor: pointer;
   padding: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.mobile-nav-links {
+.petwell-mobile-nav-links {
   display: flex;
   flex-direction: column;
   gap: 0;
-  margin-bottom: 30px;
+  margin-bottom: 32px;
 }
 
-.mobile-nav-link {
+.petwell-mobile-nav-link {
+  font-family: 'Plus Jakarta Sans', sans-serif;
   font-size: 18px;
   font-weight: 500;
   color: var(--text-dark);
   text-decoration: none;
-  padding: 15px 0;
+  padding: 16px 0;
   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
   transition: color 0.3s ease;
-  font-family: 'Plus Jakarta Sans', sans-serif;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
-.mobile-nav-link:last-child {
+.petwell-mobile-nav-link:last-child {
   border-bottom: none;
 }
 
-.mobile-nav-link:hover {
+.petwell-mobile-nav-link:hover {
   color: var(--primary-dark);
 }
 
 /* Mobile Search Bar in Menu */
-.mobile-search-bar {
+.petwell-mobile-search-bar {
   width: 100%;
-  margin: 20px 0;
+  margin: 24px 0;
   position: relative;
 }
 
-.mobile-search-input {
+.petwell-mobile-search-input {
   width: 100%;
-  padding: 12px 45px 12px 15px;
-  border-radius: 25px;
+  padding: 14px 50px 14px 18px;
+  border-radius: 28px;
   border: 1px solid #ddd;
-  font-size: 16px;
+  font-size: 17px;
   font-family: 'Plus Jakarta Sans', sans-serif;
   background: white;
 }
 
-.mobile-search-icon {
+.petwell-mobile-search-icon {
   position: absolute;
-  right: 15px;
+  right: 18px;
   top: 50%;
   transform: translateY(-50%);
   color: var(--text-dark);
 }
 
-/* Mobile Menu Overlay */
-.mobile-menu-overlay {
+/* Mobile Menu Overlay - Increased z-index */
+.petwell-mobile-menu-overlay {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
   background-color: rgba(0, 0, 0, 0.5);
-  z-index: 999;
+  z-index: 1099; /* Increased z-index */
   display: none;
 }
 
-.mobile-menu-overlay.active {
+.petwell-mobile-menu-overlay.active {
   display: block;
 }
 
-/* Responsive Styles */
-@media (max-width: 991.98px) {
-  .nav-pill {
+/* Responsive Styles - Mobile view starts at 1421px */
+@media (max-width: 1420.98px) {
+  /* Hide desktop navigation pill */
+  .petwell-nav-pill {
     display: none !important;
   }
   
-  .navbar-nav {
-    text-align: center;
-    margin: 1rem 0;
-  }
-  
-  .brand-logo {
-    height: 35px;
-  }
-  
-  .login-link {
-    margin-right: 0;
-  }
-  
-  .get-started-btn {
-    margin-right: 0;
-    padding: 0.5rem 1.5rem;
-    font-size: 14px;
-    min-width: 130px;
-  }
-  
-  .mobile-menu-toggle {
-    display: flex;
-  }
-  
-  .mobile-search-icon-btn {
-    display: flex;
-  }
-  
-  .login-link, .get-started-btn {
+  /* Hide desktop login and get started button */
+  .petwell-login-link, .petwell-get-started-btn {
     display: none !important;
   }
   
-  .navbar-container .container-fluid {
-    flex-wrap: nowrap;
-    gap: 10px;
-    position: relative;
+  /* Show mobile menu toggle */
+  .petwell-mobile-menu-toggle {
+    display: flex;
   }
   
-  /* Simplified grid layout: Menu - Logo - Right Items (Search + Profile + Cart) */
-  .navbar-container .container-fluid {
+  /* Show mobile search icon */
+  .petwell-mobile-search-icon-btn {
+    display: flex !important;
+  }
+  
+  /* Mobile layout: Logo on left, icons on right */
+  .petwell-container-fluid {
     display: grid;
     grid-template-columns: auto 1fr auto;
     align-items: center;
-    gap: 15px;
+    gap: 12px;
+    flex-wrap: nowrap;
+    padding-right: 16px;
+    padding-left: 16px;
   }
   
-  .mobile-menu-toggle {
+  .petwell-mobile-menu-toggle {
     grid-column: 1;
+    order: 1;
   }
   
-  .navbar-brand {
+  .petwell-navbar-brand {
     grid-column: 2;
-    justify-self: center;
+    justify-self: start;
+    order: 2;
+    margin-left: 0;
   }
   
-  .navbar-right-items {
+  .petwell-navbar-right-items {
     grid-column: 3;
     justify-self: end;
     margin-top: 0;
-    gap: 0.5rem;
+    gap: 0.6rem;
+    order: 3;
   }
   
-  .navbar-container.scrolled .navbar-right-items {
-    grid-column: 1 / span 3;
-    justify-self: center;
+  .petwell-brand-logo {
+    height: 40px;
+  }
+  
+  /* Ensure search icon is always visible on mobile */
+  .petwell-mobile-search-icon-btn {
+    display: flex !important;
+    width: 40px;
+    height: 40px;
   }
 }
 
-/* Hide logo on screens smaller than 389px */
-@media (max-width: 389px) {
-  .navbar-brand {
+/* Hide logo below 439px */
+@media (max-width: 439px) {
+  .petwell-navbar-brand {
     display: none !important;
   }
   
-  /* Adjust grid layout when logo is hidden */
-  .navbar-container .container-fluid {
+  .petwell-container-fluid {
     grid-template-columns: auto auto;
     gap: 10px;
   }
   
-  .mobile-menu-toggle {
+  .petwell-mobile-menu-toggle {
     grid-column: 1;
   }
   
-  .navbar-right-items {
+  .petwell-navbar-right-items {
     grid-column: 2;
     justify-self: end;
   }
-  
-  /* Adjust mobile search container for smaller screens */
-  .mobile-search-container {
-    padding: 0 10px;
-  }
-  
-  .mobile-search-bar-expanded {
-    padding: 6px 12px;
-  }
-  
-  .mobile-search-input-expanded {
-    font-size: 14px;
-  }
 }
 
-@media (min-width: 992px) {
-  .get-started-btn {
-    min-width: 180px;
-    padding: 0.7rem 2.5rem;
-    gap: 1rem;
+/* Desktop styles - above 1421px */
+@media (min-width: 1421px) {
+  .petwell-get-started-btn {
+    width: 225px;
+    height: 50px;
   }
   
-  .navbar-right-items {
-    gap: 1rem;
+  .petwell-navbar-right-items {
+    gap: 1.75rem;
   }
   
-  .navbar-container.scrolled .navbar-right-items {
-    justify-content: flex-end;
-    width: 100%;
-  }
-  
-  .navbar-container.scrolled .nav-pill {
-    margin: 0 auto;
+  /* Hide mobile menu toggle on desktop */
+  .petwell-mobile-menu-toggle {
+    display: none !important;
   }
   
   /* Hide mobile search icon on desktop */
-  .mobile-search-icon-btn {
+  .petwell-mobile-search-icon-btn {
     display: none !important;
+  }
+  
+  /* Desktop layout */
+  .petwell-container-fluid {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+  }
+  
+  .petwell-navbar-brand {
+    margin-right: auto;
+  }
+  
+  .petwell-nav-pill {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  
+  .petwell-navbar-right-items {
+    margin-left: auto;
   }
 }
 
-@media (max-width: 576px) {
-  .navbar-right-items {
-    gap: 0.3rem;
+/* Large screens (1221px - 1420px) */
+@media (max-width: 1420.98px) and (min-width: 1221px) {
+  .petwell-navbar-right-items {
+    gap: 1.2rem;
   }
   
-  .login-link {
-    font-size: 14px;
+  .petwell-mobile-search-icon-btn,
+  .petwell-icon-btn,
+  .petwell-mobile-menu-toggle {
+    width: 44px;
+    height: 44px;
   }
   
-  .get-started-btn {
-    padding: 0.4rem 1.2rem;
-    font-size: 13px;
-    min-width: 120px;
-    gap: 0.3rem;
+  .petwell-brand-logo {
+    height: 44px;
+  }
+}
+
+/* Medium screens (992px - 1220px) */
+@media (max-width: 1220.98px) and (min-width: 992px) {
+  .petwell-navbar-right-items {
+    gap: 1rem;
   }
   
-  .icon-btn, .mobile-search-icon-btn, .mobile-menu-toggle {
-    width: 36px;
-    height: 36px;
+  .petwell-mobile-search-icon-btn,
+  .petwell-icon-btn,
+  .petwell-mobile-menu-toggle {
+    width: 42px;
+  height: 42px;
+  }
+  
+  .petwell-container-fluid {
+    gap: 12px;
+  }
+  
+  /* Mobile menu adjustments */
+  .petwell-mobile-menu {
+    width: 60%;
+    max-width: 450px;
+  }
+}
+
+/* Small screens (768px - 991px) */
+@media (max-width: 991.98px) and (min-width: 768px) {
+  .petwell-navbar-right-items {
+    gap: 0.8rem;
+  }
+  
+  .petwell-mobile-search-icon-btn,
+  .petwell-icon-btn,
+  .petwell-mobile-menu-toggle {
+    width: 40px;
+    height: 40px;
+  }
+  
+  .petwell-container-fluid {
+    gap: 10px;
+    padding-right: 15px;
+    padding-left: 15px;
+  }
+  
+  /* Mobile menu adjustments */
+  .petwell-mobile-menu {
+    width: 65%;
+    max-width: 400px;
+  }
+}
+
+/* Extra small screens (below 768px) */
+@media (max-width: 767.98px) {
+  .petwell-navbar-right-items {
+    gap: 0.6rem;
+  }
+  
+  .petwell-mobile-search-icon-btn,
+  .petwell-icon-btn,
+  .petwell-mobile-menu-toggle {
+    width: 38px;
+    height: 38px;
     padding: 0.4rem;
   }
   
-  .icon-btn svg, .mobile-search-icon-btn svg {
-    width: 18px;
-    height: 18px;
-  }
-  
-  .mobile-menu {
-    width: 85%;
-    max-width: 300px;
-  }
-  
-  .mobile-search-bar {
-    margin: 15px 0;
-  }
-  
-  .navbar-container .container-fluid {
+  .petwell-container-fluid {
     gap: 8px;
+    padding-right: 12px;
+    padding-left: 12px;
+  }
+  
+  .petwell-mobile-menu {
+    width: 85%;
+    max-width: 320px;
+    padding: 20px;
+  }
+  
+  .petwell-mobile-search-bar {
+    margin: 20px 0;
+  }
+  
+  .petwell-brand-logo {
+    height: 36px;
+  }
+  
+  /* Mobile menu link adjustments */
+  .petwell-mobile-nav-link {
+    font-size: 16px;
+    padding: 14px 0;
+  }
+}
+
+/* Very small screens (below 439px) */
+@media (max-width: 439px) {
+  .petwell-container-fluid {
+    gap: 6px;
+    padding-right: 10px;
+    padding-left: 10px;
+  }
+  
+  .petwell-mobile-search-icon-btn,
+  .petwell-icon-btn,
+  .petwell-mobile-menu-toggle {
+    width: 36px;
+    height: 36px;
+    padding: 0.3rem;
+  }
+  
+  .petwell-mobile-search-container {
+    padding: 0 10px;
+  }
+  
+  .petwell-mobile-search-bar-expanded {
+    padding: 8px 12px;
+  }
+  
+  .petwell-mobile-search-input-expanded {
+    font-size: 16px;
+  }
+  
+  /* Mobile menu adjustments for very small screens */
+  .petwell-mobile-menu {
+    width: 90%;
+    max-width: 280px;
+    padding: 16px;
+  }
+  
+  .petwell-mobile-nav-link {
+    font-size: 15px;
+    padding: 12px 0;
+  }
+  
+  .petwell-get-started-btn {
+    height: 45px;
+    font-size: 15px;
   }
 }
 
 /* Body padding to account for fixed navbar */
 body {
-  padding-top: 120px;
+  padding-top: 130px;
+  margin: 0;
 }
 
-.navbar-container.scrolled + * {
-  margin-top: 70px;
+/* Ensure the navbar stays on top of all content */
+.petwell-navbar-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
 }

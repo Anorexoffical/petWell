@@ -16,8 +16,8 @@ const SuccessCheckout = () => {
       email: "johndoe@example.com",
       shippingAddress: {
         name: "John Doe",
-        street: "206 Batran's Street",
-        unit: "Unit 39",
+        street: "206 Bartan's Street",
+        unit: "39",
         city: "Ottawa",
         state: "Ontario",
         postalCode: "2044",
@@ -46,7 +46,6 @@ const SuccessCheckout = () => {
     };
 
     setOrderData(dummyOrderData);
-    
     // Generate Google Maps URL based on address
     const address = `${dummyOrderData.shippingAddress.street}, ${dummyOrderData.shippingAddress.city}, ${dummyOrderData.shippingAddress.state}, ${dummyOrderData.shippingAddress.country}`;
     const encodedAddress = encodeURIComponent(address);
@@ -64,42 +63,48 @@ const SuccessCheckout = () => {
         <div className="col-lg-7 col-md-12 d-flex align-items-center justify-content-center py-4 py-lg-5">
           <div className="success-content w-100 max-width-700">
             {/* Header with Logo */}
-            <div className="success-header mb-4">
-              <div className="logo mb-4">
-                <img src={logo} alt="petwell" className="logo-img black-logo" />
+            <div className="logo mb-4">
+              <img src={logo} alt="petwell" className="logo-img black-logo" />
+            </div>
+            
+            {/* Confirmation Section */}
+            <div className="confirmation-header">
+              <div className="confirmation-icon">✓</div>
+              <div>
                 <div className="confirmation-number">
                   Confirmation #{orderData.orderNumber}
                 </div>
-                <h1 className="thank-you">Thank you, {orderData.customerName}!</h1>
-              </div>
-            </div>
-
-            <div className="border-line mb-4"></div>
-
-            {/* Order Confirmed Section - UPDATED DESIGN */}
-            <div className="confirmation-section mb-4">
-              <div className="order-confirmed-header">
-                <div className="confirmed-icon">✓</div>
-                <div className="confirmed-text">
-                  <div className="confirmed-title-main">Your order is confirmed</div>
-                  <div className="confirmed-description-main">
-                    Preparing for shipment. Return to this page for shipment status updates.
-                  </div>
+                <div className="confirmation-thankyou">
+                  Thank you, {orderData.customerName}!
                 </div>
               </div>
-              <button className="track-order-btn">Track order</button>
             </div>
 
-            <div className="border-line mb-4"></div>
-
-            {/* Email Updates */}
-            <div className="email-updates mb-4">
-              <div className="form-check">
+            {/* Map Section */}
+            <div className="map-section mb-4">
+              <div className="map-container">
+                <iframe
+                  src={mapUrl}
+                  width="100%"
+                  height="100%"
+                  style={{ border: 0, borderRadius: "8px" }}
+                  allowFullScreen=""
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                  title="Delivery Location Map"
+                ></iframe>
+              </div>
+            
+            {/* Order Confirmed Section */}
+            <div className="order-confirmed-section mb-4">
+              <h1 className="order-confirmed-title">Your order is confirmed</h1>
+              <p className="order-confirmed-text">Preparing for shipment. Return to this page for shipment status updates.</p>
+              <button className="track-order-btn">Track order</button>
+              <div className="form-check email-updates-checkbox">
                 <input
-                  className="form-check-input custom-checkbox black-checkbox"
+                  className="form-check-input custom-checkbox"
                   type="checkbox"
                   id="emailUpdates"
-                  defaultChecked
                 />
                 <label className="form-check-label" htmlFor="emailUpdates">
                   Email me with updates and special offers
@@ -107,50 +112,58 @@ const SuccessCheckout = () => {
               </div>
             </div>
 
-            <div className="border-line mb-4"></div>
+            </div>
 
-            {/* Order Details */}
+
+
+            {/* Order Details Section */}
             <div className="order-details-section mb-4">
-              <h3 className="section-title-small">Order details</h3>
-              
-              <div className="detail-group mb-3">
-                <div className="detail-label">Contact information</div>
-                <div className="detail-value">{orderData.email}</div>
-              </div>
-
-              <div className="detail-group mb-3">
-                <div className="detail-label">Shipping address</div>
-                <div className="detail-value">
-                  {orderData.shippingAddress.name}<br />
-                  {orderData.shippingAddress.state}, {orderData.shippingAddress.city}, {orderData.shippingAddress.postalCode}<br />
-                  {orderData.shippingAddress.street}, {orderData.shippingAddress.unit} {orderData.shippingAddress.country}
+              <h3 className="section-title">Order details</h3>
+              <div className="details-table">
+                <div className="details-row">
+                  <div className="details-column">
+                    <div className="detail-group">
+                      <div className="detail-label">Contact information</div>
+                      <div className="detail-value">{orderData.email}</div>
+                    </div>
+                    <div className="detail-group">
+                      <div className="detail-label">Shipping address</div>
+                      <div className="detail-value">
+                        {orderData.shippingAddress.name}<br />
+                        {orderData.shippingAddress.state}, {orderData.shippingAddress.city}, {orderData.shippingAddress.postalCode}<br />
+                        {orderData.shippingAddress.street}, {orderData.shippingAddress.unit}<br />
+                        {orderData.shippingAddress.country}
+                      </div>
+                    </div>
+                    <div className="detail-group">
+                      <div className="detail-label">Shipping method</div>
+                      <div className="detail-value">{orderData.shippingMethod}</div>
+                    </div>
+                  </div>
+                  <div className="details-column">
+                    <div className="detail-group">
+                      <div className="detail-label">Payment method</div>
+                      <div className="detail-value">
+                        <span className="payment-method">
+                          <strong className="visa-text">visa</strong> Visa ****{orderData.paymentMethod.lastFour}
+                        </span>
+                      </div>
+                    </div>
+                    <div className="detail-group">
+                      <div className="detail-label">Billing address</div>
+                      <div className="detail-value">
+                        {orderData.shippingAddress.name}<br />
+                        {orderData.shippingAddress.state}, {orderData.shippingAddress.city}, {orderData.shippingAddress.postalCode}<br />
+                        {orderData.shippingAddress.street}, {orderData.shippingAddress.unit}<br />
+                        {orderData.shippingAddress.country}
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
-
-              <div className="detail-group mb-3">
-                <div className="detail-label">Shipping method</div>
-                <div className="detail-value">{orderData.shippingMethod}</div>
-              </div>
-
-              {/* Map Section */}
-              <div className="map-section mb-4">
-                <div className="map-container">
-                  <iframe
-                    src={mapUrl}
-                    width="100%"
-                    height="200"
-                    style={{ border: 0, borderRadius: "8px" }}
-                    allowFullScreen=""
-                    loading="lazy"
-                    referrerPolicy="no-referrer-when-downgrade"
-                    title="Delivery Location Map"
-                  ></iframe>
-                </div>
-              </div>
-
-              <div className="form-check">
+              <div className="form-check save-info-checkbox">
                 <input
-                  className="form-check-input custom-checkbox black-checkbox"
+                  className="form-check-input custom-checkbox"
                   type="checkbox"
                   id="saveInfo"
                 />
@@ -162,31 +175,12 @@ const SuccessCheckout = () => {
 
             <div className="border-line mb-4"></div>
 
-            {/* Payment Method */}
-            <div className="payment-section mb-4">
-              <h3 className="section-title-small">Payment method</h3>
-              <div className="payment-method-display">
-                <div className="payment-type">
-                  <strong className="visa-text">visa</strong> Visa ****{orderData.paymentMethod.lastFour}
-                </div>
-              </div>
-
-              <div className="detail-group mt-3">
-                <div className="detail-label">Billing address</div>
-                <div className="detail-value">
-                  {orderData.shippingAddress.name}<br />
-                  {orderData.shippingAddress.state}, {orderData.shippingAddress.city}, {orderData.shippingAddress.postalCode}<br />
-                  {orderData.shippingAddress.street}, {orderData.shippingAddress.unit} {orderData.shippingAddress.country}
-                </div>
-              </div>
-            </div>
-
-            <div className="border-line mb-4"></div>
-
             {/* Help Section */}
             <div className="help-section mb-4">
-              <p className="help-text">Need help? <a href="#contact" className="contact-link">Contact us</a></p>
-              <button className="continue-shopping-btn">Continue shopping</button>
+              <div className="help-content d-flex justify-content-between align-items-center">
+                <p className="help-text mb-0">Need help? <a href="#contact" className="contact-link">Contact us</a></p>
+                <button className="continue-shopping-btn">Continue shopping</button>
+              </div>
             </div>
 
             <div className="border-line mb-4"></div>
@@ -221,12 +215,10 @@ const SuccessCheckout = () => {
                     />
                     <div className="item-badge">{item.quantity}</div>
                   </div>
-                  
                   <div className="item-details flex-grow-1">
                     <h5 className="item-name mb-1">{item.name}</h5>
                     <p className="item-size text-muted mb-0">{item.size}</p>
                   </div>
-                  
                   <div className="item-price">
                     <span className="price-amount">${(item.price * item.quantity).toFixed(2)}</span>
                   </div>
@@ -242,17 +234,14 @@ const SuccessCheckout = () => {
                 <span className="price-label">Subtotal ({orderData.totalItems} items)</span>
                 <span className="price-value">${orderData.subtotal.toFixed(2)}</span>
               </div>
-              
               <div className="price-row d-flex justify-content-between mb-2">
                 <span className="price-label">Shipping</span>
                 <span className="price-value">${orderData.shipping.toFixed(2)}</span>
               </div>
-              
               <div className="price-row d-flex justify-content-between mb-3">
                 <span className="price-label">Tax</span>
                 <span className="price-value">${orderData.tax.toFixed(2)}</span>
               </div>
-              
               <div className="price-row d-flex justify-content-between total-row">
                 <span className="total-label">Total</span>
                 <span className="total-value">${orderData.total.toFixed(2)}</span>

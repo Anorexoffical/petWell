@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import '../Style/Navbar.css';
 import logo from "../assets/logo.png";
-import CartSidebar from './CartSidebar'; // Add this import
+import CartSidebar from './CartSidebar';
+import { RiShoppingBag4Line, RiAccountCircleLine } from "react-icons/ri";
 
 const Navbar = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileSearchActive, setIsMobileSearchActive] = useState(false);
-  const [isCartOpen, setIsCartOpen] = useState(false); // Add this state
+  const [isCartOpen, setIsCartOpen] = useState(false);
 
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
@@ -25,7 +25,6 @@ const Navbar = () => {
     setIsMobileSearchActive(false);
   };
 
-  // Add cart functions
   const openCart = () => {
     setIsCartOpen(true);
   };
@@ -34,148 +33,149 @@ const Navbar = () => {
     setIsCartOpen(false);
   };
 
-  useEffect(() => {
-    const handleScroll = () => {
-      const scrollTop = window.pageYOffset;
-      if (scrollTop > 50) {
-        setIsScrolled(true);
-      } else {
-        setIsScrolled(false);
-      }
-    };
-
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-
   return (
-    <div className={`navbar-container ${isScrolled ? 'scrolled' : ''}`}>
+    <div className="petwell-navbar-container">
       {/* Free Shipping Banner */}
-      <div className="free-shipping-banner text-center py-2">
-        <span className="free-shipping-text">Free shipping on orders over $50</span>
+      <div className="petwell-free-shipping-banner text-center py-2">
+        <span className="petwell-free-shipping-text">Free shipping on orders over $50</span>
       </div>
 
       {/* Mobile Menu Overlay */}
       <div 
-        className={`mobile-menu-overlay ${isMobileMenuOpen ? 'active' : ''}`}
+        className={`petwell-mobile-menu-overlay ${isMobileMenuOpen ? 'active' : ''}`}
         onClick={closeMobileMenu}
       ></div>
 
       {/* Main Navbar */}
-      <nav className="navbar navbar-expand-lg main-navbar">
-        <div className="container-fluid">
+      <nav className="petwell-navbar navbar-expand-lg petwell-main-navbar">
+        <div className="petwell-container-fluid">
           {/* Mobile Menu Toggle - Three Dashes */}
-          <button className="mobile-menu-toggle" onClick={toggleMobileMenu}>
-            <div className="three-dashes">
-              <div className="dash"></div>
-              <div className="dash"></div>
-              <div className="dash"></div>
+          <button className="petwell-mobile-menu-toggle" onClick={toggleMobileMenu}>
+            <div className="petwell-three-dashes">
+              <div className="petwell-dash"></div>
+              <div className="petwell-dash"></div>
+              <div className="petwell-dash"></div>
             </div>
           </button>
 
-          {/* Brand Logo - Hidden when mobile search is active or on very small screens */}
-          <a className="navbar-brand" href="#">
-            <div className="brand-logo">
-              <img src={logo} alt="Petwell Logo" className="logo-img" />
+          {/* Brand Logo */}
+          <a className="petwell-navbar-brand" href="#">
+            <div className="petwell-brand-logo">
+              <img src={logo} alt="Petwell Logo" className="petwell-logo-img" />
             </div>
           </a>
 
-          {/* Mobile Search Bar - Appears when search icon is clicked */}
-          <div className={`mobile-search-container ${isMobileSearchActive ? 'active' : ''}`}>
-            <div className="mobile-search-bar-expanded">
+          {/* Mobile Search Bar */}
+          <div className={`petwell-mobile-search-container ${isMobileSearchActive ? 'active' : ''}`}>
+            <div className="petwell-mobile-search-bar-expanded">
               <input 
                 type="text" 
-                className="mobile-search-input-expanded" 
+                className="petwell-mobile-search-input-expanded" 
                 placeholder="Search..." 
                 autoFocus
               />
-              <button className="mobile-search-close" onClick={closeMobileSearch}>
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              <button className="petwell-mobile-search-close" onClick={closeMobileSearch}>
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                   <path d="M18 6L6 18M6 6l12 12"/>
                 </svg>
               </button>
             </div>
           </div>
 
-          {/* Navigation Links (centered pill) */}
-          <div className="nav-pill rounded-pill d-none d-lg-flex align-items-center mx-auto">
-            <a className="nav-link" href="#">How it works</a>
-            <a className="nav-link" href="#">Our tests</a>
-            <div className="nav-dropdown">
-              <a className="nav-link" href="#">Learn</a>
+          {/* Navigation Links (centered pill) - Hidden on mobile */}
+          <div className="petwell-nav-pill rounded-pill d-none d-xxl-flex align-items-center mx-auto">
+            <a className="petwell-nav-link" href="#">How it works</a>
+            <a className="petwell-nav-link" href="#">Our tests</a>
+            <div className="petwell-nav-dropdown">
+              <a className="petwell-nav-link" href="#">
+                Learn
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" style={{marginLeft: '6px'}}>
+                  <path d="m6 9 6 6 6-6"/>
+                </svg>
+              </a>
             </div>
           </div>
 
-          {/* Right Side Icons - Search icon included here for proper alignment */}
-          <div className="navbar-right-items d-flex align-items-center">
-            {/* Mobile Search Icon - Now part of the right items for proper alignment */}
+          {/* Right Side Icons - Login and Get Started hidden on mobile */}
+          <div className="petwell-navbar-right-items d-flex align-items-center">
+            {/* Mobile Search Icon - Visible on mobile */}
             <button 
-              className={`mobile-search-icon-btn ${isMobileSearchActive ? 'active' : ''}`}
+              className={`petwell-mobile-search-icon-btn ${isMobileSearchActive ? 'active' : ''}`}
               onClick={toggleMobileSearch}
             >
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                 <circle cx="11" cy="11" r="8"/>
                 <path d="m21 21-4.3-4.3"/>
               </svg>
             </button>
             
-            <a className="nav-link login-link d-none d-lg-block" href="#">Login</a>
-            <button className="btn get-started-btn d-none d-lg-flex">
-              <span className="btn-dot">•</span>
-              <span className="btn-text">Get Started</span>
+            <a className="petwell-nav-link petwell-login-link d-none d-xxl-block" href="#">Login</a>
+            <button className="petwell-btn petwell-get-started-btn d-none d-xxl-flex">
+              <span className="petwell-btn-dot">•</span>
+              <span className="petwell-btn-text">Get Started</span>
             </button>
-            <div className="icon-btn account-icon">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#172027" strokeWidth="2">
-                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
-                <circle cx="12" cy="7" r="4"/>
-              </svg>
+            <div className="petwell-icon-btn petwell-account-icon">
+              <RiAccountCircleLine size={24} />
             </div>
-            {/* Update cart icon with onClick handler */}
-            <div className="icon-btn cart-icon" onClick={openCart} style={{cursor: 'pointer'}}>
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#172027" strokeWidth="2">
-                <path d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"/>
-              </svg>
+            <div className="petwell-icon-btn petwell-cart-icon" onClick={openCart} style={{cursor: 'pointer'}}>
+              <RiShoppingBag4Line size={24} />
             </div>
           </div>
         </div>
       </nav>
 
-      {/* Mobile Menu */}
-      <div className={`mobile-menu ${isMobileMenuOpen ? 'active' : ''}`}>
-        <div className="mobile-menu-header">
-          <div className="brand-logo">
-            <img src={logo} alt="Petwell Logo" className="logo-img" />
+      {/* Mobile Menu - Contains all navigation items */}
+      <div className={`petwell-mobile-menu ${isMobileMenuOpen ? 'active' : ''}`}>
+        <div className="petwell-mobile-menu-header">
+          <div className="petwell-brand-logo">
+            <img src={logo} alt="Petwell Logo" className="petwell-logo-img" />
           </div>
-          <button className="mobile-menu-close" onClick={closeMobileMenu}>
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+          <button className="petwell-mobile-menu-close" onClick={closeMobileMenu}>
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
               <path d="M18 6L6 18M6 6l12 12"/>
             </svg>
           </button>
         </div>
         
         {/* Search Bar in Mobile Menu */}
-        <div className="mobile-search-bar">
-          <input type="text" className="mobile-search-input" placeholder="Search..." />
-          <svg className="mobile-search-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+        <div className="petwell-mobile-search-bar">
+          <input type="text" className="petwell-mobile-search-input" placeholder="Search..." />
+          <svg className="petwell-mobile-search-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
             <circle cx="11" cy="11" r="8"/>
             <path d="m21 21-4.3-4.3"/>
           </svg>
         </div>
         
-        <div className="mobile-nav-links">
-          <a className="mobile-nav-link" href="#" onClick={closeMobileMenu}>How it works</a>
-          <a className="mobile-nav-link" href="#" onClick={closeMobileMenu}>Our tests</a>
-          <a className="mobile-nav-link" href="#" onClick={closeMobileMenu}>Learn</a>
-          <a className="mobile-nav-link" href="#" onClick={closeMobileMenu}>Login</a>
+        {/* Mobile Navigation Links - Includes all navigation items */}
+        <div className="petwell-mobile-nav-links">
+          {/* Navigation Pill Items */}
+          <a className="petwell-mobile-nav-link" href="#" onClick={closeMobileMenu}>
+            How it works
+          </a>
+          <a className="petwell-mobile-nav-link" href="#" onClick={closeMobileMenu}>
+            Our tests
+          </a>
+          <a className="petwell-mobile-nav-link" href="#" onClick={closeMobileMenu}>
+            Learn
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" style={{marginLeft: '6px'}}>
+              <path d="m6 9 6 6 6-6"/>
+            </svg>
+          </a>
+          
+          {/* Login Link */}
+          <a className="petwell-mobile-nav-link" href="#" onClick={closeMobileMenu}>
+            Login
+          </a>
         </div>
         
-        <button className="btn get-started-btn w-100" onClick={closeMobileMenu}>
-          <span className="btn-dot">•</span>
-          <span className="btn-text">Get Started</span>
+        {/* Get Started Button in Mobile Menu */}
+        <button className="petwell-btn petwell-get-started-btn w-100" onClick={closeMobileMenu}>
+          <span className="petwell-btn-dot">•</span>
+          <span className="petwell-btn-text">Get Started</span>
         </button>
       </div>
 
-      {/* Add CartSidebar component */}
+      {/* Cart Sidebar */}
       <CartSidebar isOpen={isCartOpen} onClose={closeCart} />
     </div>
   );

@@ -1,7 +1,6 @@
-@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap');
-
+/* General Styles */
 .success-bg {
-  background-color: #ffffff;
+  background-color: #f8f8f8;
   min-height: 100vh;
 }
 
@@ -13,138 +12,223 @@
   max-width: 500px;
 }
 
-/* Header Section */
-.success-header {
-  text-align: left;
+.border-line {
+  height: 1px;
+  background-color: #e5e5e5;
+  width: 100%;
 }
 
+/* Logo */
 .logo-img {
   height: 40px;
-  width: auto;
-  display: block;
-  margin-bottom: 16px;
 }
 
 .black-logo {
-  filter: brightness(0) invert(0);
+  filter: brightness(0);
+}
+
+/* Confirmation Section */
+.confirmation-header {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  margin-bottom: 32px;
+}
+
+.confirmation-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 3px solid #212121;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  color: #212121;
+  background: #fff;
+  flex-shrink: 0;
 }
 
 .confirmation-number {
+  font-family: 'Inter Tight', sans-serif;
+  font-weight: 500;
+  font-size: 16px;
+  color: #525252;
+  line-height: 1.4;
+  margin-bottom: 4px;
+}
+
+.confirmation-thankyou {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-weight: 600;
+  font-size: 24px;
+  color: #000000;
+  margin: 0;
+  line-height: 1.1;
+}
+
+/* Map Section */
+.map-section {
+  margin-bottom: 24px;
+  border: #C9C4BE 2px solid;
+  border-radius: 25px;
+  width: 800px;
+}
+
+.map-container {
+  border-radius: 25px;
+  overflow: hidden;
+  height: 300px;
+}
+
+/* Order Confirmed Section */
+.order-confirmed-section {
+  margin-bottom: 32px;
+  padding: 20px;
+}
+
+.order-confirmed-title {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-weight: 600;
+  font-size: 24px;
+  color: #000000;
+  margin-bottom: 12px;
+}
+
+.order-confirmed-text {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  color: #525252;
+  margin-bottom: 20px;
+}
+
+.track-order-btn {
+  background-color: #ffffff00;
+  color: #000000;
+  border: none;
+  border-radius: 25px;
+  padding: 15px 25px;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-weight: 500;
+  font-size: 16px;
+  margin-bottom: 20px;
+  cursor: pointer;
+  border: 1px solid #0A0E11;
+  height: 50px;
+  width: 147px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.track-order-btn:hover {
+  background-color: #000000;
+  color: #ffffff;
+}
+
+.email-updates-checkbox {
+  margin-top: 16px;
+}
+
+/* Order Details Section */
+.order-details-section {
+  margin-bottom: 32px;
+  border: 2px solid #C9C4BE;
+  border-radius: 25px;
+  width: 800px;
+  padding: 20px;
+}
+
+.section-title {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-weight: 600;
+  font-size: 24px;
+  color: #000000;
+  margin-bottom: 20px;
+}
+
+.details-table {
+  width: 100%;
+}
+
+.details-row {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0 -15px;
+}
+
+.details-column {
+  flex: 1;
+  min-width: 250px;
+  padding: 0 15px;
+}
+
+.detail-group {
+  margin-bottom: 20px;
+}
+
+.detail-label {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-weight: 500;
+  font-size: 16px;
+  color: #525252;
+  margin-bottom: 6px;
+}
+
+.detail-value {
   font-family: 'Plus Jakarta Sans', sans-serif;
   font-weight: 500;
   font-size: 16px;
   color: #000000;
-  margin-bottom: 8px;
+  line-height: 1.5;
 }
 
-.thank-you {
-  font-family: 'Plus Jakarta Sans', sans-serif;
-  font-weight: 600;
-  font-size: 32px;
-  color: #000000;
-  margin: 0;
+.payment-method {
+  text-transform: lowercase;
 }
 
-/* Border Line */
-.border-line {
-  height: 1px;
-  background: #e0e0e0;
-  width: 100%;
+.visa-text {
+  text-transform: lowercase;
+  font-weight: 700;
+  color: #1a1f71;
 }
 
-/* UPDATED: Order Confirmed Section */
-.confirmation-section {
-  text-align: left;
+.save-info-checkbox {
+  margin-top: 20px;
 }
 
-.order-confirmed-header {
-  display: flex;
-  align-items: flex-start;
-  gap: 16px;
-  margin-bottom: 20px;
-}
-
-.confirmed-icon {
-  width: 48px;
-  height: 48px;
-  background: #000000;
-  color: #ffffff;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 24px;
-  font-weight: bold;
-  flex-shrink: 0;
-}
-
-.confirmed-text {
-  flex: 1;
-}
-
-.confirmed-title-main {
-  font-family: 'Plus Jakarta Sans', sans-serif;
-  font-weight: 600;
-  font-size: 24px;
-  color: #000000;
-  margin-bottom: 4px;
-  line-height: 1.2;
-}
-
-.confirmed-description-main {
-  font-family: 'Plus Jakarta Sans', sans-serif;
-  font-weight: 400;
-  font-size: 16px;
-  color: #666;
-  line-height: 1.4;
-}
-
-.track-order-btn {
-  background: #000000;
-  color: #ffffff;
-  border: none;
-  border-radius: 25px;
-  padding: 12px 24px;
-  font-family: 'Plus Jakarta Sans', sans-serif;
-  font-weight: 600;
-  font-size: 16px;
-  cursor: pointer;
-  transition: background-color 0.2s;
-  width: 100%;
-  max-width: 200px;
-}
-
-.track-order-btn:hover {
-  background: #333333;
-}
-
-/* Email Updates */
-.email-updates {
-  text-align: left;
-}
-
+/* Checkbox Styles */
 .form-check {
   display: flex;
   align-items: center;
-  margin: 0;
+  margin-bottom: 0;
 }
 
-.custom-checkbox {
+.form-check-input.custom-checkbox {
   width: 18px;
   height: 18px;
-  margin-right: 8px;
-  border: 2px solid #C9C4BE;
-  border-radius: 4px;
+  margin-right: 10px;
+  border: 2px solid #000000;
+  border-radius: 3px;
+  position: relative;
+  cursor: pointer;
 }
 
-.custom-checkbox:checked {
+.form-check-input.custom-checkbox:checked {
   background-color: #000000;
   border-color: #000000;
 }
 
-.black-checkbox:checked {
-  background-color: #000000;
-  border-color: #000000;
+.form-check-input.custom-checkbox:checked::before {
+  content: "✓";
+  position: absolute;
+  color: white;
+  font-size: 12px;
+  font-weight: bold;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
 .form-check-label {
@@ -155,77 +239,13 @@
   cursor: pointer;
 }
 
-/* Order Details */
-.order-details-section {
-  text-align: left;
-}
-
-.section-title-small {
-  font-family: 'Plus Jakarta Sans', sans-serif;
-  font-weight: 600;
-  font-size: 20px;
-  color: #000000;
-  margin-bottom: 16px;
-}
-
-.detail-group {
-  margin-bottom: 16px;
-}
-
-.detail-label {
-  font-family: 'Plus Jakarta Sans', sans-serif;
-  font-weight: 500;
-  font-size: 14px;
-  color: #666;
-  margin-bottom: 4px;
-}
-
-.detail-value {
-  font-family: 'Plus Jakarta Sans', sans-serif;
-  font-weight: 400;
-  font-size: 16px;
-  color: #000000;
-  line-height: 1.4;
-}
-
-/* Map Section */
-.map-section {
-  margin: 20px 0;
-}
-
-.map-container {
-  border-radius: 8px;
-  overflow: hidden;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-}
-
-/* Payment Section */
-.payment-section {
-  text-align: left;
-}
-
-.payment-method-display {
-  background: #f8f9fa;
-  padding: 12px 16px;
-  border-radius: 8px;
-  border: 1px solid #e0e0e0;
-}
-
-.payment-type {
-  font-family: 'Plus Jakarta Sans', sans-serif;
-  font-weight: 400;
-  font-size: 16px;
-  color: #000000;
-}
-
-.visa-text {
-  font-weight: 600;
-  text-transform: lowercase;
-}
-
 /* Help Section */
 .help-section {
-  text-align: left;
+  margin-bottom: 32px;
+}
+
+.help-content {
+  width: 100%;
 }
 
 .help-text {
@@ -233,13 +253,12 @@
   font-weight: 400;
   font-size: 16px;
   color: #000000;
-  margin-bottom: 16px;
+  margin-bottom: 0;
 }
 
 .contact-link {
-  color: #007bff;
+  color: #064ad4;
   text-decoration: none;
-  font-weight: 500;
 }
 
 .contact-link:hover {
@@ -247,44 +266,36 @@
 }
 
 .continue-shopping-btn {
-  background: transparent;
+  background-color: transparent;
   color: #000000;
-  border: 2px solid #000000;
-  border-radius: 25px;
-  padding: 12px 24px;
+  border: 1px solid #000000;
+  border-radius: 4px;
+  padding: 10px 20px;
   font-family: 'Plus Jakarta Sans', sans-serif;
-  font-weight: 600;
+  font-weight: 500;
   font-size: 16px;
   cursor: pointer;
   transition: all 0.2s;
-  width: 100%;
 }
 
 .continue-shopping-btn:hover {
-  background: #000000;
+  background-color: #000000;
   color: #ffffff;
 }
 
 /* Footer Links */
 .footer-links {
   display: flex;
-  justify-content: center;
   gap: 24px;
-  padding: 20px 0;
-  flex-wrap: wrap;
-}
-
-.footer-link-item {
-  display: inline-block;
+  margin-bottom: 32px;
 }
 
 .footer-link {
   font-family: 'Plus Jakarta Sans', sans-serif;
   font-weight: 400;
   font-size: 14px;
-  color: #666;
+  color: #525252;
   text-decoration: none;
-  transition: color 0.2s;
 }
 
 .footer-link:hover {
@@ -292,50 +303,41 @@
   text-decoration: underline;
 }
 
-/* Order Summary */
+/* Order Summary Section */
 .order-summary-bg {
-  background-color: #FBF8F4;
-  color: #000000;
-  min-height: 100vh;
+  background-color: #ffffff;
+  box-shadow: -2px 0 10px rgba(0, 0, 0, 0.05);
 }
 
 .order-item {
-  padding: 15px;
-  background: transparent;
-  box-shadow: none;
+  padding: 12px 0;
 }
 
 .item-image-wrapper {
-  width: 80px;
-  height: 80px;
-  background-color: #ffffff;
-  border: 1px solid #e0e0e0;
-  border-radius: 12px;
   position: relative;
-  flex-shrink: 0;
 }
 
 .item-image {
-  width: 100%;
-  height: 100%;
+  width: 80px;
+  height: 80px;
   object-fit: cover;
-  border-radius: 12px;
-  background: #f8f9fa;
+  border-radius: 8px;
 }
 
 .item-badge {
   position: absolute;
   top: -8px;
-  left: -8px;
-  background: #475055;
+  right: -8px;
+  background-color: #000000;
   color: #ffffff;
   border-radius: 50%;
-  width: 28px;
-  height: 28px;
-  text-align: center;
-  line-height: 28px;
-  font-weight: 600;
-  font-size: 0.9rem;
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: 500;
 }
 
 .item-name {
@@ -348,202 +350,94 @@
 
 .item-size {
   font-family: 'Plus Jakarta Sans', sans-serif;
-  font-weight: 500;
-  font-size: 16px;
-  color: #000000;
-  opacity: 0.7;
+  font-weight: 400;
+  font-size: 14px;
+  color: #525252;
 }
 
-.price-amount {
+.item-price {
   font-family: 'Plus Jakarta Sans', sans-serif;
   font-weight: 500;
   font-size: 16px;
   color: #000000;
 }
 
-/* Pricing Summary */
 .pricing-summary {
-  padding: 20px;
-  border-radius: 12px;
+  padding: 0 8px;
 }
 
 .price-row {
-  font-size: 1rem;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 16px;
 }
 
 .price-label {
-  color: #000000;
-  font-family: 'Plus Jakarta Sans', sans-serif;
-  font-weight: 500;
-  font-size: 16px;
+  color: #525252;
+  font-weight: 400;
 }
 
 .price-value {
   color: #000000;
-  font-weight: 500;
-  font-family: 'Plus Jakarta Sans', sans-serif;
-  font-size: 16px;
+  font-weight: 400;
 }
 
 .total-row {
-  font-size: 1.2rem;
-  font-weight: 700;
+  padding-top: 12px;
+  border-top: 1px solid #e5e5e5;
 }
 
 .total-label {
   color: #000000;
-  font-family: 'Plus Jakarta Sans', sans-serif;
   font-weight: 700;
-  font-size: 24px;
+  font-size: 18px;
 }
 
 .total-value {
   color: #000000;
-  font-family: 'Plus Jakarta Sans', sans-serif;
   font-weight: 700;
-  font-size: 24px;
+  font-size: 18px;
 }
 
-/* Responsive Design */
-@media (max-width: 992px) {
+/* Responsive adjustments */
+@media (max-width: 991px) {
   .order-summary-bg {
-    min-height: auto;
+    box-shadow: none;
+    border-top: 1px solid #e5e5e5;
+  }
+  
+  .details-column {
+    flex: 100%;
+    margin-bottom: 20px;
+  }
+  
+  .help-content {
+    flex-direction: column;
+    gap: 16px;
+    align-items: flex-start;
   }
 }
 
-@media (max-width: 768px) {
-  .success-content, .order-summary {
-    padding: 0 15px;
-  }
-  
-  .thank-you {
-    font-size: 24px;
-  }
-  
-  .confirmed-title-main {
-    font-size: 20px;
-  }
-  
-  .confirmed-description-main {
-    font-size: 14px;
-  }
-  
-  .section-title-small {
-    font-size: 18px;
-  }
-  
-  .order-confirmed-header {
+@media (max-width: 576px) {
+  .confirmation-header {
+    flex-direction: column;
+    align-items: flex-start;
     gap: 12px;
   }
   
-  .confirmed-icon {
-    width: 40px;
-    height: 40px;
-    font-size: 20px;
-  }
-  
-  .item-image-wrapper {
-    width: 60px;
-    height: 60px;
-  }
-  
-  .item-badge {
-    width: 24px;
-    height: 24px;
-    line-height: 24px;
-    font-size: 0.8rem;
+  .confirmation-thankyou {
+    font-size: 24px;
   }
   
   .footer-links {
     flex-direction: column;
     gap: 12px;
-    text-align: center;
   }
   
-  .total-label,
-  .total-value {
-    font-size: 20px;
+  .help-content {
+    align-items: stretch;
   }
   
-  .logo-img {
-    height: 32px;
-  }
-  
-  .track-order-btn {
-    max-width: 100%;
-  }
-}
-
-@media (max-width: 576px) {
-  .success-content, .order-summary {
-    padding: 0 10px;
-  }
-  
-  .thank-you {
-    font-size: 20px;
-  }
-  
-  .confirmed-title-main {
-    font-size: 18px;
-  }
-  
-  .confirmed-description-main {
-    font-size: 13px;
-  }
-  
-  .section-title-small {
-    font-size: 16px;
-  }
-  
-  .item-name,
-  .item-size,
-  .price-amount,
-  .price-label,
-  .price-value {
-    font-size: 14px;
-  }
-  
-  .total-label,
-  .total-value {
-    font-size: 18px;
-  }
-  
-  .track-order-btn,
   .continue-shopping-btn {
-    padding: 10px 20px;
-    font-size: 14px;
-  }
-  
-  .order-confirmed-header {
-    flex-direction: column;
-    text-align: center;
-    gap: 8px;
-  }
-  
-  .confirmed-icon {
-    align-self: center;
-  }
-}
-
-/* Utility classes */
-.py-4 {
-  padding-top: 1.5rem !important;
-  padding-bottom: 1.5rem !important;
-}
-
-.py-lg-5 {
-  padding-top: 3rem !important;
-  padding-bottom: 3rem !important;
-}
-
-@media (max-width: 768px) {
-  .py-4 {
-    padding-top: 1rem !important;
-    padding-bottom: 1rem !important;
-  }
-  
-  .py-lg-5 {
-    padding-top: 2rem !important;
-    padding-bottom: 2rem !important;
+    width: 100%;
   }
 }

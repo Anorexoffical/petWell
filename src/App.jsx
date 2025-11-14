@@ -1,7 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Navbar from './Component/Navbar';
-import HomePage from './Component/Homepage';
+import Homepage from './Component/Homepage';
 import Productdetail from './Component/Productdetail';
 import Checkout from './Component/Checkout';
 import SuccessCheckout from './Component/SuccessCheckout';
@@ -9,16 +9,14 @@ import SuccessCheckout from './Component/SuccessCheckout';
 function App() {
   return (
     <Router>
-      <div className="App">
-        <Navbar />
+        {/* <Navbar/> */}
         <Routes>
-          <Route path="/" element={<HomePage />} />
+           <Route path="/" element={<Homepage />} />
           <Route path="/productdetail" element={<Productdetail />} />
           <Route path="/checkout" element={<Checkout />} />
           <Route path="/successcheckout" element={<SuccessCheckout />} />
-          {/* Add more routes as needed */}
+          Add more routes as needed
         </Routes>
-      </div>
     </Router>
   );
 }

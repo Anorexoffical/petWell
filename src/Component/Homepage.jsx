@@ -3,8 +3,7 @@ import "../Style/Homepage.css";
 import Navbar from "./Navbar";
 import {react, useState } from "react";
 import { FaFacebookF, FaTwitter, FaInstagram } from 'react-icons/fa';
-import { useNavigate } from 'react-router-dom'; // Add this import
-
+import { useNavigate } from 'react-router-dom';
 
 // Import Bootstrap components
 import Container from 'react-bootstrap/Container';
@@ -23,7 +22,6 @@ import home8 from "../assets/home8.png";
 import home9 from "../assets/home9.png";
 import logo from "../assets/logo.png";
 
-
 // icons for footer
 import visa from "../assets/visa.png";
 import master from "../assets/master.png";
@@ -34,14 +32,10 @@ import paypal from "../assets/paypal.png";
 import shop from "../assets/shoppay.png";
 import qrcode from "../assets/qrcode.png";
 
-
 // Add these imports for the new images
-import gizmoImage from '../assets/gizmo-image.png'; // Add your Gizmo image path
-import proteinImage from '../assets/protein-image.png'; // Add your Protein Absorption image path
-import futurpet from "../assets/futurepet.png"; // Adjust path if needed
-
-
-
+import gizmoImage from '../assets/gizmo-image.png';
+import proteinImage from '../assets/protein-image.png';
+import futurpet from "../assets/futurepet.png";
 
 const CARD_BG = "#0f0e0cff";
 
@@ -121,24 +115,18 @@ const cards = [
     },
   ];
 
-// for email subscription
 function Homepage() {
-
-
- const navigate = useNavigate(); // Add this line
+  const navigate = useNavigate();
   
-  // Your existing code...
   const handleProductClick = (product) => {
-    // Navigate to product detail page with product data
     navigate('/Productdetail', { state: { product } });
   };
 
-
-
   return (
-    <>    
+    <>  
+      <Navbar/>  
       <div className="main-container">
-        {/* Gizmo Image - Direct image without container */}
+        {/* Gizmo Image */}
         <img 
           src={gizmoImage} 
           alt="Gizmo" 
@@ -155,15 +143,15 @@ function Homepage() {
             Your pet doesn't have the same needs everywhere. Identify and address bacterial overgrowths and imbalances.
           </div>
           <div className="d-flex align-items-center button-container">
-            <button className="get-started-btnhome">
-              {/* <span className="btn-dot">•</span> */}
-              <span className="btn-text">Get Started</span>
+            <button className="petwell-get-started-btn1">
+              <span className="petwell-btn-dot">•</span>
+              <span className="petwell-btn-text">Get Started</span>
             </button>
             <button className="btn-main-secondary">Explore benefits</button>
           </div>
         </div>
         
-        {/* Protein Absorption Image - Direct image without container */}
+        {/* Protein Absorption Image */}
         <img 
           src={proteinImage} 
           alt="Protein Absorption" 
@@ -172,38 +160,48 @@ function Homepage() {
       </div>
 
 
-
-
-
-
 {/* //second container */}
 <Container fluid className="diagnostic-header-container py-4">
   <Row className="align-items-center">
-    <Col xs={12} md={6} className="mb-3 mb-md-0">
+    <Col xs={12}>
       <h1 className="diagnostic-title">Diagnostic Test Kits</h1>
-      <div className="d-flex align-items-center mt-2 flex-wrap">
-        <Button variant="outline-secondary" className="filter-btn me-2 mb-2 mb-md-0">
-          {/* Using SVG icon instead of bi-funnel */}
-          <svg width="16" height="16" fill="currentColor" viewBox="0 0 16 16" className="me-1">
-            <path d="M1.5 1.5A.5.5 0 0 1 2 1h12a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-.128.334L10 8.692V13.5a.5.5 0 0 1-.342.474l-3 1A.5.5 0 0 1 6 14.5V8.692L1.628 3.834A.5.5 0 0 1 1.5 3.5v-2z"/>
-          </svg>
-          Show filter (0)
-        </Button>
-        <span className="result-count">4 results</span>
-      </div>
     </Col>
-    <Col xs={12} md={6} className="d-flex justify-content-md-end mt-2 mt-md-0">
-      <Dropdown>
-        <Dropdown.Toggle variant="light" className="sort-dropdown">
-          Best selling
-        </Dropdown.Toggle>
-        <Dropdown.Menu>
-          <Dropdown.Item href="#/action-1">Best selling</Dropdown.Item>
-          <Dropdown.Item href="#/action-2">Price: Low to High</Dropdown.Item>
-          <Dropdown.Item href="#/action-3">Price: High to Low</Dropdown.Item>
-          <Dropdown.Item href="#/action-4">Newest</Dropdown.Item>
-        </Dropdown.Menu>
-      </Dropdown>
+  </Row>
+  <Row className="align-items-center mt-3">
+    <Col xs={12}>
+      <div className="d-flex align-items-center justify-content-between flex-wrap">
+        <div className="d-flex align-items-center mb-2 mb-md-0">
+          <Button variant="outline-secondary" className="filter-btn">
+            {/* Using SVG icon instead of bi-funnel */}
+            <svg width="16" height="16" fill="currentColor" viewBox="0 0 16 16" className="me-1 me-md-1">
+              <path d="M1.5 1.5A.5.5 0 0 1 2 1h12a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-.128.334L10 8.692V13.5a.5.5 0 0 1-.342.474l-3 1A.5.5 0 0 1 6 14.5V8.692L1.628 3.834A.5.5 0 0 1 1.5 3.5v-2z"/>
+            </svg>
+            <span className="filter-text d-none d-md-inline">Show filter (0)</span>
+          </Button>
+          {/* Changed to hide at same breakpoint as filter text */}
+          <span className="result-count ms-3 d-none d-md-inline">4 results</span>
+        </div>
+        
+        <div className="d-flex align-items-center">
+          {/* Changed to show only on mobile */}
+          <span className="result-count me-3 d-inline d-md-none">4 results</span>
+          <Dropdown>
+            <Dropdown.Toggle variant="light" className="sort-dropdown d-flex align-items-center justify-content-between position-relative">
+              {/* Added flex-grow and text-align for better spacing */}
+              <span className="sort-text flex-grow-1 text-start">Best selling</span>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="dropdown-chevron ms-2">
+                <path d="m6 9 6 6 6-6"/>
+              </svg>
+            </Dropdown.Toggle>
+            <Dropdown.Menu>
+              <Dropdown.Item href="#/action-1">Best selling</Dropdown.Item>
+              <Dropdown.Item href="#/action-2">Price: Low to High</Dropdown.Item>
+              <Dropdown.Item href="#/action-3">Price: High to Low</Dropdown.Item>
+              <Dropdown.Item href="#/action-4">Newest</Dropdown.Item>
+            </Dropdown.Menu>
+          </Dropdown>
+        </div>
+      </div>
     </Col>
   </Row>
 </Container>
@@ -215,70 +213,83 @@ function Homepage() {
 
 
 
-    {/* third section - cards  */}
 
 
-<div className="container py-4">
-      <div className="row justify-content-center">
-        {cards.map((card, idx) => (
-          <div key={card.id} className="col-12 col-md-6 col-lg-4 mb-4">
-            <div
-              className="card h-100 border-0 product-card"
-              style={{ backgroundColor: "#f8f9fa", borderRadius: "16px" }}
-            >
-              <div className="product-image-container">
-                <img
-                  src={card.imgSrc}
-                  alt={card.title}
-                  className="card-img-top product-image"
-                />
-              </div>
-              <div className="card-body d-flex flex-column justify-content-between text-center">
-                <h5 className="card-title mb-3 font-weight-bold">{card.title}</h5>
-                <div className="mb-3">
-                  <span className="current-price">{card.price}</span>
-                  <span className="old-price">{card.oldPrice}</span>
-                </div>
-                <button 
-                  className="btn btn-outline-dark rounded-btn w-100"
-                  onClick={() => handleProductClick(card)}
-                >
-                  {card.btnText}
-                </button>
-              </div>
-            </div>
+
+
+
+{/* third section - cards */}
+
+<div className="custom-container py-4">
+  <div className="custom-row">
+    {cards.map((card, idx) => (
+      <div key={card.id} className="custom-col">
+        <div className="custom-card">
+          <div className="custom-image-container">
+            <img
+              src={card.imgSrc}
+              alt={card.title}
+              className="custom-card-img"
+            />
           </div>
-        ))}
+          <div className="custom-card-body">
+            <h5 className="custom-card-title">{card.title}</h5>
+            <div className="custom-price-container">
+              <span className="custom-current-price">{card.price}</span>
+              <span className="custom-old-price">{card.oldPrice}</span>
+            </div>
+            <button 
+              className="custom-card-btn"
+              onClick={() => handleProductClick(card)}
+            >
+              {card.btnText}
+            </button>
+          </div>
+        </div>
       </div>
-    </div>
+    ))}
+  </div>
+</div>
 
 
- {/* forth section  */}
 
 
-<div className="petwell-hero-section">
-  <div className="petwell-hero-container">
-    <div className="petwell-hero-row align-items-center">
+
+
+
+
+
+
+
+
+
+
+
+{/* fourth section - futurpet */}
+
+<div className="petwell-futurpet-section">
+  <div className="petwell-futurpet-container">
+    <div className="petwell-futurpet-row petwell-futurpet-align-center">
       {/* Left: Text Section */}
-      <div className="col-12 col-md-6 petwell-hero-text">
+      <div className="petwell-futurpet-col-12 petwell-futurpet-col-md-6 petwell-futurpet-text">
         <h1>
           The future of pet health is 
-          <span className="petwell-highlight"> preventive, personal and positive</span>
+          <span className="petwell-futurpet-highlight"> preventive, personal and positive</span>
         </h1>
         <p>
           PetWell combines scientific precision with emotional care — helping every pet live longer, happier, and closer to you.
         </p>
-        <button className="petwell-hero-btn">
-          <span className="btn-dot"></span>
-          Learn more
+        <button className="petwell-futurpet-btn">
+          <span className="petwell-futurpet-btn-dot">•</span>
+          <span className="petwell-futurpet-btn-text">Learn more</span>
         </button>
       </div>
       {/* Right: Image Section */}
-      <div className="col-12 col-md-6 petwell-hero-image-wrapper">
+      <div className="petwell-futurpet-col-12 petwell-futurpet-col-md-6 petwell-futurpet-image-wrapper">
         <img 
           src={futurpet} 
           alt="PetWell Hero" 
-          className="petwell-hero-image" 
+          className="petwell-futurpet-image" 
         />
       </div>
     </div>
@@ -287,17 +298,11 @@ function Homepage() {
 
 
 
-{/* fifth container  */}
-
-
-
-
-
-<div className="footer-section">
-  <div className="container-fluid p-0">
-    <div className="row mx-0">
+<div className="petwell-footer">
+  <div className="petwell-footer-container">
+    <div className="petwell-footer-row">
       {/* Left Column - Subscribe Box */}
-      <div className="col-md-4 subscribe-col">
+      <div className="petwell-footer-subscribe">
         <h4>
           Subscribe to our news & offers and save 10% on your first order
         </h4>
@@ -305,7 +310,9 @@ function Homepage() {
           Preventive health testing for pets. Because they can't tell us when
           something's wrong, but their biomarkers can.
         </p>
-        <div className="subscribe-form">
+        
+        {/* Moved form elements to bottom */}
+        <div className="petwell-subscribe-form">
           <input type="email" placeholder="Email address" />
           <button>Sign me up</button>
         </div>
@@ -313,9 +320,9 @@ function Homepage() {
       </div>
 
       {/* Right Column - Links & Info */}
-      <div className="col-md-8 links-col">
-        <div className="row">
-          <div className="col-sm-6 col-md-3 footer-links">
+      <div className="petwell-footer-links">
+        <div className="petwell-links-grid">
+          <div className="petwell-link-group">
             <h6>Product</h6>
             <ul>
               <li>How it Works</li>
@@ -325,7 +332,7 @@ function Homepage() {
             </ul>
           </div>
 
-          <div className="col-sm-6 col-md-3 footer-links">
+          <div className="petwell-link-group">
             <h6>Company</h6>
             <ul>
               <li>Our Story</li>
@@ -335,7 +342,7 @@ function Homepage() {
             </ul>
           </div>
 
-          <div className="col-sm-6 col-md-3 footer-links">
+          <div className="petwell-link-group">
             <h6>Support</h6>
             <ul>
               <li>Contact Us</li>
@@ -344,12 +351,12 @@ function Homepage() {
             </ul>
           </div>
 
-          <div className="col-sm-6 col-md-3 footer-links">
-            <div className="app-download">
+          <div className="petwell-link-group">
+            <div className="petwell-app-download">
               <img
                 src={qrcode}
                 alt="QR Code"
-                className="qr-img"
+                className="petwell-qr-img"
               />
               <div>
                 <h6>Download our app</h6>
@@ -359,8 +366,8 @@ function Homepage() {
           </div>
         </div>
 
-        {/* Payment Logos */}
-        <div className="payment-logos">
+        {/* Payment Logos - Centered and aligned with social icons */}
+        <div className="petwell-payment-logos">
           <img src={visa} alt="Visa" />
           <img src={master} alt="MasterCard" />
           <img src={amex} alt="Amex" />
@@ -371,13 +378,13 @@ function Homepage() {
         </div>
 
         {/* Social + Policies */}
-        <div className="footer-bottom">
-          <div className="social-icons">
+        <div className="petwell-footer-bottom">
+          <div className="petwell-social-icons">
             <FaFacebookF />
             <FaTwitter />
             <FaInstagram />
           </div>
-          <div className="policy-links">
+          <div className="petwell-policy-links">
             <span>Privacy Policy</span>
             <span>Terms & Conditions</span>
             <span>©️ 2025 Petwell, Inc.</span>
@@ -387,12 +394,11 @@ function Homepage() {
     </div>
 
     {/* Petwell TM Large Text Row */}
-    <div className="footer-brand-row">
-      <img src={logo} alt="Petwell TM" className="petwell-tm-img" />
+    <div className="petwell-footer-brand">
+      <img src={logo} alt="Petwell TM" className="petwell-brand-img" />
     </div>
   </div>
 </div>
-
 
 
     </>
