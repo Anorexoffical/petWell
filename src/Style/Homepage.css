@@ -141,7 +141,7 @@ body {
   transition: all 0.3s ease;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
   width: 265px;
-  height: 60px;
+  height: 50px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -182,7 +182,7 @@ body {
   font-family: 'Plus Jakarta Sans', sans-serif;
   white-space: nowrap;
   width: 160px;
-  height: 60px;
+  height: 50px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1185,14 +1185,10 @@ body {
 
 
 
-
-
 /* third section - cards styling */
 
-
-
 /* Main container with custom width */
-.custom-container {
+.product-cards-container {
   width: calc(100vw - 80px);
   max-width: 100%;
   margin: 0 auto;
@@ -1200,7 +1196,7 @@ body {
 }
 
 /* Row styling */
-.custom-row {
+.product-cards-row {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -1208,7 +1204,7 @@ body {
 }
 
 /* Column styling */
-.custom-col {
+.product-cards-col {
   flex: 0 0 100%;
   max-width: 100%;
   padding: 0 8px 16px 8px;
@@ -1216,7 +1212,7 @@ body {
 }
 
 /* Card container */
-.custom-card {
+.product-card-item {
   height: auto;
   min-height: 500px;
   border-radius: 16px;
@@ -1228,7 +1224,7 @@ body {
 }
 
 /* Image area styling - 100% coverage */
-.custom-image-container {
+.product-card-image-container {
   background-color: #F8F2EA;
   border-radius: 16px 16px 0 0;
   height: 300px;
@@ -1240,7 +1236,7 @@ body {
   overflow: hidden;
 }
 
-.custom-card-img {
+.product-card-img {
   border-radius: 16px 16px 0 0; /* Match container border radius */
   object-fit: cover; /* Change to cover for full coverage */
   height: 100%;
@@ -1249,7 +1245,7 @@ body {
 }
 
 /* Card body and text styling */
-.custom-card-body {
+.product-card-content {
   padding: 1.5rem;
   background-color: #f5f5f5;
   display: flex;
@@ -1260,7 +1256,7 @@ body {
   min-height: 200px;
 }
 
-.custom-card-title {
+.product-card-heading {
   font-family: 'Plus Jakarta Sans', sans-serif;
   font-size: 20px;
   font-weight: 600;
@@ -1271,11 +1267,11 @@ body {
 }
 
 /* Price styling */
-.custom-price-container {
+.product-price-wrapper {
   margin-bottom: 0.75rem; /* Reduced margin */
 }
 
-.custom-current-price {
+.product-current-price {
   font-size: 16px;
   font-weight: 500;
   color: #230F10;
@@ -1283,7 +1279,7 @@ body {
   letter-spacing: -2%;
 }
 
-.custom-old-price {
+.product-old-price {
   text-decoration: line-through;
   color: #FF0000;
   margin-left: 8px;
@@ -1294,7 +1290,7 @@ body {
 }
 
 /* Button styling */
-.custom-card-btn {
+.product-card-button {
   border: 2px solid #19242B;
   border-radius: 50px;
   padding: 10px 20px;
@@ -1310,7 +1306,7 @@ body {
   margin-top: auto; /* Push button to bottom */
 }
 
-.custom-card-btn:hover {
+.product-card-button:hover {
   background-color: #19242B;
   color: #fff;
   transform: translateY(-2px);
@@ -1318,52 +1314,52 @@ body {
 
 /* Mobile specific adjustments - Improved width and reduced margins */
 @media (max-width: 575px) {
-  .custom-container {
+  .product-cards-container {
     width: calc(100vw - 10px); /* Further reduced container padding */
   }
   
-  .custom-row {
+  .product-cards-row {
     margin: 0 -4px; /* Reduced negative margin */
   }
   
-  .custom-col {
+  .product-cards-col {
     padding: 0 4px 12px 4px; /* Reduced side padding */
     flex: 0 0 100%; /* Full width but with proper spacing */
     max-width: 100%;
   }
   
-  .custom-card {
+  .product-card-item {
     height: 400px; /* Reduced height */
     max-width: 450px; /* Better width for mobile */
     margin: 0 auto; /* Center the card */
   }
   
-  .custom-image-container {
+  .product-card-image-container {
     height: 350px;
   }
   
-  .custom-card-body {
+  .product-card-content {
     padding: 0.8rem; /* Reduced padding */
     min-height: 150px; /* Reduced min-height */
     gap: 5px; /* Added gap for consistent 5px spacing */
   }
   
-  .custom-card-title {
+  .product-card-heading {
     font-size: 16px;
     margin-bottom: 5px; /* Exactly 5px margin */
     line-height: 1.2;
   }
   
-  .custom-price-container {
+  .product-price-wrapper {
     margin-bottom: 5px; /* Exactly 5px margin */
   }
   
-  .custom-current-price,
-  .custom-old-price {
+  .product-current-price,
+  .product-old-price {
     font-size: 14px;
   }
   
-  .custom-card-btn {
+  .product-card-button {
     height: 40px; /* Reduced button height */
     font-size: 13px;
     padding: 6px 12px;
@@ -1373,47 +1369,47 @@ body {
 
 /* Extra small devices */
 @media (max-width: 375px) {
-    .custom-container {
+  .product-cards-container {
     width: calc(100vw - 10px); /* Further reduced container padding */
   }
   
-  .custom-row {
+  .product-cards-row {
     margin: 0 -4px; /* Reduced negative margin */
   }
   
-  .custom-col {
+  .product-cards-col {
     padding: 0 4px 12px 4px; /* Reduced side padding */
     flex: 0 0 100%; /* Full width but with proper spacing */
     max-width: 100%;
   }
   
-  .custom-card {
+  .product-card-item {
     height: 400px; /* Reduced height */
     max-width: 450px; /* Better width for mobile */
     margin: 0 auto; /* Center the card */
   }
   
-  .custom-image-container {
+  .product-card-image-container {
     height: 350px;
   }
 
   
-  .custom-card-body {
+  .product-card-content {
     padding: 0.6rem;
     min-height: 140px;
     gap: 4px;
   }
   
-  .custom-card-title {
+  .product-card-heading {
     font-size: 15px;
     margin-bottom: 4px;
   }
   
-  .custom-price-container {
+  .product-price-wrapper {
     margin-bottom: 4px;
   }
   
-  .custom-card-btn {
+  .product-card-button {
     height: 38px;
     font-size: 12px;
     margin-top: 4px;
@@ -1422,123 +1418,117 @@ body {
 
 /* Tablet - 2 cards per row */
 @media (min-width: 576px) and (max-width: 767px) {
-  .custom-col {
+  .product-cards-col {
     flex: 0 0 50%;
     max-width: 50%;
   }
   
-  .custom-card {
+  .product-card-item {
     height: 500px;
   }
   
-  .custom-image-container {
+  .product-card-image-container {
     height: 280px;
   }
   
-  .custom-card-body {
+  .product-card-content {
     padding: 1.25rem;
     min-height: 180px;
   }
   
-  .custom-card-title {
+  .product-card-heading {
     font-size: 18px;
     margin-bottom: 0.5rem;
   }
   
-  .custom-price-container {
+  .product-price-wrapper {
     margin-bottom: 0.5rem;
   }
 }
 
 /* Desktop - 2 cards per row */
 @media (min-width: 768px) and (max-width: 1416px) {
-  .custom-col {
+  .product-cards-col {
     flex: 0 0 50%;
     max-width: 50%;
   }
   
-  .custom-card {
+  .product-card-item {
     height: 550px;
   }
   
-  .custom-image-container {
+  .product-card-image-container {
     height: 320px;
   }
   
-  .custom-card-body {
+  .product-card-content {
     padding: 1.5rem;
     min-height: 190px;
   }
   
-  .custom-card-title {
+  .product-card-heading {
     font-size: 20px;
     margin-bottom: 0.75rem;
   }
   
-  .custom-price-container {
+  .product-price-wrapper {
     margin-bottom: 0.75rem;
   }
 }
 
 /* Large Desktop - 3 cards per row */
 @media (min-width: 1417px) and (max-width: 1919px) {
-  .custom-col {
+  .product-cards-col {
     flex: 0 0 33.333333%;
     max-width: 33.333333%;
   }
   
-  .custom-card {
+  .product-card-item {
     height: 600px;
   }
   
-  .custom-image-container {
+  .product-card-image-container {
     height: 380px;
   }
   
-  .custom-card-body {
+  .product-card-content {
     padding: 1.75rem;
     min-height: 180px;
   }
   
-  .custom-card-title {
+  .product-card-heading {
     font-size: 22px;
     margin-bottom: 0.75rem;
   }
   
-  .custom-price-container {
+  .product-price-wrapper {
     margin-bottom: 0.75rem;
   }
 }
 
 /* Extra Large Desktop - 3 cards per row */
 @media (min-width: 1920px) {
-  .custom-col {
+  .product-cards-col {
     flex: 0 0 33.333333%;
     max-width: 33.333333%;
   }
   
-  .custom-card {
+  .product-card-item {
     height: 650px;
   }
   
-  .custom-image-container {
+  .product-card-image-container {
     height: 420px;
   }
   
-  .custom-card-body {
+  .product-card-content {
     min-height: 190px;
   }
   
-  .custom-card-title {
+  .product-card-heading {
     font-size: 25px;
   }
 }
-
-
-
-
-
-
 
 
 
@@ -1662,7 +1652,7 @@ body {
   transition: all 0.3s ease;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
   width: 285px;
-  height: 60px;
+  height: 50px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -2202,8 +2192,7 @@ body {
 
 
 
-/* fifth contianer  *//* fifth section styles - Petwell Footer */
-
+/* fifth container  *//* fifth section styles - Petwell Footer */
 .petwell-footer {
   background-color: #f8f2ea;
   font-family: "Plus Jakarta Sans", sans-serif;
@@ -2213,76 +2202,72 @@ body {
   width: 100%;
 }
 
-/* Ensure container takes full width */
-.petwell-footer-container {
+/* Remove container padding to eliminate white space */
+.petwell-footer .container-fluid {
+  padding-left: 0;
+  padding-right: 0;
   width: 100%;
   max-width: 100%;
   margin: 0;
-  padding: 0;
 }
 
-/* Remove any horizontal margins from row */
-.petwell-footer-row {
-  margin-left: 0;
-  margin-right: 0;
-  display: flex;
-  flex-wrap: wrap;
-}
-
-/* Left Column - Only changed width and height */
+/* Left Column - Subscribe Box */
 .petwell-footer-subscribe {
   background: #ffffff;
   border-radius: 16px;
-  padding: 30px;
+  padding: 40px;
   margin-bottom: 20px;
-  width: 544px;
-  height: 450px;
+  width: 100%;
+  max-width: 550px;
+  height: 420px;
   display: flex;
   flex-direction: column;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.08);
 }
 
 .petwell-footer-subscribe h4 {
-  font-size: 1.2rem;
+  font-size: 1.4rem;
   font-weight: 600;
-  margin-bottom: 15px;
+  margin-bottom: 20px;
+  line-height: 1.3;
 }
 
 .petwell-footer-subscribe p {
-  font-size: 0.95rem;
+  font-size: 1.05rem;
   color: #444;
-  margin-bottom: 20px;
-  flex: 1; /* This pushes the form to the bottom */
+  margin-bottom: 30px;
+  flex: 1;
+  line-height: 1.6;
 }
 
 .petwell-subscribe-form {
-  display: flex;
-  gap: 10px;
-  margin-bottom: 8px;
-  flex-wrap: wrap;
+  margin-bottom: 15px;
+}
+
+.petwell-subscribe-form .input-group {
+  flex-wrap: nowrap;
 }
 
 .petwell-subscribe-form input {
-  flex: 1;
-  min-width: 200px;
-  padding: 10px 14px;
+  padding: 14px 18px;
   border: 1px solid #ccc;
-  border-radius: 25px;
+  border-radius: 25px 0 0 25px;
   outline: none;
+  font-size: 1rem;
 }
 
 .petwell-subscribe-form button {
   background: #19242B;
   color: #fff;
   border: none;
-  padding: 10px 20px;
-  border-radius: 25px;
+  padding: 14px 25px;
+  border-radius: 0 25px 25px 0;
   cursor: pointer;
   transition: background 0.3s ease;
   white-space: nowrap;
   font-family: "Plus Jakarta Sans", sans-serif;
   font-weight: 600;
-  font-style: semi-bold;
-  font-size: 15px;
+  font-size: 16px;
   line-height: 80%;
   letter-spacing: -3%;
   vertical-align: middle;
@@ -2293,67 +2278,94 @@ body {
 }
 
 .petwell-footer-subscribe small {
-  font-size: 0.8rem;
+  font-size: 0.85rem;
   color: #666;
 }
 
 /* Right Column */
 .petwell-footer-links {
-  padding-left: 20px;
-  flex: 1;
+  padding-left: 0px;
+  width: 100%;
 }
 
-@media (max-width: 768px) {
-  .petwell-footer-links {
-    padding-left: 0;
-  }
-}
-
-.petwell-links-grid {
-  display: flex;
-  flex-wrap: wrap;
-}
-
+/* Link groups styling - Equal padding with DECREASED GAPS */
 .petwell-link-group {
-  flex: 1;
-  min-width: 150px;
-  margin-bottom: 20px;
+  margin-bottom: 0;
+  padding: 0;
 }
 
 .petwell-link-group h6 {
   font-weight: 600;
-  margin-bottom: 8px; /* Reduced from 10px */
+  margin-bottom: 14px; /* Decreased from 16px */
+  font-size: 1.1rem;
+  color: #19242B;
 }
 
 .petwell-link-group ul {
-  list-style: none;
   padding: 0;
   margin: 0;
 }
 
 .petwell-link-group ul li {
   font-size: 0.95rem;
-  margin-bottom: 4px; /* Reduced from 6px */
+  margin-bottom: 10px; /* Decreased from 12px */
   cursor: pointer;
+  line-height: 1.4;
+  color: #444;
 }
 
 .petwell-link-group ul li:hover {
   text-decoration: underline;
+  color: #19242B;
 }
 
-/* App Download */
+/* QR Section - REMOVED LEFT PADDING & INCREASED WIDTH */
+.petwell-link-group.qr-section {
+  display: flex;
+  justify-content: flex-end;
+  height: 10%;
+  padding-left: 0 !important; /* Remove left padding */
+  margin-left: -20px; /* Pull container slightly left */
+}
+
 .petwell-app-download {
   display: flex;
   align-items: center;
   background: #ffffff;
-  border-radius: 12px;
-  padding: 10px;
-  gap: 20px;
+  border-radius: 16px;
+  padding: 10px 10px 10px 15px; /* Reduced left padding */
+  gap: 5px; /* Further decreased gap */
+  width: 100%;
+  max-width: 420px; /* SIGNIFICANTLY INCREASED width from 380px to 420px */
+  min-height: 100px;
+  border: 1px solid #e9ecef;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+  margin-left: 0; /* Ensure no left margin */
 }
 
 .petwell-qr-img {
-  width: 110px;
-  height: 80px;
+  width: 60px; /* INCREASED QR width from 110px to 120px */
+  height: 60px; /* INCREASED QR height from 110px to 120px */
+  flex-shrink: 0;
+}
+
+.petwell-app-info {
+  flex: 1;
+  padding-right: 0px; /* Add some right padding for text */
+}
+
+.petwell-app-info h6 {
+  font-size: 1.2rem;
+  margin-bottom: 6px; /* Further decreased margin */
+  font-weight: 600;
+  color: #19242B;
+}
+
+.petwell-app-info p {
+  font-size: 1rem;
+  margin: 0;
+  color: #666;
+  line-height: 1.4;
 }
 
 /* Payment Logos */
@@ -2361,26 +2373,30 @@ body {
   margin-top: 30px;
   display: flex;
   flex-wrap: wrap;
-  gap: 10px;
+  gap: 12px;
+  margin-left: 0;
 }
 
 .petwell-payment-logos img {
-  height: 30px;
+  height: 28px;
 }
 
-/* Social & Policy Section */
+/* Social & Policy Section - All in one row */
 .petwell-footer-bottom {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-top: 25px;
+  margin-top: 120px;
   flex-wrap: wrap;
   gap: 15px;
+  padding-top: 0;
+  border-top: none;
 }
 
 .petwell-social-icons {
   display: flex;
-  gap: 12px;
+  gap: 15px;
+  margin-left: 0;
 }
 
 .petwell-social-icons svg {
@@ -2389,19 +2405,19 @@ body {
   background-color: white;
   color: #000;
   border-radius: 50%;
-  width: 36px;
-  height: 36px;
+  width: 38px;
+  height: 38px;
   padding: 8px;
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
   transition: all 0.3s ease;
 }
 
 .petwell-social-icons svg:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+  transform: translateY(-3px);
+  box-shadow: 0 6px 12px rgba(0,0,0,0.2);
 }
 
 .petwell-policy-links {
@@ -2413,13 +2429,16 @@ body {
 .petwell-policy-links span {
   font-size: 0.9rem;
   cursor: pointer;
+  font-weight: 500;
+  color: #444;
 }
 
 .petwell-policy-links span:hover {
   text-decoration: underline;
+  color: #19242B;
 }
 
-/* Footer Watermark */
+/* Footer Watermark - Full Width */
 .petwell-footer-brand {
   margin-top: 40px;
   text-align: center;
@@ -2434,69 +2453,281 @@ body {
 }
 
 /* Responsive adjustments */
-@media (max-width: 992px) {
-  .petwell-links-grid > div {
-    margin-bottom: 20px;
+@media (max-width: 1200px) {
+  .petwell-footer-subscribe {
+    max-width: 500px;
+    height: 400px;
   }
   
-  .petwell-footer-bottom {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-  
-  .petwell-policy-links {
-    margin-top: 15px;
+  .petwell-app-download {
+    max-width: 380px; /* Adjusted for medium screens */
   }
 }
 
-@media (max-width: 768px) {
-  .petwell-footer-subscribe,
-  .petwell-footer-links {
-    padding-left: 15px;
-    padding-right: 15px;
-  }
-  
-  .petwell-footer-row {
-    flex-direction: column;
+@media (max-width: 992px) {
+  .petwell-footer .container-fluid {
+    padding-left: 0;
+    padding-right: 0;
   }
   
   .petwell-footer-subscribe {
-    width: 100%;
+    max-width: 100%;
     height: auto;
+    padding: 35px;
+    margin-left: 15px;
+    margin-right: 15px;
+  }
+  
+  .petwell-footer-bottom {
+    flex-direction: row;
+    align-items: center;
+    text-align: left;
+  }
+  
+  .petwell-policy-links {
+    margin-top: 0;
+    justify-content: flex-end;
+  }
+  
+  .petwell-link-group.qr-section {
+    justify-content: center;
+    margin-top: 20px;
+    margin-left: 0; /* Reset on tablet */
+    padding-left: 0;
+  }
+  
+  .petwell-app-download {
+    max-width: 400px; /* Maintain increased width */
+    justify-content: center;
+    margin-left: 0;
+  }
+  
+  /* Add padding for medium screens */
+  .col-lg-5.col-md-6.mb-4.ps-4 {
+    padding-left: 15px !important;
+  }
+  
+  .col-lg-7.col-md-6.pe-4 {
+    padding-right: 15px !important;
+  }
+}
+
+/* Mobile View - 767px and below */
+@media (max-width: 767px) {
+  .petwell-footer .container-fluid {
+    padding-left: 0;
+    padding-right: 0;
+  }
+  
+  .petwell-footer-subscribe {
+    padding: 30px;
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-bottom: 30px;
+  }
+  
+  .petwell-footer-subscribe h4 {
+    font-size: 1.3rem;
+  }
+  
+  .petwell-footer-subscribe p {
+    font-size: 1rem;
+  }
+  
+  /* Product, Company, Support in one column on mobile */
+  .petwell-footer-links .col-xl-8 .row {
+    flex-direction: column;
+  }
+  
+  .petwell-footer-links .col-md-4 {
+    width: 100%;
+    text-align: left;
+    margin-bottom: 25px;
+  }
+  
+  .petwell-footer-links .col-md-4:last-child {
+    margin-bottom: 0;
+  }
+  
+  /* QR section - same layout but full width */
+  .petwell-link-group.qr-section {
+    width: 100%;
+    justify-content: flex-start;
+    margin-top: 20px;
+    margin-left: 0;
+  }
+  
+  .petwell-app-download {
+    max-width: 100%;
+    justify-content: flex-start;
+    text-align: left;
+    flex-direction: row;
+    align-items: center;
+    padding: 20px;
+    gap: 15px;
+    margin-left: 0;
+  }
+  
+  .petwell-qr-img {
+    width: 80px;
+    height: 80px;
+  }
+  
+  /* Hide payment logos on mobile */
+  .petwell-payment-logos {
+    display: none !important;
+  }
+  
+  /* Social + Policies in one row on mobile */
+  .petwell-footer-bottom {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    text-align: center;
+    gap: 15px;
+    margin-top: 30px;
+  }
+  
+  .petwell-social-icons {
+    justify-content: flex-start;
+    width: auto;
+  }
+  
+  .petwell-policy-links {
+    flex-direction: row;
+    gap: 15px;
+    text-align: right;
+    width: auto;
+    justify-content: flex-end;
+  }
+  
+  /* Adjust padding for small screens */
+  .col-lg-5.col-md-6.mb-4.ps-4 {
+    padding-left: 10px !important;
+  }
+  
+  .col-lg-7.col-md-6.pe-4 {
+    padding-right: 10px !important;
   }
 }
 
 @media (max-width: 576px) {
-  .petwell-subscribe-form {
+  .petwell-footer .container-fluid {
+    padding-left: 0;
+    padding-right: 0;
+  }
+  
+  .petwell-footer-subscribe {
+    padding: 25px;
+    margin-left: 5px;
+    margin-right: 5px;
+  }
+  
+  .petwell-subscribe-form .input-group {
     flex-direction: column;
   }
   
   .petwell-subscribe-form input {
-    min-width: 100%;
+    border-radius: 25px;
     margin-bottom: 10px;
   }
   
-  .petwell-app-download {
-    flex-direction: column;
-    text-align: center;
-  }
-  
-  .petwell-payment-logos {
-    justify-content: center;
-  }
-  
-  .petwell-policy-links {
-    flex-direction: column;
-    gap: 8px;
-  }
-  
-  .petwell-social-icons {
-    justify-content: center;
+  .petwell-subscribe-form button {
+    border-radius: 25px;
     width: 100%;
   }
   
+  .petwell-payment-logos {
+    display: none !important;
+  }
+  
   .petwell-footer-bottom {
+    flex-direction: row;
     align-items: center;
-    text-align: center;
+    justify-content: space-between;
+    gap: 10px;
+    margin-top: 25px;
+  }
+  
+  .petwell-policy-links {
+    flex-direction: row;
+    gap: 10px;
+    text-align: right;
+  }
+  
+  .petwell-app-download {
+    max-width: 100%;
+    padding: 16px;
+    gap: 12px;
+  }
+  
+  .petwell-qr-img {
+    width: 70px;
+    height: 70px;
+  }
+  
+  .petwell-app-info h6 {
+    font-size: 1.1rem;
+  }
+  
+  .petwell-app-info p {
+    font-size: 0.95rem;
+  }
+  
+  /* Remove side padding on extra small screens */
+  .col-lg-5.col-md-6.mb-4.ps-4 {
+    padding-left: 5px !important;
+  }
+  
+  .col-lg-7.col-md-6.pe-4 {
+    padding-right: 5px !important;
+  }
+}
+
+/* Extra small devices */
+@media (max-width: 375px) {
+  .petwell-app-download {
+    flex-direction: row;
+    text-align: left;
+    gap: 10px;
+    padding: 14px;
+  }
+  
+  .petwell-qr-img {
+    width: 65px;
+    height: 65px;
+  }
+  
+  .petwell-link-group h6 {
+    margin-bottom: 10px;
+    font-size: 1rem;
+  }
+  
+  .petwell-link-group ul li {
+    font-size: 0.9rem;
+    margin-bottom: 6px;
+  }
+  
+  .petwell-footer-subscribe {
+    padding: 20px;
+  }
+  
+  /* On very small screens, stack social and policies */
+  @media (max-width: 320px) {
+    .petwell-footer-bottom {
+      flex-direction: column;
+      gap: 15px;
+    }
+    
+    .petwell-social-icons {
+      justify-content: center;
+      width: 100%;
+    }
+    
+    .petwell-policy-links {
+      justify-content: center;
+      width: 100%;
+      text-align: center;
+    }
   }
 }

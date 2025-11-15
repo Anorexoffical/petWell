@@ -216,30 +216,28 @@ function Homepage() {
 
 
 
-
-
 {/* third section - cards */}
 
-<div className="custom-container py-4">
-  <div className="custom-row">
+<div className="product-cards-container py-4">
+  <div className="product-cards-row">
     {cards.map((card, idx) => (
-      <div key={card.id} className="custom-col">
-        <div className="custom-card">
-          <div className="custom-image-container">
+      <div key={card.id} className="product-cards-col">
+        <div className="product-card-item">
+          <div className="product-card-image-container">
             <img
               src={card.imgSrc}
               alt={card.title}
-              className="custom-card-img"
+              className="product-card-img"
             />
           </div>
-          <div className="custom-card-body">
-            <h5 className="custom-card-title">{card.title}</h5>
-            <div className="custom-price-container">
-              <span className="custom-current-price">{card.price}</span>
-              <span className="custom-old-price">{card.oldPrice}</span>
+          <div className="product-card-content">
+            <h5 className="product-card-heading">{card.title}</h5>
+            <div className="product-price-wrapper">
+              <span className="product-current-price">{card.price}</span>
+              <span className="product-old-price">{card.oldPrice}</span>
             </div>
             <button 
-              className="custom-card-btn"
+              className="product-card-button"
               onClick={() => handleProductClick(card)}
             >
               {card.btnText}
@@ -250,8 +248,6 @@ function Homepage() {
     ))}
   </div>
 </div>
-
-
 
 
 
@@ -302,118 +298,131 @@ function Homepage() {
 
 
 
-
-
-
-
-
-
-
-
-{/* 5th */}
-
-<div className="petwell-footer">
-  <div className="petwell-footer-container">
-    <div className="petwell-footer-row">
+{/* fift container */}
+<div className="petwell-footer container-fluid p-0">
+  <div className="container-fluid px-0">
+    <div className="row gx-5 align-items-start mx-0">
       {/* Left Column - Subscribe Box */}
-      <div className="petwell-footer-subscribe">
-        <h4>
-          Subscribe to our news & offers and save 10% on your first order
-        </h4>
-        <p>
-          Preventive health testing for pets. Because they can't tell us when
-          something's wrong, but their biomarkers can.
-        </p>
-        
-        {/* Moved form elements to bottom */}
-        <div className="petwell-subscribe-form">
-          <input type="email" placeholder="Email address" />
-          <button>Sign me up</button>
+      <div className="col-lg-5 col-md-6 mb-4 ps-4">
+        <div className="petwell-footer-subscribe">
+          <h4>
+            Subscribe to our news & offers and save 10% on your first order
+          </h4>
+          <p>
+            Preventive health testing for pets. Because they can't tell us when
+            something's wrong, but their biomarkers can.
+          </p>
+          
+          <div className="petwell-subscribe-form">
+            <div className="input-group">
+              <input type="email" className="form-control" placeholder="Email address" />
+              <button className="btn btn-dark">Sign me up</button>
+            </div>
+          </div>
+          <small>Your information is never disclosed to third parties.</small>
         </div>
-        <small>Your information is never disclosed to third parties.</small>
       </div>
 
-      {/* Right Column - Links & Info */}
-      <div className="petwell-footer-links">
-        <div className="petwell-links-grid">
-          <div className="petwell-link-group">
-            <h6>Product</h6>
-            <ul>
-              <li>How it Works</li>
-              <li>Pricing</li>
-              <li>Our Tests</li>
-              <li>Sample Results</li>
-            </ul>
-          </div>
+      {/* Right Column - Links & QR in SAME COLUMN */}
+      <div className="col-lg-7 col-md-6 pe-4">
+        <div className="petwell-footer-links">
+          <div className="row g-3 mx-0 align-items-start">
+            
+            {/* Quick Links and QR in SAME ROW */}
+            <div className="col-xl-8 col-lg-7 col-md-12">
+              <div className="row g-4 mx-0">
+                <div className="col-md-4 col-6">
+                  <div className="petwell-link-group">
+                    <h6>Product</h6>
+                    <ul className="list-unstyled">
+                      <li>How it Works</li>
+                      <li>Pricing</li>
+                      <li>Our Tests</li>
+                      <li>Sample Results</li>
+                    </ul>
+                  </div>
+                </div>
 
-          <div className="petwell-link-group">
-            <h6>Company</h6>
-            <ul>
-              <li>Our Story</li>
-              <li>Veterinary Partners</li>
-              <li>Careers</li>
-              <li>Press</li>
-            </ul>
-          </div>
+                <div className="col-md-4 col-6">
+                  <div className="petwell-link-group">
+                    <h6>Company</h6>
+                    <ul className="list-unstyled">
+                      <li>Our Story</li>
+                      <li>Veterinary Partners</li>
+                      <li>Careers</li>
+                      <li>Press</li>
+                    </ul>
+                  </div>
+                </div>
 
-          <div className="petwell-link-group">
-            <h6>Support</h6>
-            <ul>
-              <li>Contact Us</li>
-              <li>FAQs</li>
-              <li>Shipping Info</li>
-            </ul>
-          </div>
-
-          <div className="petwell-link-group">
-            <div className="petwell-app-download">
-              <img
-                src={qrcode}
-                alt="QR Code"
-                className="petwell-qr-img"
-              />
-              <div>
-                <h6>Download our app</h6>
-                <p>For iOS and Android</p>
+                <div className="col-md-4 col-6">
+                  <div className="petwell-link-group">
+                    <h6>Support</h6>
+                    <ul className="list-unstyled">
+                      <li>Contact Us</li>
+                      <li>FAQs</li>
+                      <li>Shipping Info</li>
+                    </ul>
+                  </div>
+                </div>
               </div>
+            </div>
+
+            {/* QR Section - In SAME COLUMN as quick links */}
+            <div className="col-xl-4 col-lg-5 col-md-12">
+              <div className="petwell-link-group qr-section">
+                <div className="petwell-app-download">
+                  <img
+                    src={qrcode}
+                    alt="QR Code"
+                    className="petwell-qr-img"
+                  />
+                  <div className="petwell-app-info">
+                    <h6>Download our app</h6>
+                    <p>For iOS and Android</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+          {/* Payment Logos - Hidden on mobile */}
+          <div className="petwell-payment-logos d-none d-md-flex">
+            <img src={visa} alt="Visa" />
+            <img src={master} alt="MasterCard" />
+            <img src={amex} alt="Amex" />
+            <img src={discover} alt="Discover" />
+            <img src={apple} alt="Apple Pay" />
+            <img src={paypal} alt="PayPal" />
+            <img src={shop} alt="Shop" />
+          </div>
+
+          {/* Social + Policies - All in one row */}
+          <div className="petwell-footer-bottom">
+            <div className="petwell-social-icons">
+              <FaFacebookF />
+              <FaTwitter />
+              <FaInstagram />
+            </div>
+            <div className="petwell-policy-links">
+              <span>Privacy Policy</span>
+              <span>Terms & Conditions</span>
+              <span>©️ 2025 Petwell, Inc.</span>
             </div>
           </div>
         </div>
-
-        {/* Payment Logos - Centered and aligned with social icons */}
-        <div className="petwell-payment-logos">
-          <img src={visa} alt="Visa" />
-          <img src={master} alt="MasterCard" />
-          <img src={amex} alt="Amex" />
-          <img src={discover} alt="Discover" />
-          <img src={apple} alt="Apple Pay" />
-          <img src={paypal} alt="PayPal" />
-          <img src={shop} alt="Shop" />
-        </div>
-
-        {/* Social + Policies */}
-        <div className="petwell-footer-bottom">
-          <div className="petwell-social-icons">
-            <FaFacebookF />
-            <FaTwitter />
-            <FaInstagram />
-          </div>
-          <div className="petwell-policy-links">
-            <span>Privacy Policy</span>
-            <span>Terms & Conditions</span>
-            <span>©️ 2025 Petwell, Inc.</span>
-          </div>
-        </div>
       </div>
     </div>
 
-    {/* Petwell TM Large Text Row */}
-    <div className="petwell-footer-brand">
-      <img src={logo} alt="Petwell TM" className="petwell-brand-img" />
+    {/* Petwell TM Large Text Row - Full Width */}
+    <div className="container-fluid p-0">
+      <div className="petwell-footer-brand">
+        <img src={logo} alt="Petwell TM" className="petwell-brand-img" />
+      </div>
     </div>
   </div>
 </div>
-
 
     </>
   );

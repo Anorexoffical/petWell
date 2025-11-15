@@ -3,10 +3,12 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "../Style/SuccessCheckout.css";
 import SampleImage from "../assets/productdetailimg3.png";
 import logo from "../assets/logo.png";
+import { RiShoppingBag4Line } from "react-icons/ri";
 
 const SuccessCheckout = () => {
   const [orderData, setOrderData] = useState(null);
   const [mapUrl, setMapUrl] = useState("");
+  const [showMobileOrderSummary, setShowMobileOrderSummary] = useState(false);
 
   useEffect(() => {
     // In a real app, this would come from your backend or context
@@ -52,6 +54,10 @@ const SuccessCheckout = () => {
     setMapUrl(`https://maps.google.com/maps?q=${encodedAddress}&output=embed`);
   }, []);
 
+  const toggleMobileOrderSummary = () => {
+    setShowMobileOrderSummary(!showMobileOrderSummary);
+  };
+
   if (!orderData) {
     return <div>Loading...</div>;
   }
@@ -65,6 +71,85 @@ const SuccessCheckout = () => {
             {/* Header with Logo */}
             <div className="logo mb-4">
               <img src={logo} alt="petwell" className="logo-img black-logo" />
+            </div>
+
+            {/* Mobile Order Summary Toggle */}
+            <div className="mobile-summary-wrapper d-lg-none mb-4">
+              <div 
+                className="mobile-summary-container"
+                onClick={toggleMobileOrderSummary}
+              >
+                <div className="mobile-summary-content">
+                  <div className="mobile-cart-icon">
+                    <RiShoppingBag4Line className="mobile-cart-icon-svg" />
+                  </div>
+                  <div className="mobile-summary-text">
+                    <span className="mobile-summary-title">
+                      {showMobileOrderSummary ? 'Hide order summary' : 'Show order summary'}
+                    </span>
+                    <svg 
+                      width="18" 
+                      height="18" 
+                      viewBox="0 0 24 24" 
+                      fill="none" 
+                      stroke="currentColor" 
+                      strokeWidth="2" 
+                      className={`mobile-arrow-icon ${showMobileOrderSummary ? 'arrow-up' : 'arrow-down'}`}
+                    >
+                      <path d="m6 9 6 6 6-6"/>
+                    </svg>
+                  </div>
+                </div>
+                <div className="mobile-total-price">${orderData.total.toFixed(2)}</div>
+              </div>
+
+              {/* Mobile Order Summary Content */}
+              <div className={`mobile-summary-section ${showMobileOrderSummary ? 'mobile-summary-expanded' : 'mobile-summary-collapsed'}`}>
+                {/* Product Items */}
+                <div className="mobile-order-items mb-4">
+                  {orderData.items.map((item) => (
+                    <div key={item.id} className="mobile-order-item d-flex align-items-center mb-3">
+                      <div className="mobile-item-image-wrapper position-relative me-3">
+                        <img 
+                          src={item.image} 
+                          alt={item.name}
+                          className="mobile-item-image"
+                        />
+                        <div className="mobile-item-badge">{item.quantity}</div>
+                      </div>
+                      <div className="mobile-item-details flex-grow-1">
+                        <h5 className="mobile-item-name mb-1">{item.name}</h5>
+                        <p className="mobile-item-size text-muted mb-0">{item.size}</p>
+                      </div>
+                      <div className="mobile-item-price">
+                        <span className="mobile-price-amount">${(item.price * item.quantity).toFixed(2)}</span>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+
+                <div className="mobile-border-line mb-4"></div>
+
+                {/* Pricing Summary */}
+                <div className="mobile-pricing-summary">
+                  <div className="mobile-price-row d-flex justify-content-between mb-2">
+                    <span className="mobile-price-label">Subtotal ({orderData.totalItems} items)</span>
+                    <span className="mobile-price-value">${orderData.subtotal.toFixed(2)}</span>
+                  </div>
+                  <div className="mobile-price-row d-flex justify-content-between mb-2">
+                    <span className="mobile-price-label">Shipping</span>
+                    <span className="mobile-price-value">${orderData.shipping.toFixed(2)}</span>
+                  </div>
+                  <div className="mobile-price-row d-flex justify-content-between mb-3">
+                    <span className="mobile-price-label">Tax</span>
+                    <span className="mobile-price-value">${orderData.tax.toFixed(2)}</span>
+                  </div>
+                  <div className="mobile-price-row d-flex justify-content-between mobile-total-row">
+                    <span className="mobile-total-label">Total</span>
+                    <span className="mobile-total-value">${orderData.total.toFixed(2)}</span>
+                  </div>
+                </div>
+              </div>
             </div>
             
             {/* Confirmation Section */}
@@ -113,8 +198,6 @@ const SuccessCheckout = () => {
             </div>
 
             </div>
-
-
 
             {/* Order Details Section */}
             <div className="order-details-section mb-4">
@@ -201,7 +284,7 @@ const SuccessCheckout = () => {
         </div>
 
         {/* Right Column - Order Summary */}
-        <div className="col-lg-5 col-md-12 order-summary-bg d-flex align-items-start justify-content-center py-4 py-lg-5">
+        <div className="col-lg-5 col-md-12 order-summary-bg d-flex align-items-start justify-content-center py-4 py-lg-5 d-none d-lg-flex">
           <div className="order-summary w-100 max-width-500">
             {/* Product Items */}
             <div className="order-items mb-4">
