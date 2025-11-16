@@ -2384,8 +2384,578 @@
 
 
 
-/* fifth container  *//* fifth container  */
-/* fifth container  */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* 6th continer  */
+
+
+
+/* fourth section */
+.petwell-futurpet-health-section {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  background: linear-gradient(to left bottom, #19242B 55%, #0E4655 100%);
+  width: calc(100vw - 40px);
+  margin: 120px auto 20px auto;
+  border-radius: 28px;
+  min-height: 80vh;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  position: relative;
+}
+
+.petwell-futurpet-health-text {
+  color: #fff;
+  padding: 4rem 2rem 4rem 3rem;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  height: 100%;
+  text-align: left;
+}
+
+.petwell-futurpet-health-text h1 {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-weight: 500;
+  font-size: 3.5rem;
+  line-height: 110%;
+  letter-spacing: -2%;
+  color: #FFFFFF;
+  margin: 0 0 2rem 0;
+  text-align: left;
+  max-width: 100%;
+  word-wrap: break-word;
+}
+
+.petwell-futurpet-health-highlight {
+  color: #CAB3FF;
+  font-weight: 500;
+  display: inline;
+}
+
+.petwell-futurpet-health-text p {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-weight: 500;
+  font-size: 1.25rem;
+  line-height: 140%;
+  letter-spacing: -1%;
+  color: #FFFFFF;
+  margin: 0 0 2.5rem 0;
+  max-width: 100%;
+  text-align: left;
+}
+
+/* Get Started Button */
+.petwell-futurpet-health-btn {
+  background-color: transparent;
+  color: #ffffff;
+  border: 2px solid #ffffff;
+  border-radius: 28px;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 1rem;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+  width: 285px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  position: relative;
+  cursor: pointer;
+  margin: 0;
+  padding: 0;
+}
+
+.petwell-futurpet-health-btn-dot {
+  font-size: 1.4rem;
+  line-height: 1;
+  position: absolute;
+  left: 1.5rem;
+}
+
+.petwell-futurpet-health-btn .petwell-futurpet-health-btn-text {
+  margin-left: 4.5rem;
+}
+
+.petwell-futurpet-health-btn:hover {
+  background-color: #B39BEF;
+  border-color: #B39BEF;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  color: #232323;
+}
+
+.petwell-futurpet-health-image-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 2rem;
+  height: 100%;
+  position: relative;
+}
+
+.petwell-futurpet-health-image {
+  display: block;
+  width: 100%;
+  height: 600px;
+  max-width: 750px;
+  object-fit: cover;
+  object-position: center;
+  border-radius: 20px;
+}
+
+/* Extra large screens */
+@media (min-width: 1920px) {
+  .petwell-futurpet-health-text {
+    padding: 4rem 2rem 4rem 4rem;
+  }
+  
+  .petwell-futurpet-health-text h1 {
+    font-size: 3.25rem;
+  }
+  
+  .petwell-futurpet-health-text p {
+    font-size: 1.5rem;
+  }
+  
+  .petwell-futurpet-health-image {
+    height: 650px;
+    max-width: 800px;
+  }
+  
+  .petwell-futurpet-health-image-wrapper {
+    padding: 3rem;
+  }
+}
+
+@media (min-width: 1600px) and (max-width: 1919px) {
+  .petwell-futurpet-health-text h1 {
+    font-size: 3rem;
+  }
+  
+  .petwell-futurpet-health-text p {
+    font-size: 1.375rem;
+  }
+  
+  .petwell-futurpet-health-image-wrapper {
+    padding: 2.5rem;
+  }
+  
+  .petwell-futurpet-health-image {
+    height: 620px;
+    max-width: 780px;
+  }
+}
+
+@media (min-width: 1400px) and (max-width: 1599px) {
+  .petwell-futurpet-health-text h1 {
+    font-size: 2.75rem;
+  }
+  
+  .petwell-futurpet-health-text p {
+    font-size: 1.25rem;
+  }
+  
+  .petwell-futurpet-health-image-wrapper {
+    padding: 2rem;
+  }
+  
+  .petwell-futurpet-health-image {
+    height: 580px;
+    max-width: 720px;
+  }
+}
+
+/* Large desktop */
+@media (max-width: 1399px) {
+  .petwell-futurpet-health-text h1 {
+    font-size: 2.5rem;
+  }
+  
+  .petwell-futurpet-health-text p {
+    font-size: 1.2rem;
+  }
+  
+  .petwell-futurpet-health-image {
+    height: 550px;
+    max-width: 680px;
+  }
+}
+
+/* Desktop */
+@media (max-width: 1199px) {
+  .petwell-futurpet-health-text h1 {
+    font-size: 2.375rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  .petwell-futurpet-health-text p {
+    font-size: 1.125rem;
+    margin-bottom: 2rem;
+  }
+  
+  .petwell-futurpet-health-image {
+    height: 520px;
+    max-width: 620px;
+  }
+}
+
+/* Tablet landscape */
+@media (max-width: 991px) {
+  .petwell-futurpet-health-section {
+    min-height: auto;
+    margin: 100px auto 20px auto;
+  }
+  
+  .petwell-futurpet-health-text {
+    text-align: center;
+    padding: 3rem 2rem 1rem;
+    align-items: center;
+  }
+  
+  .petwell-futurpet-health-text h1 {
+    font-size: 2.625rem;
+    margin-bottom: 1.5rem;
+    text-align: center;
+  }
+  
+  .petwell-futurpet-health-text p {
+    font-size: 1.25rem;
+    margin-bottom: 2rem;
+    text-align: center;
+  }
+  
+  .petwell-futurpet-health-btn {
+    justify-content: center;
+  }
+  
+  .petwell-futurpet-health-image-wrapper {
+    padding: 1rem 2rem 3rem;
+    justify-content: center;
+  }
+  
+  .petwell-futurpet-health-image {
+    width: 100%;
+    height: 450px;
+    max-width: 600px;
+  }
+}
+
+/* Tablet portrait */
+@media (max-width: 767px) {
+  .petwell-futurpet-health-section {
+    margin: 90px auto 20px auto;
+  }
+  
+  .petwell-futurpet-health-text {
+    padding: 2.5rem 1.5rem 1rem;
+  }
+  
+  .petwell-futurpet-health-text h1 {
+    font-size: 2.25rem;
+    margin-bottom: 1.25rem;
+  }
+  
+  .petwell-futurpet-health-text p {
+    font-size: 1.125rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  .petwell-futurpet-health-btn {
+    width: 260px;
+    height: 55px;
+    font-size: 0.95rem;
+  }
+  
+  .petwell-futurpet-health-btn-dot {
+    font-size: 1.25rem;
+    left: 1.2rem;
+  }
+  
+  .petwell-futurpet-health-btn .petwell-futurpet-health-btn-text {
+    margin-left: 4rem;
+  }
+  
+  .petwell-futurpet-health-image {
+    height: 380px;
+    max-width: 500px;
+  }
+  
+  .petwell-futurpet-health-image-wrapper {
+    padding: 1rem 1.5rem 2.5rem;
+  }
+}
+
+/* Mobile landscape */
+@media (max-width: 575px) {
+  .petwell-futurpet-health-section {
+    min-height: unset;
+    border-radius: 20px;
+    width: calc(100vw - 20px);
+    margin: 80px auto 20px auto;
+  }
+  
+  .petwell-futurpet-health-text {
+    padding: 2rem 1.25rem 1rem;
+  }
+  
+  .petwell-futurpet-health-text h1 {
+    font-size: 2rem;
+    margin-bottom: 1.25rem;
+  }
+  
+  .petwell-futurpet-health-text p {
+    font-size: 1rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  .petwell-futurpet-health-btn {
+    width: 240px;
+    height: 50px;
+    font-size: 0.875rem;
+  }
+  
+  .petwell-futurpet-health-btn-dot {
+    font-size: 1.125rem;
+    left: 1rem;
+  }
+  
+  .petwell-futurpet-health-btn .petwell-futurpet-health-btn-text {
+    margin-left: 3.5rem;
+  }
+  
+  .petwell-futurpet-health-image {
+    height: 300px;
+    max-width: 400px;
+  }
+  
+  .petwell-futurpet-health-image-wrapper {
+    padding: 0.5rem 1.25rem 2rem;
+  }
+}
+
+/* Mobile portrait */
+@media (max-width: 480px) {
+  .petwell-futurpet-health-section {
+    margin: 70px auto 20px auto;
+  }
+  
+  .petwell-futurpet-health-text {
+    padding: 1.5rem 1rem 1rem;
+  }
+  
+  .petwell-futurpet-health-text h1 {
+    font-size: 1.75rem;
+    margin-bottom: 1rem;
+  }
+  
+  .petwell-futurpet-health-text p {
+    font-size: 0.95rem;
+    margin-bottom: 1.25rem;
+  }
+  
+  .petwell-futurpet-health-btn {
+    width: 220px;
+    height: 48px;
+    font-size: 0.85rem;
+  }
+  
+  .petwell-futurpet-health-btn-dot {
+    font-size: 1rem;
+    left: 0.9rem;
+  }
+  
+  .petwell-futurpet-health-btn .petwell-futurpet-health-btn-text {
+    margin-left: 3.2rem;
+  }
+  
+  .petwell-futurpet-health-image {
+    height: 260px;
+    max-width: 350px;
+  }
+  
+  .petwell-futurpet-health-image-wrapper {
+    padding: 0.5rem 1rem 1.5rem;
+  }
+}
+
+/* Extra small mobile */
+@media (max-width: 375px) {
+  .petwell-futurpet-health-section {
+    margin: 60px auto 20px auto;
+  }
+  
+  .petwell-futurpet-health-text {
+    padding: 1.25rem 0.75rem 0.75rem;
+  }
+  
+  .petwell-futurpet-health-text h1 {
+    font-size: 1.6rem;
+    margin-bottom: 1rem;
+  }
+  
+  .petwell-futurpet-health-text p {
+    font-size: 0.9rem;
+    margin-bottom: 1.25rem;
+  }
+  
+  .petwell-futurpet-health-btn {
+    width: 200px;
+    height: 45px;
+    font-size: 0.8rem;
+  }
+  
+  .petwell-futurpet-health-btn-dot {
+    font-size: 0.95rem;
+    left: 0.8rem;
+  }
+  
+  .petwell-futurpet-health-btn .petwell-futurpet-health-btn-text {
+    margin-left: 2.8rem;
+  }
+  
+  .petwell-futurpet-health-image {
+    height: 230px;
+    max-width: 300px;
+  }
+  
+  .petwell-futurpet-health-image-wrapper {
+    padding: 0.5rem 0.75rem 1.25rem;
+  }
+}
+
+/* Height adjustments for very short screens */
+@media (max-height: 700px) and (min-width: 992px) {
+  .petwell-futurpet-health-section {
+    min-height: 85vh;
+  }
+  
+  .petwell-futurpet-health-text h1 {
+    font-size: 2.375rem;
+    margin-bottom: 1.25rem;
+  }
+  
+  .petwell-futurpet-health-text p {
+    font-size: 1.125rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  .petwell-futurpet-health-image {
+    height: 480px;
+  }
+}
+
+@media (max-height: 600px) and (min-width: 992px) {
+  .petwell-futurpet-health-section {
+    min-height: 90vh;
+  }
+  
+  .petwell-futurpet-health-text h1 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+  }
+  
+  .petwell-futurpet-health-text p {
+    font-size: 1rem;
+    margin-bottom: 1.25rem;
+  }
+  
+  .petwell-futurpet-health-image {
+    height: 420px;
+  }
+}
+
+/* Orientation specific adjustments */
+@media (max-width: 991px) and (orientation: landscape) {
+  .petwell-futurpet-health-section {
+    min-height: 100vh;
+  }
+  
+  .petwell-futurpet-health-text {
+    padding: 1.5rem 1.25rem 0.75rem;
+  }
+  
+  .petwell-futurpet-health-text h1 {
+    font-size: 1.75rem;
+    margin-bottom: 1rem;
+  }
+  
+  .petwell-futurpet-health-text p {
+    font-size: 1rem;
+    margin-bottom: 1.25rem;
+  }
+  
+  .petwell-futurpet-health-image {
+    height: 300px;
+  }
+}
+
+/* High DPI screens */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  .petwell-futurpet-health-image {
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges;
+  }
+}
+
+/* Reduced motion for accessibility */
+@media (prefers-reduced-motion: reduce) {
+  .petwell-futurpet-health-btn {
+    transition: none;
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* 7th container  *//* fifth container  */
+
 /* Main container with custom width */
 .custom-container {
   width: calc(100vw - 80px);

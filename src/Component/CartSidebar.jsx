@@ -1,4 +1,4 @@
-// CartSidebar.js
+
 import React, { useState } from "react";
 import "../Style/Cartsidebar.css";
 import cartempty from "../assets/cartempty.png";
@@ -14,30 +14,7 @@ import paypal from "../assets/paypal.png";
 import shop from "../assets/shoppay.png";
 import qrcode from "../assets/qrcode.png";
 
-const CartSidebar = ({ isOpen, onClose }) => {
-  const [cartItems, setCartItems] = useState([
-    {
-      id: 1,
-      name: "Canine Full Body Intelligence Kit",
-      price: 139.99,
-      originalPrice: 149.99,
-      quantity: 1,
-      image: productdetailimg1,
-      subscribe: false,
-      deliveryFrequency: "1 month"
-    },
-    {
-      id: 2,
-      name: "Canine Full Body Intelligence Kit",
-      price: 139.99,
-      originalPrice: 149.99,
-      quantity: 1,
-      image: productdetailimg2,
-      subscribe: false,
-      deliveryFrequency: "1 month"
-    },
-  ]);
-
+const CartSidebar = ({ isOpen, onClose, cartItems, setCartItems }) => {
   // Prevent body scroll when sidebar is open
   React.useEffect(() => {
     if (isOpen) {
@@ -118,7 +95,7 @@ const CartSidebar = ({ isOpen, onClose }) => {
       <aside className="cart-sidebar">
         <div className="cart-header">
           <div className="cart-header-top">
-            <span className="cart-title">Your cart ({cartItems.length})</span>
+            <span className="cart-title">Your cart ({cartItems.reduce((total, item) => total + item.quantity, 0)})</span>
             <button className="cart-close-btn" onClick={onClose}>
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                 <path d="M18 6L6 18M6 6l12 12"/>
@@ -223,7 +200,7 @@ const CartSidebar = ({ isOpen, onClose }) => {
             <div className="cart-summary">
               <div className="summary-section">
                 <div className="summary-row separation">
-                  <span>Subtotal ({cartItems.length} items)</span>
+                  <span>Subtotal ({cartItems.reduce((total, item) => total + item.quantity, 0)} items)</span>
                   <span>${calculateSubtotal().toFixed(2)}</span>
                 </div>
                 <div className="summary-row">

@@ -11,7 +11,7 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Button from 'react-bootstrap/Button';
 import Dropdown from 'react-bootstrap/Dropdown';
-
+import filter from "../assets/icons/filter.svg"
 // images 
 import home3 from '../assets/home3.png';
 import home4 from '../assets/home4.png';
@@ -51,67 +51,79 @@ const cards = [
       oneTimePrice: 21.99,
       subscribePrice: 19.19,
       oldPriceValue: 29.99,
-      productImage: home3
+      productImage: home3,
+      description: "Comprehensive fecal PCR test for detecting parasites, bacteria, and viruses in your pet's digestive system.",
+      features: ["24-48 hour results", "Vet-grade accuracy", "At-home collection", "Digital results"]
     },
     {
       id: 2, 
       imgSrc: home4,
-      title: "FecalPCR Health Test",
+      title: "Gut Health Test",
       price: "$23.99",
       oldPrice: "$29.99",
       btnText: "Add to cart",
       oneTimePrice: 23.99,
       subscribePrice: 19.19,
       oldPriceValue: 29.99,
-      productImage: home4
+      productImage: home4,
+      description: "Advanced gut microbiome analysis to identify bacterial imbalances and digestive issues.",
+      features: ["Microbiome analysis", "Personalized recommendations", "Easy sample collection", "Veterinary reviewed"]
     },
     {
       id: 3, 
       imgSrc: home5,
-      title: "FecalPCR Health Test",
+      title: "Allergy Test",
       price: "$23.99",
       oldPrice: "$29.99",
       btnText: "Add to cart",
       oneTimePrice: 23.99,
       subscribePrice: 19.19,
       oldPriceValue: 29.99,
-      productImage: home5
+      productImage: home5,
+      description: "Comprehensive allergy screening to identify environmental and food allergens affecting your pet.",
+      features: ["150+ allergens", "At-home blood collection, Personalized diet tips", "Vet consultation included"]
     },
     {
       id: 4, 
       imgSrc: home4,
-      title: "FecalPCR Health Test",
+      title: "Wellness Panel",
       price: "$23.99",
       oldPrice: "$29.99",
       btnText: "Add to cart",
       oneTimePrice: 23.99,
       subscribePrice: 19.19,
       oldPriceValue: 29.99,
-      productImage: home4
+      productImage: home4,
+      description: "Complete health screening covering major organ functions and wellness markers.",
+      features: ["Liver & kidney function", "Thyroid levels", "Complete blood count", "Urinalysis"]
     },
     {
       id: 5, 
       imgSrc: home5,
-      title: "FecalPCR Health Test",
+      title: "DNA Breed Test",
       price: "$20.99",
       oldPrice: "$29.99",
       btnText: "Add to cart",
       oneTimePrice: 23.99,
       subscribePrice: 19.19,
       oldPriceValue: 29.99,
-      productImage: home5
+      productImage: home5,
+      description: "Discover your dog's breed composition and genetic health markers with our advanced DNA test.",
+      features: ["350+ breeds", "Health screening", "Trait analysis", "Ancestry report"]
     },
     {
       id: 6,
       imgSrc: home3,
-      title: "FecalPCR Health Test",
+      title: "Senior Health Test",
       price: "$23.99",
       oldPrice: "$29.99",
       btnText: "Add to cart",
       oneTimePrice: 23.99,
       subscribePrice: 19.19,
       oldPriceValue: 29.99,
-      productImage: home3
+      productImage: home3,
+      description: "Specialized testing for senior pets focusing on age-related health concerns and preventive care.",
+      features: ["Arthritis markers", "Organ function", "Dental health", "Mobility assessment"]
     },
   ];
 
@@ -125,39 +137,45 @@ function Homepage() {
   return (
     <>  
       <Navbar/>  
-      <div className="main-container">
-        {/* Gizmo Image */}
-        <img 
-          src={gizmoImage} 
-          alt="Gizmo" 
-          className="gizmo-image"
-        />
-        
-        {/* Main Text and Buttons */}
-        <div className="content-wrap">
-          <div className="content-treatment">Treatment</div>
-          <div className="main-title">
-            At-home vet-grade PCR.<br/>24–48 hour results.
-          </div>
-          <div className="main-subtitle">
-            Your pet doesn't have the same needs everywhere. Identify and address bacterial overgrowths and imbalances.
-          </div>
-          <div className="d-flex align-items-center button-container">
-            <button className="petwell-get-started-btn1">
-              <span className="petwell-btn-dot">•</span>
-              <span className="petwell-btn-text">Get Started</span>
-            </button>
-            <button className="btn-main-secondary">Explore benefits</button>
-          </div>
-        </div>
-        
-        {/* Protein Absorption Image */}
-        <img 
-          src={proteinImage} 
-          alt="Protein Absorption" 
-          className="protein-image"
-        />
-      </div>
+     <div className="main-container">
+  {/* Gizmo Image */}
+  <img 
+    src={gizmoImage} 
+    alt="Gizmo" 
+    className="gizmo-image"
+  />
+  
+  {/* Protein Absorption Image */}
+  <img 
+    src={proteinImage} 
+    alt="Protein Absorption" 
+    className="protein-image"
+  />
+  
+  {/* Main Text and Buttons - Now positioned at bottom */}
+  <div className="content-wrap">
+    <div className="content-treatment">Treatment</div>
+    <div className="main-title">
+      At-home vet-grade PCR.<br/>24–48 hour results.
+    </div>
+    <div className="main-subtitle">
+      Your pet doesn't have the same needs everywhere. Identify and address bacterial overgrowths and imbalances.
+    </div>
+    <div className="d-flex align-items-center button-container">
+      <button className="petwell-get-started-btn1">
+        <span className="petwell-btn-dot">•</span>
+        <span className="petwell-btn-text">Get Started</span>
+      </button>
+      <button className="btn-main-secondary">Explore benefits</button>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
 
 
 {/* //second container */}
@@ -172,10 +190,8 @@ function Homepage() {
       <div className="d-flex align-items-center justify-content-between flex-wrap">
         <div className="d-flex align-items-center mb-2 mb-md-0">
           <Button variant="outline-secondary" className="filter-btn">
-            {/* Using SVG icon instead of bi-funnel */}
-            <svg width="16" height="16" fill="currentColor" viewBox="0 0 16 16" className="me-1 me-md-1">
-              <path d="M1.5 1.5A.5.5 0 0 1 2 1h12a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-.128.334L10 8.692V13.5a.5.5 0 0 1-.342.474l-3 1A.5.5 0 0 1 6 14.5V8.692L1.628 3.834A.5.5 0 0 1 1.5 3.5v-2z"/>
-            </svg>
+            {/* Using local filter.svg icon */}
+            <img src={filter} alt="Filter" width="16" height="16" className="me-1 me-md-1" />
             <span className="filter-text d-none d-md-inline">Show filter (0)</span>
           </Button>
           {/* Changed to hide at same breakpoint as filter text */}
@@ -183,7 +199,7 @@ function Homepage() {
         </div>
         
         <div className="d-flex align-items-center">
-          {/* Changed to show only on mobile */}
+          {/* Changed to show only on mobile - now hidden at same breakpoint as filter text */}
           <span className="result-count me-3 d-inline d-md-none">4 results</span>
           <Dropdown>
             <Dropdown.Toggle variant="light" className="sort-dropdown d-flex align-items-center justify-content-between position-relative">
@@ -260,33 +276,36 @@ function Homepage() {
 
 
 
-
-{/* fourth section - futurpet */}
+{/* forth secction */}
 
 <div className="petwell-futurpet-section">
-  <div className="petwell-futurpet-container">
-    <div className="petwell-futurpet-row petwell-futurpet-align-center">
+  <div className="container">
+    <div className="row align-items-center g-0">
       {/* Left: Text Section */}
-      <div className="petwell-futurpet-col-12 petwell-futurpet-col-md-6 petwell-futurpet-text">
-        <h1>
-          The future of pet health is 
-          <span className="petwell-futurpet-highlight"> preventive, personal and positive</span>
-        </h1>
-        <p>
-          PetWell combines scientific precision with emotional care — helping every pet live longer, happier, and closer to you.
-        </p>
-        <button className="petwell-futurpet-btn">
-          <span className="petwell-futurpet-btn-dot">•</span>
-          <span className="petwell-futurpet-btn-text">Learn more</span>
-        </button>
+      <div className="col-12 col-lg-6">
+        <div className="petwell-futurpet-text">
+          <h1>
+            The future of pet health is 
+            <span className="petwell-futurpet-highlight"> preventive, personal and positive</span>
+          </h1>
+          <p>
+            PetWell combines scientific precision with emotional care — helping every pet live longer, happier, and closer to you.
+          </p>
+          <button className="petwell-futurpet-btn">
+            <span className="petwell-futurpet-btn-dot">•</span>
+            <span className="petwell-futurpet-btn-text">Learn more</span>
+          </button>
+        </div>
       </div>
       {/* Right: Image Section */}
-      <div className="petwell-futurpet-col-12 petwell-futurpet-col-md-6 petwell-futurpet-image-wrapper">
-        <img 
-          src={futurpet} 
-          alt="PetWell Hero" 
-          className="petwell-futurpet-image" 
-        />
+      <div className="col-12 col-lg-6">
+        <div className="petwell-futurpet-image-wrapper">
+          <img 
+            src={futurpet} 
+            alt="PetWell Hero" 
+            className="petwell-futurpet-image img-fluid" 
+          />
+        </div>
       </div>
     </div>
   </div>
@@ -296,9 +315,8 @@ function Homepage() {
 
 
 
-
-
-{/* fift container */}
+{/* fifth container */}
+{/* fifth container */}
 <div className="petwell-footer container-fluid p-0">
   <div className="container-fluid px-0">
     <div className="row gx-5 align-items-start mx-0">
@@ -330,8 +348,8 @@ function Homepage() {
             
             {/* Quick Links and QR in SAME ROW */}
             <div className="col-xl-8 col-lg-7 col-md-12">
-              <div className="row g-4 mx-0">
-                <div className="col-md-4 col-6">
+              <div className="row g-4 mx-0 mobile-quick-links">
+                <div className="col-md-4 col-4">
                   <div className="petwell-link-group">
                     <h6>Product</h6>
                     <ul className="list-unstyled">
@@ -343,7 +361,7 @@ function Homepage() {
                   </div>
                 </div>
 
-                <div className="col-md-4 col-6">
+                <div className="col-md-4 col-4">
                   <div className="petwell-link-group">
                     <h6>Company</h6>
                     <ul className="list-unstyled">
@@ -355,7 +373,7 @@ function Homepage() {
                   </div>
                 </div>
 
-                <div className="col-md-4 col-6">
+                <div className="col-md-4 col-4">
                   <div className="petwell-link-group">
                     <h6>Support</h6>
                     <ul className="list-unstyled">
