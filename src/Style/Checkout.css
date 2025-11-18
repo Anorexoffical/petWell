@@ -1235,3 +1235,48 @@
     padding-bottom: 2rem !important;
   }
 }
+
+
+
+
+
+/* Cart count badge */
+.cart-count-badge {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  background: #ff4444;
+  color: white;
+  border-radius: 50%;
+  width: 18px;
+  height: 18px;
+  font-size: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+}
+
+.checkout-cart-icon {
+  position: relative;
+}
+
+/* Empty cart message */
+.empty-cart-message {
+  padding: 3rem 1rem;
+}
+
+.empty-cart-message h4 {
+  color: #333;
+  margin-bottom: 1rem;
+}
+
+.empty-cart-message p {
+  color: #666;
+  margin-bottom: 1rem;
+}
+
+/* Delivery frequency text */
+.checkout-delivery-frequency {
+  font-size: 0.8rem;
+}

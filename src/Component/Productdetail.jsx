@@ -21,6 +21,7 @@ import futurpet from "../assets/futurepet.png";
 import logo from "../assets/logo.png";
 import Navbar from "./Navbar.jsx"
 import CartSidebar from "./CartSidebar.jsx";
+import { useCart } from "./CartContext";
 
 // icons for footer
 import visa from "../assets/visa.png";
@@ -56,130 +57,11 @@ const benefits = [
   },
 ];
 
-// Cart context or global state management
-const CartContext = React.createContext();
-
-export const useCart = () => {
-  const context = React.useContext(CartContext);
-  if (!context) {
-    throw new Error('useCart must be used within a CartProvider');
-  }
-  return context;
-};
-
-export const CartProvider = ({ children }) => {
-  const [cartItems, setCartItems] = useState([]);
-  const [isCartOpen, setIsCartOpen] = useState(false);
-
-  // Load cart from localStorage on component mount
-  useEffect(() => {
-    const savedCart = localStorage.getItem('petwell-cart');
-    if (savedCart) {
-      try {
-        setCartItems(JSON.parse(savedCart));
-      } catch (error) {
-        console.error('Error loading cart from localStorage:', error);
-        setCartItems([]);
-      }
-    }
-  }, []);
-
-  // Save cart to localStorage whenever cartItems change
-  useEffect(() => {
-    localStorage.setItem('petwell-cart', JSON.stringify(cartItems));
-  }, [cartItems]);
-
-  const addToCart = (product) => {
-    setCartItems(prevItems => {
-      // Check if product already exists in cart with same subscription status
-      const existingItemIndex = prevItems.findIndex(item => 
-        item.id === product.id && item.subscribe === product.subscribe
-      );
-
-      if (existingItemIndex > -1) {
-        // If product exists, increase quantity by 1 only
-        const updatedItems = [...prevItems];
-        updatedItems[existingItemIndex].quantity += 1;
-        return updatedItems;
-      } else {
-        // If product doesn't exist, add new item with quantity 1
-        return [...prevItems, { ...product, quantity: 1 }];
-      }
-    });
-    setIsCartOpen(true);
-  };
-
-  const updateCartItemQuantity = (id, subscribe, change) => {
-    setCartItems(prevItems => 
-      prevItems.map(item => 
-        item.id === id && item.subscribe === subscribe
-          ? { ...item, quantity: Math.max(1, item.quantity + change) }
-          : item
-      ).filter(item => item.quantity > 0)
-    );
-  };
-
-  const removeFromCart = (id, subscribe) => {
-    setCartItems(prevItems => 
-      prevItems.filter(item => !(item.id === id && item.subscribe === subscribe))
-    );
-  };
-
-  const updateSubscription = (id, subscribe) => {
-    setCartItems(prevItems => 
-      prevItems.map(item => {
-        if (item.id === id) {
-          return { ...item, subscribe };
-        }
-        return item;
-      })
-    );
-  };
-
-  const updateDeliveryFrequency = (id, subscribe, frequency) => {
-    setCartItems(prevItems => 
-      prevItems.map(item => 
-        item.id === id && item.subscribe === subscribe
-          ? { ...item, deliveryFrequency: frequency }
-          : item
-      )
-    );
-  };
-
-  const clearCart = () => {
-    setCartItems([]);
-  };
-
-  const getCartItemsCount = () => {
-    return cartItems.reduce((total, item) => total + item.quantity, 0);
-  };
-
-  const value = {
-    cartItems,
-    isCartOpen,
-    setIsCartOpen,
-    addToCart,
-    updateCartItemQuantity,
-    removeFromCart,
-    updateSubscription,
-    updateDeliveryFrequency,
-    clearCart,
-    getCartItemsCount
-  };
-
-  return (
-    <CartContext.Provider value={value}>
-      {children}
-    </CartContext.Provider>
-  );
-};
-
 const Productdetail = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const product = location.state?.product;
   const {
-    cartItems,
     isCartOpen,
     setIsCartOpen,
     addToCart,
@@ -226,7 +108,8 @@ const Productdetail = () => {
       originalPrice: oldPrice,
       image: currentProduct.productImage,
       subscribe: purchaseType === "subscribe",
-      deliveryFrequency: "1 month"
+      deliveryFrequency: "1 month",
+      quantity: quantity
     };
 
     addToCart(productToAdd);
@@ -241,7 +124,8 @@ const Productdetail = () => {
       originalPrice: 29.99,
       image: home3,
       subscribe: false,
-      deliveryFrequency: "1 month"
+      deliveryFrequency: "1 month",
+      quantity: 1
     };
 
     addToCart(pairsProductData);
@@ -256,7 +140,8 @@ const Productdetail = () => {
       originalPrice: relatedProduct.oldPriceValue,
       image: relatedProduct.productImage,
       subscribe: false,
-      deliveryFrequency: "1 month"
+      deliveryFrequency: "1 month",
+      quantity: 1
     };
 
     addToCart(productToAdd);
@@ -433,14 +318,12 @@ const Productdetail = () => {
     }
   };
 
-  // Update Navbar to handle cart state
-  const NavbarWithCart = () => (
-    <Navbar onCartClick={() => setIsCartOpen(true)} cartItemsCount={getCartItemsCount()} />
-  );
-
   return (
     <>
-      <NavbarWithCart />
+      <Navbar 
+        onCartClick={() => setIsCartOpen(true)} 
+        cartItemsCount={getCartItemsCount()} 
+      />
       <CartSidebar 
         isOpen={isCartOpen} 
         onClose={() => setIsCartOpen(false)}
@@ -828,40 +711,40 @@ const Productdetail = () => {
             </div>
           </div>
         </div>
-{/* fourth section */}
 
-<div className="petwell-futurpet-health-section">
-  <div className="container">
-    <div className="row align-items-center g-0">
-      {/* Left: Text Section */}
-      <div className="col-12 col-lg-6">
-        <div className="petwell-futurpet-health-text">
-          <h1>
-            The future of pet health is 
-            <span className="petwell-futurpet-health-highlight"> preventive, personal and positive</span>
-          </h1>
-          <p>
-            PetWell combines scientific precision with emotional care — helping every pet live longer, happier, and closer to you.
-          </p>
-          <button className="petwell-futurpet-health-btn">
-            <span className="petwell-futurpet-health-btn-dot">•</span>
-            <span className="petwell-futurpet-health-btn-text">Learn more</span>
-          </button>
+        {/* fourth section */}
+        <div className="petwell-futurpet-health-section">
+          <div className="container">
+            <div className="row align-items-center g-0">
+              {/* Left: Text Section */}
+              <div className="col-12 col-lg-6">
+                <div className="petwell-futurpet-health-text">
+                  <h1>
+                    The future of pet health is 
+                    <span className="petwell-futurpet-health-highlight"> preventive, personal and positive</span>
+                  </h1>
+                  <p>
+                    PetWell combines scientific precision with emotional care — helping every pet live longer, happier, and closer to you.
+                  </p>
+                  <button className="petwell-futurpet-health-btn">
+                    <span className="petwell-futurpet-health-btn-dot">•</span>
+                    <span className="petwell-futurpet-health-btn-text">Learn more</span>
+                  </button>
+                </div>
+              </div>
+              {/* Right: Image Section */}
+              <div className="col-12 col-lg-6">
+                <div className="petwell-futurpet-health-image-wrapper">
+                  <img 
+                    src={futurpet} 
+                    alt="PetWell Hero" 
+                    className="petwell-futurpet-health-image img-fluid" 
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
-      </div>
-      {/* Right: Image Section */}
-      <div className="col-12 col-lg-6">
-        <div className="petwell-futurpet-health-image-wrapper">
-          <img 
-            src={futurpet} 
-            alt="PetWell Hero" 
-            className="petwell-futurpet-health-image img-fluid" 
-          />
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
 
         {/* Footer */}
         <div className="petwell-footer container-fluid p-0">
@@ -984,11 +867,4 @@ const Productdetail = () => {
   );
 };
 
-// Wrap the component with CartProvider for standalone use
-const ProductdetailWithCart = (props) => (
-  <CartProvider>
-    <Productdetail {...props} />
-  </CartProvider>
-);
-
-export default ProductdetailWithCart;
+export default Productdetail;

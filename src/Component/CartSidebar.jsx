@@ -1,10 +1,7 @@
-
-import React, { useState } from "react";
+import React from "react";
+import { useNavigate } from "react-router-dom";
 import "../Style/Cartsidebar.css";
 import cartempty from "../assets/cartempty.png";
-import productdetailimg1 from '../assets/productdetailimg1.png';
-import productdetailimg2 from '../assets/productdetailimg2.png';
-import productdetailimg3 from '../assets/productdetailimg3.png';
 import visa from "../assets/visa.png";
 import master from "../assets/master.png";
 import amex from "../assets/amex.png";
@@ -12,9 +9,24 @@ import discover from "../assets/discover.png";
 import apple from "../assets/apple.png";
 import paypal from "../assets/paypal.png";
 import shop from "../assets/shoppay.png";
-import qrcode from "../assets/qrcode.png";
+import { useCart } from "./CartContext.jsx";
 
-const CartSidebar = ({ isOpen, onClose, cartItems, setCartItems }) => {
+const CartSidebar = ({ isOpen, onClose }) => {
+  const {
+    cartItems,
+    updateCartItemQuantity,
+    removeFromCart,
+    updateSubscription,
+    updateDeliveryFrequency,
+    getCartItemsCount,
+    getCartTotal
+  } = useCart();
+
+  const navigate = useNavigate();
+
+  // Free shipping threshold
+  const FREE_SHIPPING_THRESHOLD = 50;
+
   // Prevent body scroll when sidebar is open
   React.useEffect(() => {
     if (isOpen) {
@@ -33,59 +45,76 @@ const CartSidebar = ({ isOpen, onClose, cartItems, setCartItems }) => {
     };
   }, [isOpen]);
 
-  const handleQuantityChange = (id, change) => {
-    setCartItems(items => 
-      items.map(item => 
-        item.id === id 
-          ? { ...item, quantity: Math.max(1, item.quantity + change) }
-          : item
-      )
-    );
+  const handleQuantityChange = (id, subscribe, change) => {
+    updateCartItemQuantity(id, subscribe, change);
   };
 
-  const handleSubscribeChange = (id) => {
-    setCartItems(items => 
-      items.map(item => {
-        if (item.id === id) {
-          // If checking this checkbox, uncheck all others
-          if (!item.subscribe) {
-            return { ...item, subscribe: true };
-          } else {
-            return { ...item, subscribe: false };
-          }
-        } else {
-          // Uncheck all other items when one is checked
-          return { ...item, subscribe: false };
-        }
-      })
-    );
+  const handleSubscribeChange = (id, currentSubscribe) => {
+    updateSubscription(id, !currentSubscribe);
   };
 
-  const handleDeliveryFrequencyChange = (id, frequency) => {
-    setCartItems(items => 
-      items.map(item => 
-        item.id === id 
-          ? { ...item, deliveryFrequency: frequency }
-          : item
-      )
-    );
+  const handleDeliveryFrequencyChange = (id, subscribe, frequency) => {
+    updateDeliveryFrequency(id, subscribe, frequency);
   };
 
-  const handleRemoveItem = (id) => {
-    setCartItems(items => items.filter(item => item.id !== id));
+  const handleRemoveItem = (id, subscribe) => {
+    removeFromCart(id, subscribe);
+  };
+
+  const handleCheckout = () => {
+    onClose(); // Close the sidebar
+    navigate("/checkout"); // Navigate to checkout page
   };
 
   const calculateSubtotal = () => {
-    return cartItems.reduce((total, item) => total + (item.price * item.quantity), 0);
+    return getCartTotal();
   };
 
   const calculateTotal = () => {
-    return calculateSubtotal();
+    const subtotal = calculateSubtotal();
+    const shipping = subtotal >= FREE_SHIPPING_THRESHOLD ? 0 : 5.99;
+    return subtotal + shipping;
+  };
+
+  // Calculate progress towards free shipping
+  const calculateShippingProgress = () => {
+    const cartTotal = calculateSubtotal();
+    const progress = Math.min((cartTotal / FREE_SHIPPING_THRESHOLD) * 100, 100);
+    return progress;
+  };
+
+  // Get progress bar color based on progress
+  const getProgressBarColor = () => {
+    const progress = calculateShippingProgress();
+    if (progress >= 100) {
+      return "#10B981"; // Green when free shipping achieved
+    } else if (progress >= 70) {
+      return "#F59E0B"; // Amber when close to free shipping
+    } else {
+      return "#5D5FEF"; // Default purple
+    }
+  };
+
+  // Get shipping message based on progress
+  const getShippingMessage = () => {
+    const cartTotal = calculateSubtotal();
+    const amountNeeded = FREE_SHIPPING_THRESHOLD - cartTotal;
+    
+    if (cartTotal >= FREE_SHIPPING_THRESHOLD) {
+      return "🎉 You've unlocked free shipping!";
+    } else if (cartTotal > 0) {
+      return `You're $${amountNeeded.toFixed(2)} away from free shipping`;
+    } else {
+      return `Add $${FREE_SHIPPING_THRESHOLD} to get free shipping`;
+    }
   };
 
   if (!isOpen) return null;
 
   const isCartEmpty = cartItems.length === 0;
+  const progress = calculateShippingProgress();
+  const progressBarColor = getProgressBarColor();
+  const shippingMessage = getShippingMessage();
 
   return (
     <>
@@ -95,16 +124,22 @@ const CartSidebar = ({ isOpen, onClose, cartItems, setCartItems }) => {
       <aside className="cart-sidebar">
         <div className="cart-header">
           <div className="cart-header-top">
-            <span className="cart-title">Your cart ({cartItems.reduce((total, item) => total + item.quantity, 0)})</span>
+            <span className="cart-title">Your cart ({getCartItemsCount()})</span>
             <button className="cart-close-btn" onClick={onClose}>
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                 <path d="M18 6L6 18M6 6l12 12"/>
               </svg>
             </button>
           </div>
-          <span className="cart-subtext">You're $50 away from free shipping</span>
+          <span className="cart-subtext">{shippingMessage}</span>
           <div className="cart-progress-bar">
-            <div className="cart-progress" style={{ width: "70%" }} />
+            <div 
+              className="cart-progress" 
+              style={{ 
+                width: `${progress}%`,
+                background: progressBarColor
+              }} 
+            />
           </div>
         </div>
         
@@ -117,7 +152,7 @@ const CartSidebar = ({ isOpen, onClose, cartItems, setCartItems }) => {
           <div className="cart-content">
             <div className="cart-items">
               {cartItems.map((item, index) => (
-                <div key={item.id} className="cart-item-container">
+                <div key={`${item.id}-${item.subscribe}-${index}`} className="cart-item-container">
                   {/* Product Container */}
                   <div className="cart-item-product">
                     <div className="cart-item-main">
@@ -127,25 +162,28 @@ const CartSidebar = ({ isOpen, onClose, cartItems, setCartItems }) => {
                         <div className="cart-item-quantity-container">
                           <button 
                             className="quantity-btn"
-                            onClick={() => handleQuantityChange(item.id, -1)}
+                            onClick={() => handleQuantityChange(item.id, item.subscribe, -1)}
+                            disabled={item.quantity <= 1}
                           >
                             -
                           </button>
                           <span className="quantity-number">{item.quantity}</span>
                           <button 
                             className="quantity-btn"
-                            onClick={() => handleQuantityChange(item.id, 1)}
+                            onClick={() => handleQuantityChange(item.id, item.subscribe, 1)}
                           >
                             +
                           </button>
                         </div>
                       </div>
                       <div className="cart-item-pricing">
-                        <div className="cart-item-price">${item.price.toFixed(2)}</div>
-                        <div className="cart-item-original-price">${item.originalPrice.toFixed(2)}</div>
+                        <div className="cart-item-price">${((item.price || 0) * (item.quantity || 1)).toFixed(2)}</div>
+                        {item.originalPrice && (
+                          <div className="cart-item-original-price">${(item.originalPrice * (item.quantity || 1)).toFixed(2)}</div>
+                        )}
                         <button 
                           className="cart-item-remove"
-                          onClick={() => handleRemoveItem(item.id)}
+                          onClick={() => handleRemoveItem(item.id, item.subscribe)}
                         >
                           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                             <path d="M3 6h18M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/>
@@ -160,8 +198,8 @@ const CartSidebar = ({ isOpen, onClose, cartItems, setCartItems }) => {
                     <label className="subscribe-checkbox">
                       <input 
                         type="checkbox" 
-                        checked={item.subscribe}
-                        onChange={() => handleSubscribeChange(item.id)}
+                        checked={item.subscribe || false}
+                        onChange={() => handleSubscribeChange(item.id, item.subscribe || false)}
                       />
                       <span className="checkmark"></span>
                       <div className="subscribe-content">
@@ -183,8 +221,8 @@ const CartSidebar = ({ isOpen, onClose, cartItems, setCartItems }) => {
                           {['1 month', '2 months', '3 months'].map(freq => (
                             <button
                               key={freq}
-                              className={`frequency-option ${item.deliveryFrequency === freq ? 'active' : ''}`}
-                              onClick={() => handleDeliveryFrequencyChange(item.id, freq)}
+                              className={`frequency-option ${(item.deliveryFrequency || '1 month') === freq ? 'active' : ''}`}
+                              onClick={() => handleDeliveryFrequencyChange(item.id, item.subscribe, freq)}
                             >
                               {freq}
                             </button>
@@ -200,12 +238,14 @@ const CartSidebar = ({ isOpen, onClose, cartItems, setCartItems }) => {
             <div className="cart-summary">
               <div className="summary-section">
                 <div className="summary-row separation">
-                  <span>Subtotal ({cartItems.reduce((total, item) => total + item.quantity, 0)} items)</span>
+                  <span>Subtotal ({getCartItemsCount()} items)</span>
                   <span>${calculateSubtotal().toFixed(2)}</span>
                 </div>
                 <div className="summary-row">
                   <span>Shipping</span>
-                  <span>Free</span>
+                  <span>
+                    {calculateSubtotal() >= FREE_SHIPPING_THRESHOLD ? "Free" : `$${5.99}`}
+                  </span>
                 </div>
                 <div className="summary-row tax-row">
                   <span>Tax</span>
@@ -241,7 +281,7 @@ const CartSidebar = ({ isOpen, onClose, cartItems, setCartItems }) => {
             </button>
           ) : (
             <>
-              <button className="checkout-btn">
+              <button className="checkout-btn" onClick={handleCheckout}>
                 Checkout
               </button>
               <div className="tax-shipping-note">

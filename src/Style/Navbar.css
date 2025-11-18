@@ -717,3 +717,52 @@ body {
   left: 0;
   right: 0;
 }
+
+
+
+
+
+
+
+
+
+
+/* Add this to your existing Navbar.css file */
+
+.petwell-cart-badge {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  background: #ff4444;
+  color: white;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  font-size: 12px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid white;
+}
+
+.petwell-cart-icon {
+  position: relative;
+}
+
+/* If you want to add some animation when items are added */
+@keyframes bounce {
+  0%, 20%, 60%, 100% {
+    transform: scale(1);
+  }
+  40% {
+    transform: scale(1.1);
+  }
+  80% {
+    transform: scale(0.95);
+  }
+}
+
+.petwell-cart-badge.added {
+  animation: bounce 0.6s ease;
+}
