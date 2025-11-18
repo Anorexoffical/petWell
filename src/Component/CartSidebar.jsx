@@ -72,13 +72,14 @@ const CartSidebar = ({ isOpen, onClose }) => {
 
   const calculateTotal = () => {
     const subtotal = calculateSubtotal();
-    const shipping = subtotal >= FREE_SHIPPING_THRESHOLD ? 0 : 5.99;
+    const shipping = subtotal >= FREE_SHIPPING_THRESHOLD || subtotal === 0 ? 0 : 5.99;
     return subtotal + shipping;
   };
 
   // Calculate progress towards free shipping
   const calculateShippingProgress = () => {
     const cartTotal = calculateSubtotal();
+    if (cartTotal === 0) return 0;
     const progress = Math.min((cartTotal / FREE_SHIPPING_THRESHOLD) * 100, 100);
     return progress;
   };
@@ -244,7 +245,7 @@ const CartSidebar = ({ isOpen, onClose }) => {
                 <div className="summary-row">
                   <span>Shipping</span>
                   <span>
-                    {calculateSubtotal() >= FREE_SHIPPING_THRESHOLD ? "Free" : `$${5.99}`}
+                    {calculateSubtotal() >= FREE_SHIPPING_THRESHOLD || calculateSubtotal() === 0 ? "Free" : `$${5.99}`}
                   </span>
                 </div>
                 <div className="summary-row tax-row">
@@ -271,16 +272,16 @@ const CartSidebar = ({ isOpen, onClose }) => {
         )}
         
         <div className="cart-footer">
-          <div className="estimated-total">
-            <div className="estimated-total-label">Estimated total</div>
-            <div className="estimated-total-price">${calculateTotal().toFixed(2)}</div>
-          </div>
           {isCartEmpty ? (
             <button className="continue-shopping-btn" onClick={onClose}>
               Continue shopping
             </button>
           ) : (
             <>
+              <div className="estimated-total">
+                <div className="estimated-total-label">Estimated total</div>
+                <div className="estimated-total-price">${calculateTotal().toFixed(2)}</div>
+              </div>
               <button className="checkout-btn" onClick={handleCheckout}>
                 Checkout
               </button>

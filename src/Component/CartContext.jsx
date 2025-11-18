@@ -130,6 +130,34 @@ export const CartProvider = ({ children }) => {
     }, 0);
   };
 
+  // Get shipping cost based on method
+  const getShippingCost = (shippingMethod) => {
+    const subtotal = getCartTotal();
+    const FREE_SHIPPING_THRESHOLD = 50;
+    
+    // Free shipping if subtotal meets threshold or cart is empty
+    if (subtotal >= FREE_SHIPPING_THRESHOLD || subtotal === 0) {
+      return 0;
+    }
+
+    // Return shipping cost based on method
+    switch (shippingMethod) {
+      case "FedEx Ground":
+        return 10.00;
+      case "FedEx Express":
+        return 25.00;
+      case "FedEx Overnight":
+        return 25.00;
+      default:
+        return 10.00;
+    }
+  };
+
+  // Calculate fixed tax amount - always $9.79 regardless of cart contents
+  const getTaxAmount = () => {
+    return 9.79; // Fixed tax amount for all orders
+  };
+
   const clearCart = () => {
     setCartItems([]);
   };
@@ -145,6 +173,8 @@ export const CartProvider = ({ children }) => {
     updateDeliveryFrequency,
     getCartItemsCount,
     getCartTotal,
+    getShippingCost,
+    getTaxAmount,
     clearCart
   };
 

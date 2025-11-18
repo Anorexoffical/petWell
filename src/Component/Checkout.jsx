@@ -7,23 +7,24 @@ import Navbar from "./Navbar";
 import { RiShoppingBag4Line } from "react-icons/ri";
 
 const CheckoutPage = () => {
-  const { cartItems, getCartTotal, getCartItemsCount } = useCart();
+  const { cartItems, getCartTotal, getCartItemsCount, getTaxAmount } = useCart();
   const [discountCode, setDiscountCode] = useState("");
-  const [selectedShipping, setSelectedShipping] = useState("Standard Shipping");
+  const [selectedShipping, setSelectedShipping] = useState("FedEx Ground");
   const [selectedPayment, setSelectedPayment] = useState("card");
   const [billingAddress, setBillingAddress] = useState("same");
   const [showMobileOrderSummary, setShowMobileOrderSummary] = useState(false);
+  const [formErrors, setFormErrors] = useState({});
   const [formData, setFormData] = useState({
     email: "",
     emailUpdates: true,
     country: "United States",
-    firstName: "John",
-    lastName: "Doe",
-    address: "206 Batran's Street",
-    apartment: "Unit 39",
-    city: "Miami",
-    state: "FL",
-    postalCode: "2044",
+    firstName: "",
+    lastName: "",
+    address: "",
+    apartment: "",
+    city: "",
+    state: "",
+    postalCode: "",
     phone: "",
     textUpdates: true,
     cardNumber: "",
@@ -32,35 +33,130 @@ const CheckoutPage = () => {
     nameOnCard: ""
   });
 
+  // Email validation regex
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+  // Calculate dynamic prices based on cart
+  const subtotal = getCartTotal();
+  const tax = getTaxAmount();
+  
+  // Calculate shipping cost based on selected method and cart total
+  const getShippingCost = (shippingMethod) => {
+    const FREE_SHIPPING_THRESHOLD = 50;
+    
+    // Only FedEx Ground is free when cart total is $50 or more
+    if (subtotal >= FREE_SHIPPING_THRESHOLD && shippingMethod === "FedEx Ground") {
+      return 0;
+    }
+
+    // Return shipping cost based on method
+    switch (shippingMethod) {
+      case "FedEx Ground":
+        return 10.00;
+      case "FedEx Express":
+        return 25.00;
+      case "FedEx Overnight":
+        return 25.00;
+      default:
+        return 10.00;
+    }
+  };
+
+  const shippingCost = getShippingCost(selectedShipping);
+  const total = subtotal + shippingCost + tax;
+
+  // Define shipping methods with dynamic pricing
   const shippingMethods = [
     {
-      id: "standard-shipping",
-      name: "Standard Shipping",
-      price: 10.00,
+      id: "fedex-ground",
+      name: "FedEx Ground",
+      price: getShippingCost("FedEx Ground"),
       delivery: "3-5 business days",
       description: ""
     },
     {
-      id: "express-shipping",
-      name: "Express Shipping",
-      price: 25.00,
+      id: "fedex-express",
+      name: "FedEx Express",
+      price: getShippingCost("FedEx Express"),
       delivery: "1-2 business days",
       description: ""
     },
     {
-      id: "overnight-shipping",
-      name: "Overnight Shipping",
-      price: 40.00,
+      id: "fedex-overnight",
+      name: "FedEx Overnight",
+      price: getShippingCost("FedEx Overnight"),
       delivery: "Next business day",
       description: "No weekend shipments or deliveries. No PO boxes"
     }
   ];
 
-  // Calculate dynamic prices based on cart
-  const subtotal = getCartTotal();
-  const shippingCost = shippingMethods.find(method => method.name === selectedShipping)?.price || 0;
-  const tax = subtotal * 0.08; // 8% tax as example
-  const total = subtotal + shippingCost + tax;
+  const validateForm = () => {
+    const errors = {};
+
+    // Email validation
+    if (!formData.email.trim()) {
+      errors.email = "Email is required";
+    } else if (!emailRegex.test(formData.email)) {
+      errors.email = "Please enter a valid email address";
+    }
+
+    // Last name validation
+    if (!formData.lastName.trim()) {
+      errors.lastName = "Last name is required";
+    }
+
+    // Address validation
+    if (!formData.address.trim()) {
+      errors.address = "Address is required";
+    }
+
+    // City validation
+    if (!formData.city.trim()) {
+      errors.city = "City is required";
+    }
+
+    // State validation
+    if (!formData.state.trim()) {
+      errors.state = "State is required";
+    }
+
+    // Postal code validation
+    if (!formData.postalCode.trim()) {
+      errors.postalCode = "Postal code is required";
+    }
+
+    // Phone validation
+    if (formData.phone && !/^\d{10}$/.test(formData.phone.replace(/\D/g, ''))) {
+      errors.phone = "Please enter a valid 10-digit phone number";
+    }
+
+    // Card validation (if card payment selected)
+    if (selectedPayment === 'card') {
+      if (!formData.cardNumber.trim()) {
+        errors.cardNumber = "Card number is required";
+      } else if (!/^\d{16}$/.test(formData.cardNumber.replace(/\s/g, ''))) {
+        errors.cardNumber = "Please enter a valid 16-digit card number";
+      }
+
+      if (!formData.expiryDate.trim()) {
+        errors.expiryDate = "Expiry date is required";
+      } else if (!/^(0[1-9]|1[0-2])\/([0-9]{2})$/.test(formData.expiryDate)) {
+        errors.expiryDate = "Please enter a valid expiry date (MM/YY)";
+      }
+
+      if (!formData.securityCode.trim()) {
+        errors.securityCode = "Security code is required";
+      } else if (!/^\d{3,4}$/.test(formData.securityCode)) {
+        errors.securityCode = "Please enter a valid security code (3-4 digits)";
+      }
+
+      if (!formData.nameOnCard.trim()) {
+        errors.nameOnCard = "Name on card is required";
+      }
+    }
+
+    return errors;
+  };
 
   const handleApplyDiscount = () => {
     if (discountCode.trim()) {
@@ -68,12 +164,76 @@ const CheckoutPage = () => {
     }
   };
 
-  const handleInputChange = (e) => {
-    const { name, value, type, checked } = e.target;
+  // Format card number with spaces
+  const formatCardNumber = (value) => {
+    const cleaned = value.replace(/\s/g, '').replace(/\D/g, '');
+    const matches = cleaned.match(/\d{1,4}/g);
+    return matches ? matches.join(' ') : '';
+  };
+
+  // Format expiry date automatically
+  const formatExpiryDate = (value) => {
+    const cleaned = value.replace(/\D/g, '');
+    if (cleaned.length >= 2) {
+      return cleaned.slice(0, 2) + '/' + cleaned.slice(2, 4);
+    }
+    return cleaned;
+  };
+
+  // Only allow numbers for phone, card number, expiry date, and security code
+  const handleNumericInput = (e, fieldName, maxLength = null) => {
+    const value = e.target.value.replace(/\D/g, '');
+    if (maxLength && value.length > maxLength) return;
+    
     setFormData(prev => ({
       ...prev,
-      [name]: type === 'checkbox' ? checked : value
+      [fieldName]: value
     }));
+
+    // Clear error when user starts typing
+    if (formErrors[fieldName]) {
+      setFormErrors(prev => ({
+        ...prev,
+        [fieldName]: ''
+      }));
+    }
+  };
+
+  const handleInputChange = (e) => {
+    const { name, value, type, checked } = e.target;
+    
+    if (name === 'cardNumber') {
+      const formattedValue = formatCardNumber(value);
+      setFormData(prev => ({
+        ...prev,
+        [name]: formattedValue
+      }));
+    } else if (name === 'expiryDate') {
+      const formattedValue = formatExpiryDate(value);
+      setFormData(prev => ({
+        ...prev,
+        [name]: formattedValue
+      }));
+    } else if (name === 'securityCode') {
+      handleNumericInput(e, name, 4);
+      return;
+    } else if (name === 'phone') {
+      handleNumericInput(e, name, 10);
+      return;
+    } else {
+      setFormData(prev => ({
+        ...prev,
+        [name]: type === 'checkbox' ? checked : value
+      }));
+    }
+
+    // Clear error when user starts typing
+    if (formErrors[name]) {
+      setFormErrors(prev => ({
+        ...prev,
+        [name]: ''
+      }));
+    }
   };
 
   const handleShippingChange = (methodName) => {
@@ -94,6 +254,23 @@ const CheckoutPage = () => {
       alert("Your cart is empty!");
       return;
     }
+
+    const errors = validateForm();
+    if (Object.keys(errors).length > 0) {
+      setFormErrors(errors);
+      // Scroll to first error
+      const firstErrorField = Object.keys(errors)[0];
+      const errorElement = document.querySelector(`[name="${firstErrorField}"]`);
+      if (errorElement) {
+        errorElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        errorElement.focus();
+      }
+      return;
+    }
+
+    // Clear errors if form is valid
+    setFormErrors({});
+    
     // Handle form submission logic here
     alert("Order placed successfully!");
   };
@@ -110,7 +287,7 @@ const CheckoutPage = () => {
           {/* Left Column - Checkout Form */}
           <div className="col-lg-7 col-md-12 d-flex align-items-center justify-content-center py-4 py-lg-5">
             <div className="checkout-form-container w-100 checkout-max-width-700">
-              <form onSubmit={handleSubmit}>
+              <form onSubmit={handleSubmit} noValidate>
                 {/* Header with Logo and Cart Icon */}
                 <div className="checkout-main-header d-flex justify-content-between align-items-center mb-4">
                   <div className="checkout-logo">
@@ -273,13 +450,18 @@ const CheckoutPage = () => {
                       <div className="mb-3 checkout-input-container">
                         <input
                           type="email"
-                          className="form-control checkout-custom-input checkout-full-width-input"
+                          className={`form-control checkout-custom-input checkout-full-width-input ${formErrors.email ? 'is-invalid' : ''}`}
                           placeholder="Enter an email"
                           name="email"
                           value={formData.email}
                           onChange={handleInputChange}
                           required
                         />
+                        {formErrors.email && (
+                          <div className="checkout-error-message text-danger mt-1">
+                            {formErrors.email}
+                          </div>
+                        )}
                       </div>
                       
                       <div className="form-check checkout-input-container">
@@ -342,13 +524,18 @@ const CheckoutPage = () => {
                             <label className="form-label checkout-section-subtitle">Last name</label>
                             <input
                               type="text"
-                              className="form-control checkout-custom-input checkout-full-width-input"
+                              className={`form-control checkout-custom-input checkout-full-width-input ${formErrors.lastName ? 'is-invalid' : ''}`}
                               placeholder="Last name"
                               name="lastName"
                               value={formData.lastName}
                               onChange={handleInputChange}
                               required
                             />
+                            {formErrors.lastName && (
+                              <div className="checkout-error-message text-danger mt-1">
+                                {formErrors.lastName}
+                              </div>
+                            )}
                           </div>
                         </div>
                       </div>
@@ -358,13 +545,18 @@ const CheckoutPage = () => {
                         <label className="form-label checkout-section-subtitle">Address</label>
                         <input
                           type="text"
-                          className="form-control checkout-custom-input checkout-full-width-input"
+                          className={`form-control checkout-custom-input checkout-full-width-input ${formErrors.address ? 'is-invalid' : ''}`}
                           placeholder="Address"
                           name="address"
                           value={formData.address}
                           onChange={handleInputChange}
                           required
                         />
+                        {formErrors.address && (
+                          <div className="checkout-error-message text-danger mt-1">
+                            {formErrors.address}
+                          </div>
+                        )}
                       </div>
 
                       {/* Apartment */}
@@ -387,40 +579,52 @@ const CheckoutPage = () => {
                             <label className="form-label checkout-section-subtitle">City</label>
                             <input
                               type="text"
-                              className="form-control checkout-custom-input checkout-full-width-input"
+                              className={`form-control checkout-custom-input checkout-full-width-input ${formErrors.city ? 'is-invalid' : ''}`}
                               placeholder="City"
                               name="city"
                               value={formData.city}
                               onChange={handleInputChange}
                               required
                             />
+                            {formErrors.city && (
+                              <div className="checkout-error-message text-danger mt-1">
+                                {formErrors.city}
+                              </div>
+                            )}
                           </div>
                           <div className="col-md-4">
                             <label className="form-label checkout-section-subtitle">State</label>
-                            <select 
-                              className="form-select checkout-custom-input checkout-full-width-input"
+                            <input
+                              type="text"
+                              className={`form-control checkout-custom-input checkout-full-width-input ${formErrors.state ? 'is-invalid' : ''}`}
+                              placeholder="State"
                               name="state"
                               value={formData.state}
                               onChange={handleInputChange}
                               required
-                            >
-                              <option value="FL">FL</option>
-                              <option value="CA">CA</option>
-                              <option value="NY">NY</option>
-                              <option value="TX">TX</option>
-                            </select>
+                            />
+                            {formErrors.state && (
+                              <div className="checkout-error-message text-danger mt-1">
+                                {formErrors.state}
+                              </div>
+                            )}
                           </div>
                           <div className="col-md-4">
                             <label className="form-label checkout-section-subtitle">Postal code</label>
                             <input
                               type="text"
-                              className="form-control checkout-custom-input checkout-full-width-input"
+                              className={`form-control checkout-custom-input checkout-full-width-input ${formErrors.postalCode ? 'is-invalid' : ''}`}
                               placeholder="Postal code"
                               name="postalCode"
                               value={formData.postalCode}
                               onChange={handleInputChange}
                               required
                             />
+                            {formErrors.postalCode && (
+                              <div className="checkout-error-message text-danger mt-1">
+                                {formErrors.postalCode}
+                              </div>
+                            )}
                           </div>
                         </div>
                       </div>
@@ -430,12 +634,18 @@ const CheckoutPage = () => {
                         <label className="form-label checkout-section-subtitle">Phone number</label>
                         <input
                           type="tel"
-                          className="form-control checkout-custom-input checkout-full-width-input"
-                          placeholder="Phone number"
+                          className={`form-control checkout-custom-input checkout-full-width-input ${formErrors.phone ? 'is-invalid' : ''}`}
+                          placeholder="Phone number (10 digits)"
                           name="phone"
                           value={formData.phone}
                           onChange={handleInputChange}
+                          maxLength={10}
                         />
+                        {formErrors.phone && (
+                          <div className="checkout-error-message text-danger mt-1">
+                            {formErrors.phone}
+                          </div>
+                        )}
                       </div>
 
                       {/* Text Updates */}
@@ -485,7 +695,9 @@ const CheckoutPage = () => {
                                   <label htmlFor={method.id} className="checkout-method-name">
                                     {method.name}
                                   </label>
-                                  <div className="checkout-method-price">${method.price.toFixed(2)}</div>
+                                  <div className="checkout-method-price">
+                                    {method.price === 0 ? 'FREE' : `$${method.price.toFixed(2)}`}
+                                  </div>
                                 </div>
                                 <div className="checkout-method-info">
                                   <div className="checkout-method-delivery">{method.delivery}</div>
@@ -535,13 +747,19 @@ const CheckoutPage = () => {
                                 <label className="form-label checkout-section-subtitle">Card number</label>
                                 <input
                                   type="text"
-                                  className="form-control checkout-custom-input checkout-full-width-input"
-                                  placeholder="Card number"
+                                  className={`form-control checkout-custom-input checkout-full-width-input ${formErrors.cardNumber ? 'is-invalid' : ''}`}
+                                  placeholder="1234 5678 9012 3456"
                                   name="cardNumber"
                                   value={formData.cardNumber}
                                   onChange={handleInputChange}
+                                  maxLength={19}
                                   required
                                 />
+                                {formErrors.cardNumber && (
+                                  <div className="checkout-error-message text-danger mt-1">
+                                    {formErrors.cardNumber}
+                                  </div>
+                                )}
                               </div>
                               
                               <div className="row mb-3">
@@ -549,25 +767,37 @@ const CheckoutPage = () => {
                                   <label className="form-label checkout-section-subtitle">Expiration date (MM/YY)</label>
                                   <input
                                     type="text"
-                                    className="form-control checkout-custom-input checkout-full-width-input"
+                                    className={`form-control checkout-custom-input checkout-full-width-input ${formErrors.expiryDate ? 'is-invalid' : ''}`}
                                     placeholder="MM/YY"
                                     name="expiryDate"
                                     value={formData.expiryDate}
                                     onChange={handleInputChange}
+                                    maxLength={5}
                                     required
                                   />
+                                  {formErrors.expiryDate && (
+                                    <div className="checkout-error-message text-danger mt-1">
+                                      {formErrors.expiryDate}
+                                    </div>
+                                  )}
                                 </div>
                                 <div className="col-md-6">
                                   <label className="form-label checkout-section-subtitle">Security code</label>
                                   <input
                                     type="text"
-                                    className="form-control checkout-custom-input checkout-full-width-input"
+                                    className={`form-control checkout-custom-input checkout-full-width-input ${formErrors.securityCode ? 'is-invalid' : ''}`}
                                     placeholder="CVC"
                                     name="securityCode"
                                     value={formData.securityCode}
                                     onChange={handleInputChange}
+                                    maxLength={4}
                                     required
                                   />
+                                  {formErrors.securityCode && (
+                                    <div className="checkout-error-message text-danger mt-1">
+                                      {formErrors.securityCode}
+                                    </div>
+                                  )}
                                 </div>
                               </div>
                               
@@ -575,13 +805,18 @@ const CheckoutPage = () => {
                                 <label className="form-label checkout-section-subtitle">Name on card</label>
                                 <input
                                   type="text"
-                                  className="form-control checkout-custom-input checkout-full-width-input"
+                                  className={`form-control checkout-custom-input checkout-full-width-input ${formErrors.nameOnCard ? 'is-invalid' : ''}`}
                                   placeholder="Name on card"
                                   name="nameOnCard"
                                   value={formData.nameOnCard}
                                   onChange={handleInputChange}
                                   required
                                 />
+                                {formErrors.nameOnCard && (
+                                  <div className="checkout-error-message text-danger mt-1">
+                                    {formErrors.nameOnCard}
+                                  </div>
+                                )}
                               </div>
                             </div>
                           )}
@@ -648,158 +883,165 @@ const CheckoutPage = () => {
                               <label htmlFor="sameAddress" className="checkout-billing-option-name">
                                 Same as shipping address
                               </label>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div className="checkout-billing-option checkout-last-billing-option">
+                          <div 
+                            className={`checkout-billing-radio-option ${billingAddress === 'different' ? 'checkout-selected' : ''}`}
+                            onClick={() => handleBillingAddressChange('different')}
+                          >
+                            <div className="checkout-billing-radio">
+                              <input
+                                type="radio"
+                                name="billingAddress"
+                                id="differentAddress"
+                                checked={billingAddress === 'different'}
+                                onChange={() => handleBillingAddressChange('different')}
+                                className="checkout-method-radio-input"
+                              />
+                            </div>
+                            <div className="checkout-billing-label">
+                              <label htmlFor="differentAddress" className="checkout-billing-option-name">
+                                Use a different billing address
+                              </label>
+                            </div>
+                          </div>
                         </div>
                       </div>
                     </div>
 
-                    <div className="checkout-billing-option checkout-last-billing-option">
-                      <div 
-                        className={`checkout-billing-radio-option ${billingAddress === 'different' ? 'checkout-selected' : ''}`}
-                        onClick={() => handleBillingAddressChange('different')}
-                      >
-                        <div className="checkout-billing-radio">
-                          <input
-                            type="radio"
-                            name="billingAddress"
-                            id="differentAddress"
-                            checked={billingAddress === 'different'}
-                            onChange={() => handleBillingAddressChange('different')}
-                            className="checkout-method-radio-input"
-                          />
-                        </div>
-                        <div className="checkout-billing-label">
-                          <label htmlFor="differentAddress" className="checkout-billing-option-name">
-                            Use a different billing address
-                          </label>
-                        </div>
+                    {/* Continue Button */}
+                    <div className="checkout-form-section mb-4">
+                      <div className="checkout-continue-section">
+                        <button type="submit" className="checkout-continue-btn">
+                          Continue to Shipping
+                        </button>
                       </div>
                     </div>
-                  </div>
+                  </>
+                )}
+              </form>
+
+              {/* Footer Links */}
+              <div className="checkout-footer-links">
+                <div className="checkout-footer-link-item">
+                  <a href="#return" className="checkout-footer-link">Return policy</a>
+                </div>
+                <div className="checkout-footer-link-item">
+                  <a href="#privacy" className="checkout-footer-link">Privacy policy</a>
+                </div>
+                <div className="checkout-footer-link-item">
+                  <a href="#terms" className="checkout-footer-link">Terms of use</a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Right Column - Order Summary */}
+          {cartItems.length > 0 && (
+            <div className="col-lg-5 col-md-12 checkout-order-summary-bg d-flex align-items-start justify-content-center py-4 py-lg-5 d-none d-lg-flex">
+              <div className="checkout-order-summary w-100 checkout-max-width-500">
+                {/* Product Items */}
+                <div className="checkout-order-items mb-4">
+                  {cartItems.map((item, index) => (
+                    <div key={`${item.id}-${item.subscribe}-${index}`} className="checkout-order-item d-flex align-items-center mb-3">
+                      <div className="checkout-item-image-wrapper position-relative me-3">
+                        <img 
+                          src={item.image} 
+                          alt={item.name}
+                          className="checkout-item-image"
+                        />
+                        <div className="checkout-item-badge">{item.quantity}</div>
+                      </div>
+                      
+                      <div className="checkout-item-details flex-grow-1">
+                        <h5 className="checkout-item-name mb-1">{item.name}</h5>
+                        <p className="checkout-item-size text-muted mb-0">
+                          {item.subscribe ? "Subscription" : "One-time purchase"}
+                        </p>
+                        {item.subscribe && item.deliveryFrequency && (
+                          <p className="checkout-delivery-frequency text-muted mb-0">
+                            Deliver every: {item.deliveryFrequency}
+                          </p>
+                        )}
+                      </div>
+                      
+                      <div className="checkout-item-price">
+                        <span className="checkout-price-amount">
+                          ${((item.price || 0) * (item.quantity || 1)).toFixed(2)}
+                        </span>
+                        {item.originalPrice && (
+                          <div className="text-muted small text-decoration-line-through">
+                            ${(item.originalPrice * (item.quantity || 1)).toFixed(2)}
+                          </div>
+                        )}
+                      </div>
+                    </div>
+                  ))}
                 </div>
 
-                {/* Continue Button */}
-                <div className="checkout-form-section mb-4">
-                  <div className="checkout-continue-section">
-                    <button type="submit" className="checkout-continue-btn">
-                      Continue to Shipping
+                <div className="checkout-border-line mb-4"></div>
+
+                {/* Discount Code Section */}
+                <div className="checkout-discount-section mb-4 checkout-input-container">
+                  <div className="d-flex align-items-center">
+                    <input
+                      type="text"
+                      className="checkout-discount-input flex-grow-1 me-3"
+                      placeholder="Discount code"
+                      value={discountCode}
+                      onChange={(e) => setDiscountCode(e.target.value)}
+                    />
+                    <button 
+                      type="button"
+                      className="checkout-apply-btn"
+                      onClick={handleApplyDiscount}
+                    >
+                      Apply
                     </button>
                   </div>
                 </div>
-              </>
-            )}
-          </form>
 
-          {/* Footer Links */}
-          <div className="checkout-footer-links">
-            <div className="checkout-footer-link-item">
-              <a href="#return" className="checkout-footer-link">Return policy</a>
-            </div>
-            <div className="checkout-footer-link-item">
-              <a href="#privacy" className="checkout-footer-link">Privacy policy</a>
-            </div>
-            <div className="checkout-footer-link-item">
-              <a href="#terms" className="checkout-footer-link">Terms of use</a>
-            </div>
-          </div>
-        </div>
-      </div>
+                <div className="checkout-border-line mb-4"></div>
 
-      {/* Right Column - Order Summary */}
-      {cartItems.length > 0 && (
-        <div className="col-lg-5 col-md-12 checkout-order-summary-bg d-flex align-items-start justify-content-center py-4 py-lg-5 d-none d-lg-flex">
-          <div className="checkout-order-summary w-100 checkout-max-width-500">
-            {/* Product Items */}
-            <div className="checkout-order-items mb-4">
-              {cartItems.map((item, index) => (
-                <div key={`${item.id}-${item.subscribe}-${index}`} className="checkout-order-item d-flex align-items-center mb-3">
-                  <div className="checkout-item-image-wrapper position-relative me-3">
-                    <img 
-                      src={item.image} 
-                      alt={item.name}
-                      className="checkout-item-image"
-                    />
-                    <div className="checkout-item-badge">{item.quantity}</div>
+                {/* Pricing Summary */}
+                <div className="checkout-pricing-summary">
+                  <div className="checkout-price-row d-flex justify-content-between mb-2">
+                    <span className="checkout-price-label">Subtotal ({getCartItemsCount()} items)</span>
+                    <span className="checkout-price-value">${subtotal.toFixed(2)}</span>
                   </div>
                   
-                  <div className="checkout-item-details flex-grow-1">
-                    <h5 className="checkout-item-name mb-1">{item.name}</h5>
-                    <p className="checkout-item-size text-muted mb-0">
-                      {item.subscribe ? "Subscription" : "One-time purchase"}
-                    </p>
-                    {item.subscribe && item.deliveryFrequency && (
-                      <p className="checkout-delivery-frequency text-muted mb-0">
-                        Deliver every: {item.deliveryFrequency}
-                      </p>
-                    )}
-                  </div>
-                  
-                  <div className="checkout-item-price">
-                    <span className="checkout-price-amount">
-                      ${((item.price || 0) * (item.quantity || 1)).toFixed(2)}
+                  <div className="checkout-price-row d-flex justify-content-between mb-2">
+                    <span className="checkout-price-label">Shipping</span>
+                    <span className="checkout-price-value">
+                      {shippingCost === 0 ? 'FREE' : `$${shippingCost.toFixed(2)}`}
                     </span>
-                    {item.originalPrice && (
-                      <div className="text-muted small text-decoration-line-through">
-                        ${(item.originalPrice * (item.quantity || 1)).toFixed(2)}
-                      </div>
-                    )}
+                  </div>
+                  
+                  {/* Beautiful Shipping Method Display */}
+                  <div className="checkout-shipping-method-display">
+                    <small className="text-muted">
+                      {selectedShipping}
+                    </small>
+                  </div>
+                  
+                  <div className="checkout-price-row d-flex justify-content-between mb-3">
+                    <span className="checkout-price-label">Tax</span>
+                    <span className="checkout-price-value">${tax.toFixed(2)}</span>
+                  </div>
+                  
+                  <div className="checkout-price-row d-flex justify-content-between checkout-total-row">
+                    <span className="checkout-total-label">Total</span>
+                    <span className="checkout-total-value">${total.toFixed(2)}</span>
                   </div>
                 </div>
-              ))}
-            </div>
-
-            <div className="checkout-border-line mb-4"></div>
-
-            {/* Discount Code Section */}
-            <div className="checkout-discount-section mb-4 checkout-input-container">
-              <div className="d-flex align-items-center">
-                <input
-                  type="text"
-                  className="checkout-discount-input flex-grow-1 me-3"
-                  placeholder="Discount code"
-                  value={discountCode}
-                  onChange={(e) => setDiscountCode(e.target.value)}
-                />
-                <button 
-                  type="button"
-                  className="checkout-apply-btn"
-                  onClick={handleApplyDiscount}
-                >
-                  Apply
-                </button>
               </div>
             </div>
-
-            <div className="checkout-border-line mb-4"></div>
-
-            {/* Pricing Summary */}
-            <div className="checkout-pricing-summary">
-              <div className="checkout-price-row d-flex justify-content-between mb-2">
-                <span className="checkout-price-label">Subtotal ({getCartItemsCount()} items)</span>
-                <span className="checkout-price-value">${subtotal.toFixed(2)}</span>
-              </div>
-              
-              <div className="checkout-price-row d-flex justify-content-between mb-2">
-                <span className="checkout-price-label">Shipping</span>
-                <span className="checkout-price-value">
-                  {shippingCost === 0 ? 'FREE' : `$${shippingCost.toFixed(2)}`}
-                </span>
-              </div>
-              
-              <div className="checkout-price-row d-flex justify-content-between mb-3">
-                <span className="checkout-price-label">Tax</span>
-                <span className="checkout-price-value">${tax.toFixed(2)}</span>
-              </div>
-              
-              <div className="checkout-price-row d-flex justify-content-between checkout-total-row">
-                <span className="checkout-total-label">Total</span>
-                <span className="checkout-total-value">${total.toFixed(2)}</span>
-              </div>
-            </div>
-          </div>
+          )}
         </div>
-      )}
-    </div>
-  </div>
+      </div>
     </>
   );
 };
